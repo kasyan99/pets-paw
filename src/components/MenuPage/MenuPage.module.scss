@@ -15,8 +15,6 @@
    height: 544px;
    border-radius: 20px;
 
-   border: 1px solid red;
-
    text-align: left;
 
    margin-top: 107px;
@@ -83,6 +81,7 @@
       &:last-child{
          display: inline-block;
          background: #FFFFFF;
+         border: none;
    
          width: 138px;
          height: 36px;
@@ -98,16 +97,31 @@
             font-size: 12px;
             line-height: 16px;
             /* identical to box height, or 133% */
-      
-            
+            width: 100%;
+            height: 100%;
             letter-spacing: 2px;
       
             color: #FF868E;
 
-            
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+         }
+      }
+      &:last-child:hover{
+         background: #FBE0DC;
+         cursor: pointer;
+      }
+
+      &:last-child.active{
+         background: #FF868E;
+         a{
+            color: #fff;
          }
       }
    }
+
+   
    
 }
 

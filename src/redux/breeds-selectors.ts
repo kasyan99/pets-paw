@@ -3,3 +3,23 @@ import { AppStateType } from "./redux-store"
 export const getBreedsList = (state: AppStateType) => {
    return state.breeds.breedsList
 }
+
+export const getCurrentPage = (state: AppStateType) => {
+   return state.breeds.currentPage
+}
+
+export const getFilter = (state: AppStateType) => {
+   return state.breeds.filter
+}
+
+export const getUsersCount = (state: AppStateType) => {
+   return state.breeds.usersCount
+}
+
+export const getOrder = (state: AppStateType) => {
+   return state.breeds.order
+}
+
+export const getBreedsNamesList = (state: AppStateType) => {
+   return state.breeds.breedsNamesList
+}

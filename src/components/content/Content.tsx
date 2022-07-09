@@ -1,11 +1,11 @@
 import React from 'react';
-import HomePage from './Pages/HomePage';
+import HomePage from './Pages/HomePage/HomePage';
 
 import classes from './Content.module.scss'
 import { useRoutes } from 'react-router-dom';
-import VotingPage from './Pages/VotingPage';
-import BreedsPage from './Pages/BreedsPage';
-import GalleryPage from './Pages/GalleryPage';
+import VotingPage from './Pages/VotingPage/VotingPage';
+import BreedsPage from './Pages/BreedsPage/BreedsPage';
+import GalleryPage from './Pages/GalleryPage/GalleryPage';
 
 
 

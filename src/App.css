@@ -41,7 +41,6 @@
 .container{
   display: inline-block;
   margin: auto;
-  border: 1px solid red;
   width: 1440px;
 
   box-sizing: border-box;

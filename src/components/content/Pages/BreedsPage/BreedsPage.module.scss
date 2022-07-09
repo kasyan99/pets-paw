@@ -1,0 +1,282 @@
+
+
+.breedsPage{
+  height: 100%;
+  display: grid;
+
+  grid-template-rows: 60px 1fr;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.wrapper {
+  // height: 100%;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: 1fr;
+  // &::after{
+  //   content: '';
+  //   width: 100%;
+  //   height: 20px;
+  //   background-color: #fff;
+  //   position: absolute;
+  //   bottom: 0;
+  //   left: 0;
+  // }
+}
+
+.breedsList{
+   border-radius: 20px;
+  //  height: 100%;
+  
+   overflow-y: scroll;
+   -ms-overflow-style: none;
+   overflow: -moz-scrollbars-none;
+  //  overflow-x: scroll;
+  //  overflow-y: hidden;
+   &::-webkit-scrollbar{
+     width: 0 !important;
+     height: 0;
+     display: none !important;
+     background: transparent;}
+     
+
+}
+
+.grid__layout{
+  display: grid;
+
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, 200px);
+  // grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: 140px repeat(auto-fit,140px);
+  // grid-template-rows: 140px repeat(auto-fill,140px);
+  .grid__item{
+    position: relative;
+    padding: 0 0 70% 0;
+    border-radius: 20px;
+    overflow: hidden;
+    &:nth-child(1),
+    &:nth-child(10n+1),
+    &:nth-child(8),
+    &:nth-child(10n+8){
+      grid-row: span 2;
+    }
+    &:nth-child(4),
+    &:nth-child(10n+4),
+    &:nth-child(9),
+    &:nth-child(10n+9){
+      grid-row: span 2;
+      grid-column: span 2;
+    }
+      img{
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+    div{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      top: 0;
+      background: rgba(255, 134, 142, 0.6);
+      display: inline-flex;
+      justify-content: center;
+      align-items: flex-end;
+      padding-bottom: 10px;
+      opacity: 0;
+      transition: opacity 0.5s;
+      span{
+        display: inline-flex;
+        width: 180px;
+        height: 34px;
+        justify-content: center;
+        align-items: center;
+        background: #FFFFFF;
+        border-radius: 10px;
+        color: #FF868E;
+        font-family: 'Jost';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+      
+      }
+    }
+
+    &:hover{
+      div{
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+  }
+  
+}
+
+
+
+.breedsFilterForm{
+  padding-bottom: 20px;
+
+  form{
+    display: grid;
+    // justify-content: space-between;
+    grid-auto-flow: column;
+    column-gap: 10px;
+  }
+}
+
+.element{
+  display: inline-block;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: #F8F8F7;
+  color: #8C8C8C;
+
+  font-size: 16px;
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 400;
+}
+
+.btn{
+  width: 40px;
+  font-size: 0;
+}
+
+.btn_back{
+  background:#FBE0DC url(../../../../assets/icons/breeds-page/back-btn.svg) no-repeat center center;
+}
+
+.btn_AtoZ{
+  background:#F8F8F7 url(../../../../assets/icons/breeds-page/btn_AtoZ.svg) no-repeat center center;
+}
+
+.btn_ZtoA{
+  background:#F8F8F7 url(../../../../assets/icons/breeds-page/btn_ZtoA.svg) no-repeat center center;
+}
+
+.breedsFilterWrap{
+  width: 226px;
+  padding: 0 8px;
+}
+
+.breedsFilter,
+.limitFilter{
+  width: 100%;
+}
+
+.limitFilterWrap{
+  width: 101px;
+  padding: 0 8px;
+}
+
+.pageName{
+  width: 143px;
+  background: #FF868E;
+
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  /* identical to box height, or 150% */
+
+  text-align: center;
+  letter-spacing: 2px;
+
+  color: #FFFFFF;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.paginator{
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  div{
+    display: grid;
+    grid-template-areas: 'prev space next';
+    grid-template-columns: 122px 40px 122px;
+    width: 284px;
+  }
+}
+
+.btn_prev,.btn_next{
+  width: 122px;
+
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+
+  letter-spacing: 2px;
+
+  color: #8C8C8C;
+
+  position: relative;
+
+  background: #F8F8F7;
+
+  &::after{
+    content: '';
+    position: absolute;
+    background: url(../../../../assets/icons/breeds-page/prevNext_btn_gray.svg) no-repeat center center;
+    width: 7px;
+    height: 100%;
+
+    top: 0;
+  }
+  &:hover{
+    cursor: pointer;
+    background: #FBE0DC;
+    color: #FF868E;
+    &::after{
+      background: url(../../../../assets/icons/breeds-page/prevNext_btn_pink.svg) no-repeat center center;
+    }
+  }
+  &:active{
+    background: #FF868E;
+    color: #fff;
+    &::after{
+      background: url(../../../../assets/icons/breeds-page/prevNext_btn_white.svg) no-repeat center center;
+    }
+  }
+}
+
+.btn_prev{
+  grid-area: prev;
+  text-align: right;
+  padding-right: 34px;
+  &::after{
+      left: 34px;
+  }
+}
+.btn_next{
+  grid-area: next;
+  text-align: left;
+  padding-left: 34px;
+  &::after{
+    right: 34px;
+    transform: rotate(180deg);
+  }
+} 
+
+// .btn_next:hover,
+// .btn_prev:hover{
+//   cursor: pointer;
+//   background: #FBE0DC;
+//   color: #FF868E;
+// }
