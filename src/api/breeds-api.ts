@@ -4,11 +4,11 @@ import { instance } from "./api"
 
 export const breedsAPI = {
 
-   async getBreads(limit: number | null, page: number | null, filterByBreed = '', order = 'ASC') {
+   async getBreads(limit: number | null, page: number | null, order = 'ASC' as string | null) {
       // const qBreed = filterByBreed !== '' ? `&attach_breed=${filterByBreed}` : ''
       const qPage = page || page === 0 ? `&page=${page}` : ''
-
-      const response = await instance.get(`breeds?limit=${limit}${qPage}&order=${order}`, {
+      const qOrder = order === 'DESC' ? `&order=${order}` : ''
+      const response = await instance.get(`breeds?limit=${limit}${qPage}${qOrder}`, {
          headers: {
             'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d',
             'type': 'xhr'

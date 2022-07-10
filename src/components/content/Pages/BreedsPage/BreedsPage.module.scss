@@ -50,7 +50,7 @@
   display: grid;
 
   gap: 20px;
-  grid-template-columns: repeat(auto-fit, 200px);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 203.33px));
   // grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-template-rows: 140px repeat(auto-fit,140px);
   // grid-template-rows: 140px repeat(auto-fill,140px);
@@ -160,26 +160,58 @@
 
 .btn_AtoZ{
   background:#F8F8F7 url(../../../../assets/icons/breeds-page/btn_AtoZ.svg) no-repeat center center;
+  &:active{
+    background:#F8F8F7 url(../../../../assets/icons/breeds-page/btn_AtoZ_pink.svg) no-repeat center center;
+  }
 }
 
 .btn_ZtoA{
   background:#F8F8F7 url(../../../../assets/icons/breeds-page/btn_ZtoA.svg) no-repeat center center;
+  &:active{
+    background:#F8F8F7 url(../../../../assets/icons/breeds-page/btn_ZtoA_pink.svg) no-repeat center center;
+  }
 }
 
-.breedsFilterWrap{
-  width: 226px;
-  padding: 0 8px;
+.btn_AtoZ,
+.btn_ZtoA{
+  cursor: pointer;
+  &:active{
+    outline: 2px solid #FBE0DC;
+  }
 }
+
+// .breedsFilterWrap{
+//   width: 226px;
+//   padding: 0 8px;
+// }
 
 .breedsFilter,
 .limitFilter{
+  padding: 0 10px;
   width: 100%;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  background: #F8F8F7 url(../../../../assets/icons/breeds-page/select_arrow.svg) no-repeat right 10px center;
+  cursor: pointer;
+  &:focus{
+    outline: 2px solid #FBE0DC;
+  }
 }
 
-.limitFilterWrap{
-  width: 101px;
-  padding: 0 8px;
+.breedsFilter{
+  width: 226px;
 }
+
+.limitFilter{
+  width: 101px;
+}
+
+// .limitFilterWrap{
+//   width: 101px;
+//   padding: 0 8px;
+  
+// }
 
 .pageName{
   width: 143px;

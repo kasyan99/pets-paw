@@ -15,7 +15,7 @@ const Content: React.FC = () => {
       {useRoutes([
          { path: "/", element: <HomePage /> },
          { path: "/voting", element: <VotingPage /> },
-         { path: "/breeds", element: <BreedsPage /> },
+         { path: "/breeds/*", element: <BreedsPage /> },
          { path: "/gallery", element: <GalleryPage /> },
       ])}
    </div>

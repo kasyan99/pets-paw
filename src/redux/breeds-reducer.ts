@@ -8,6 +8,7 @@ const SET_USERS_COUNT = 'pets-paw/breeds/SET-USERS-COUNT'
 const SET_LIMIT_ITEMS = 'pets-paw/breeds/SET-LIMIT-ITEMS'
 const SET_ORDER = 'pets-paw/breeds/SET-ORDER'
 const SET_BREEDS_NAMES_LIST = 'pets-paw/breeds/SET-BREEDS-NAMES-LIST'
+const SET_FILTER = 'pets-paw/breeds/SET-FILTER'
 
 export type InitialStateType = {
    breedsList: Array<Object>
@@ -58,6 +59,11 @@ const breedsReducer = (state = initialState, action: ActionsType): InitialStateT
             ...state,
             filter: { ...state.filter, limitItems: action.limitItems }
          }
+      case SET_FILTER:
+         return {
+            ...state,
+            filter: { ...state.filter, filterByBreed: action.filterByBreed }
+         }
       case SET_ORDER:
          return {
             ...state,
@@ -80,9 +86,10 @@ export const actions = {
    setLimitItems: (limitItems: number) => ({ type: SET_LIMIT_ITEMS, limitItems } as const),
    setOrder: (order: 'ASC' | 'DESC') => ({ type: SET_ORDER, order } as const),
    setBreedsNamesList: (breedsNamesList: Object) => ({ type: SET_BREEDS_NAMES_LIST, breedsNamesList } as const),
+   setByBreed: (filterByBreed: string) => ({ type: SET_FILTER, filterByBreed } as const),
 }
 
-export const getBreedsListThunk = (values: BreedsFilterFormType, page: number | null, order: 'ASC' | 'DESC'): any => async (dispatch: any) => {
+export const getBreedsListThunk = (values: BreedsFilterFormType, page: number | null, order = 'ASC' as 'ASC' | 'DESC'): any => async (dispatch: any) => {
 
    const { filterByBreed, limitItems } = values
    let response
@@ -90,17 +97,19 @@ export const getBreedsListThunk = (values: BreedsFilterFormType, page: number | 
       response = await breedsAPI.getByBreed(filterByBreed)
    } else {
 
-      response = await breedsAPI.getBreads(limitItems, page, filterByBreed, order)
+      response = await breedsAPI.getBreads(limitItems, page, order)
+
+      await dispatch(actions.setOrder(order))
       // const breeds = await breedsAPI.getBreads(null, null)
       if (limitItems) {
          await dispatch(actions.setLimitItems(limitItems))
       }
       // await dispatch(actions.setUsersCount(breeds.length))
-      if (page) {
+      if (page || page === 0) {
          await dispatch(actions.setCurrentPage(page))
       }
    }
-
+   await dispatch(actions.setByBreed(filterByBreed))
    dispatch(actions.setBreedsList(response))
 
 }
