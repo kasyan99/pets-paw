@@ -2,6 +2,11 @@ import { combineReducers, legacy_createStore as createStore, compose, applyMiddl
 import breedsReducer from "./breeds-reducer"
 import thunkMiddleware, { ThunkAction } from "redux-thunk";
 
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch
+
 const redusers = combineReducers({
    breeds: breedsReducer
 })

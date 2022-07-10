@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getBreedsListThunk } from '../../../../redux/breeds-reducer';
-import { getBreedsList, getCurrentPage, getFilter, getOrder, getUsersCount } from '../../../../redux/breeds-selectors';
+import { breedsAPI } from '../../../../api/breeds-api';
+import { getBreedsListThunk, getTotalUsersCount } from '../../../../redux/breeds-reducer';
+import { getBreedsList, getCurrentPage, getFilter, getIsFetching, getOrder, getUsersCount } from '../../../../redux/breeds-selectors';
+import Preloader from '../../../common/Preloader';
 import BreedsFilterForm, { BreedsFilterFormType } from './BreedsFilterForm';
 import classes from './BreedsPage.module.scss'
 
@@ -24,9 +26,13 @@ const BreedsList: React.FC<Props> = ({ breedsList }) => {
                   <div><span>{breed.name}</span></div>
                </div>
             } else {
+               const quest = breed.breeds ? breed.breeds[0].name : ''
+
                const src = breed.url ? breed.url : notFoundImage
-               const name = breed.name ? breed.name : breed.breeds[0].name
-               const alt = breed.alt_names ? breed.alt_names : breed.breeds[0].alt_names
+               const name = breed.name ? breed.name : quest
+               const alt = breed.alt_names ? breed.alt_names :
+                  breed.name ? breed.name : quest
+
                return <div className={classes.grid__item}
                   key={breed.id}>
                   <img src={src} alt={!breed.alt_names ? name : alt} />
@@ -94,6 +100,7 @@ const BreedsPage: React.FC = () => {
    const page = useSelector(getCurrentPage)
    const filter = useSelector(getFilter)
 
+   const isFetching = useSelector(getIsFetching)
 
    useEffect(() => {
 
@@ -110,6 +117,7 @@ const BreedsPage: React.FC = () => {
 
 
    useEffect(() => {
+      dispatch(getTotalUsersCount())
       const obj = new URLSearchParams(location.search)
 
       const breeds_ids: string | null = obj.get('breed_ids')
@@ -144,7 +152,12 @@ const BreedsPage: React.FC = () => {
    return <div className={classes.breedsPage}>
       <BreedsFilterForm />
       <div className={classes.wrapper}>
-         <BreedsList breedsList={breedsList} />
+         {isFetching &&
+            <Preloader />
+         }
+         {!isFetching &&
+            <BreedsList breedsList={breedsList} />
+         }
       </div>
    </div>
 }

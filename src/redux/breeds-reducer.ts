@@ -1,3 +1,5 @@
+import { Dispatch } from "react"
+import { AnyAction } from "redux"
 import { breedsAPI } from "../api/breeds-api"
 import { BreedsFilterFormType } from "../components/content/Pages/BreedsPage/BreedsFilterForm"
 import { BaseThunkType, InferActionsTypes } from "./redux-store"
@@ -9,30 +11,35 @@ const SET_LIMIT_ITEMS = 'pets-paw/breeds/SET-LIMIT-ITEMS'
 const SET_ORDER = 'pets-paw/breeds/SET-ORDER'
 const SET_BREEDS_NAMES_LIST = 'pets-paw/breeds/SET-BREEDS-NAMES-LIST'
 const SET_FILTER = 'pets-paw/breeds/SET-FILTER'
+const TOGGLE_FETCH = 'pets-paw/breeds/TOGGLE-FETCH'
 
-export type InitialStateType = {
-   breedsList: Array<Object>
-   usersCount: number
-   currentPage: number
-   filter: {
-      limitItems: number
-      filterByBreed: string
-   },
-   order: 'ASC' | 'DESC',
-   breedsNamesList: Object
-}
+// export type InitialStateType = {
+//    breedsList: Array<Object>
+//    usersCount: number
+//    currentPage: number
+//    filter: {
+//       limitItems: number
+//       filterByBreed: string
+//    },
+//    order: 'ASC' | 'DESC',
+//    breedsNamesList: Object
+//    isFetching: boolean
+// }
 
-const initialState: InitialStateType = {
-   breedsList: [],
+const initialState = {
+   breedsList: [] as Array<Object>,
    usersCount: 70,
    filter: {
       limitItems: 5,
       filterByBreed: ''
    },
    currentPage: 0,
-   order: 'ASC',
-   breedsNamesList: {}
+   order: 'ASC' as 'ASC' | 'DESC',
+   breedsNamesList: {},
+   isFetching: false,
 }
+
+export type InitialStateType = typeof initialState
 
 type ActionsType = InferActionsTypes<typeof actions>
 type ThunkType = BaseThunkType<ActionsType>
@@ -74,6 +81,11 @@ const breedsReducer = (state = initialState, action: ActionsType): InitialStateT
             ...state,
             breedsNamesList: { ...action.breedsNamesList }
          }
+      case TOGGLE_FETCH:
+         return {
+            ...state,
+            isFetching: action.isFetching
+         }
       default:
          return state
    }
@@ -87,9 +99,12 @@ export const actions = {
    setOrder: (order: 'ASC' | 'DESC') => ({ type: SET_ORDER, order } as const),
    setBreedsNamesList: (breedsNamesList: Object) => ({ type: SET_BREEDS_NAMES_LIST, breedsNamesList } as const),
    setByBreed: (filterByBreed: string) => ({ type: SET_FILTER, filterByBreed } as const),
+   toggleIsFetching: (isFetching: boolean) => ({ type: TOGGLE_FETCH, isFetching } as const)
 }
 
 export const getBreedsListThunk = (values: BreedsFilterFormType, page: number | null, order = 'ASC' as 'ASC' | 'DESC'): any => async (dispatch: any) => {
+
+   dispatch(actions.toggleIsFetching(true))
 
    const { filterByBreed, limitItems } = values
    let response
@@ -112,9 +127,11 @@ export const getBreedsListThunk = (values: BreedsFilterFormType, page: number | 
    await dispatch(actions.setByBreed(filterByBreed))
    dispatch(actions.setBreedsList(response))
 
+   dispatch(actions.toggleIsFetching(false))
+
 }
 
-export const getBreedsListNamesThunk = (): any => async (dispatch: any) => {
+export const getBreedsListNamesThunk = (): any => async (dispatch: Dispatch<ActionsType>) => {
    const breeds = await breedsAPI.getBreads(null, null)
 
    let breedsNamesList: any = {}
@@ -123,6 +140,12 @@ export const getBreedsListNamesThunk = (): any => async (dispatch: any) => {
    }))
 
    dispatch(actions.setBreedsNamesList(breedsNamesList))
+}
+
+export const getTotalUsersCount = (): any => async (dispatch: any) => {
+   const headers = await breedsAPI.getTotalUsersCount()
+   const usersCount = Number(headers['pagination-count'])
+   dispatch(actions.setUsersCount(usersCount))
 }
 
 export default breedsReducer

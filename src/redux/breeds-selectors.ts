@@ -23,3 +23,7 @@ export const getOrder = (state: AppStateType) => {
 export const getBreedsNamesList = (state: AppStateType) => {
    return state.breeds.breedsNamesList
 }
+
+export const getIsFetching = (state: AppStateType) => {
+   return state.breeds.isFetching
+}

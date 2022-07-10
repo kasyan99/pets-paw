@@ -5,7 +5,6 @@ import { instance } from "./api"
 export const breedsAPI = {
 
    async getBreads(limit: number | null, page: number | null, order = 'ASC' as string | null) {
-      // const qBreed = filterByBreed !== '' ? `&attach_breed=${filterByBreed}` : ''
       const qPage = page || page === 0 ? `&page=${page}` : ''
       const qOrder = order === 'DESC' ? `&order=${order}` : ''
       const response = await instance.get(`breeds?limit=${limit}${qPage}${qOrder}`, {
@@ -27,15 +26,16 @@ export const breedsAPI = {
       })
 
       return response.data
+   },
+
+   async getTotalUsersCount() {
+      const response = await instance.get('breeds', {
+         headers: {
+            'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d',
+            'type': 'xhr'
+         }
+      })
+
+      return response.headers
    }
-   // async getBeedsNames(){
-   //    const response = await instance.get(`breeds {
-   //       headers: {
-   //          'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d',
-   //          'type': 'xhr'
-   //       }
-   //    })
-
-
-   // }
 }
