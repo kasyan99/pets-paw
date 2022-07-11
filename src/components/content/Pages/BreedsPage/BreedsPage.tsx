@@ -5,6 +5,7 @@ import { breedsAPI } from '../../../../api/breeds-api';
 import { getBreedsListThunk, getTotalUsersCount } from '../../../../redux/breeds-reducer';
 import { getBreedsList, getCurrentPage, getFilter, getIsFetching, getOrder, getUsersCount } from '../../../../redux/breeds-selectors';
 import Preloader from '../../../common/Preloader';
+import SearchForm from '../../../common/SearchForm';
 import BreedsFilterForm, { BreedsFilterFormType } from './BreedsFilterForm';
 import classes from './BreedsPage.module.scss'
 
@@ -149,17 +150,19 @@ const BreedsPage: React.FC = () => {
 
 
    }, [])
-   return <div className={classes.breedsPage}>
-      <BreedsFilterForm />
-      <div className={classes.wrapper}>
-         {isFetching &&
-            <Preloader />
-         }
-         {!isFetching &&
-            <BreedsList breedsList={breedsList} />
-         }
+   return <><SearchForm />
+      <div className={classes.breedsPage}>
+         <BreedsFilterForm />
+         <div className={classes.wrapper}>
+            {isFetching &&
+               <Preloader />
+            }
+            {!isFetching &&
+               <BreedsList breedsList={breedsList} />
+            }
+         </div>
       </div>
-   </div>
+   </>
 }
 
 export default BreedsPage
