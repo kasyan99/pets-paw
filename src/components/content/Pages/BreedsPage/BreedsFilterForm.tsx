@@ -22,6 +22,12 @@ const BreedsFilterForm: React.FC = () => {
    const order = useSelector(getOrder)
    const filter = useSelector(getFilter)
 
+   // const location = useLocation()
+   // const pageNaame = location.pathname
+   //    .slice(1)
+   //    .split('/')[0]
+   //    .toUpperCase()
+
    const onSubmit = (values: BreedsFilterFormType) => {
       //when a filter is chosen, we show a new list of photos from the first page
       dispatch(getBreedsListThunk(values, 0, order))
@@ -46,10 +52,10 @@ const BreedsFilterForm: React.FC = () => {
          onSubmit={onSubmit}
       >{(props) => (
          <form onSubmit={props.handleSubmit}>
-            <button type='button' className={`${classes.element} ${classes.btn} ${classes.btn_back}`}></button>
+            {/* <button type='button' className={`${classes.element} ${classes.btn} ${classes.btn_back}`}></button>
             <div className={`${classes.element} ${classes.pageName}`}>
-               <span>BREEDS</span>
-            </div>
+               <span>{pageNaame}</span>
+            </div> */}
             <Field as="select" name="filterByBreed" className={`${classes.element} ${classes.breedsFilter}`}
                onChange={(e: any) => { props.handleChange(e); clickOnSubmit() }}>
                <option value="">All Breeds</option>
@@ -74,7 +80,6 @@ const BreedsFilterForm: React.FC = () => {
             <button id='breedsFilterFormSubmitBtn' type='submit'>s</button>
          </form>
       )}
-
       </Formik>
    </div>
 

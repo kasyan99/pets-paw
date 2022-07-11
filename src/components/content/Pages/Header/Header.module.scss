@@ -1,0 +1,98 @@
+$element-height: 40px;
+
+.header{
+   display: flex;
+   justify-content: space-between;
+}
+
+.wrapper{
+   display: flex;
+   justify-content: start;
+}
+
+.element{
+   display: inline-block;
+   height: $element-height;
+   border: none;
+   border-radius: 10px;
+   background: #F8F8F7;
+   color: #8C8C8C;
+ 
+   font-size: 16px;
+   font-family: 'Jost';
+   font-style: normal;
+   font-weight: 400;
+ }
+ 
+ .btn{
+   width: 40px;
+   font-size: 0;
+ }
+ 
+ .btn_back{
+   background:#FBE0DC url(../../../../assets/icons/breeds-page/back-btn.svg) no-repeat center center;
+   margin-right: 10px;
+   box-sizing: border-box;
+ }
+
+ .pageName{
+   height: $element-height;
+   padding: 0 30px;
+   background: #FF868E;
+ 
+   font-family: 'Jost';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 20px;
+ 
+   text-align: center;
+   letter-spacing: 2px;
+ 
+   color: #FFFFFF;
+ 
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+
+   margin-right: 10px;
+ }
+
+ .upload{
+   width: 143px;
+   height: $element-height;
+
+   background: #FBE0DC;
+   border-radius: 10px;
+   display: inline-flex;
+   justify-content: flex-end;
+   align-items: center;
+   position: relative;
+   padding: 0;
+   padding-right: 30px;
+   cursor: pointer;
+   button{
+      font-family: 'Jost';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 16px;
+      
+      text-align: center;
+      letter-spacing: 2px;
+      
+      color: #FF868E;
+      background: none;
+      border: none;
+      padding: 0;
+   }
+
+   &::before{
+      content: '';
+      display: inline-block;
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      left: 30px;
+      background: url(../../../../assets/icons/gallery-page/upload.svg) no-repeat center center;
+   }
+ }

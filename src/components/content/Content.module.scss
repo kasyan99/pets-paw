@@ -1,5 +1,21 @@
 .content{
-   height: 840px;
    flex: 50% 0 1;
 }
 
+.page{
+   height: 770px;
+   display: grid;
+
+   grid-template-rows: 60px 1fr;
+   background-color: #fff;
+   border-radius: 20px;
+   padding: 20px;
+}
+
+.wrapper {
+   overflow: hidden;
+   position: relative;
+   box-sizing: border-box;
+   display: grid;
+   grid-template-rows: 1fr;
+ }

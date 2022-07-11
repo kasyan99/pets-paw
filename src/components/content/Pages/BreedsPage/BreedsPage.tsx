@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { breedsAPI } from '../../../../api/breeds-api';
 import { getBreedsListThunk, getTotalUsersCount } from '../../../../redux/breeds-reducer';
 import { getBreedsList, getCurrentPage, getFilter, getIsFetching, getOrder, getUsersCount } from '../../../../redux/breeds-selectors';
 import Preloader from '../../../common/Preloader';
-import SearchForm from '../../../common/SearchForm';
-import BreedsFilterForm, { BreedsFilterFormType } from './BreedsFilterForm';
+import { BreedsFilterFormType } from './BreedsFilterForm';
 import classes from './BreedsPage.module.scss'
 
 const notFoundImage = 'https://s5.favim.com/orig/151213/avatar-kot-profil-gav-Favim.ru-3761175.jpg'
@@ -132,7 +130,6 @@ const BreedsPage: React.FC = () => {
 
       const currentPage: number = Number(obj.get('page'))
       const initialOrder: 'DESC' | 'ASC' = obj.get('order') ? 'DESC' : 'ASC'
-      // const initialOrder: string | null = obj.get('order') ? obj.get('order') : ''
 
       const actualOrder: string = initialOrder === 'DESC' ? `order=${initialOrder}` : ''
 
@@ -150,19 +147,15 @@ const BreedsPage: React.FC = () => {
 
 
    }, [])
-   return <><SearchForm />
-      <div className={classes.breedsPage}>
-         <BreedsFilterForm />
-         <div className={classes.wrapper}>
-            {isFetching &&
-               <Preloader />
-            }
-            {!isFetching &&
-               <BreedsList breedsList={breedsList} />
-            }
-         </div>
-      </div>
-   </>
+
+   return <>
+      {isFetching &&
+         <Preloader />
+      }
+      {!isFetching &&
+         <BreedsList breedsList={breedsList} />
+      }</>
+
 }
 
 export default BreedsPage

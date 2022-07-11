@@ -33,10 +33,10 @@ const SearchForm: React.FC = () => {
       >{(props) => (
          <form onSubmit={props.handleSubmit}>
             <div className={classes.inputWrap}>
-               <Field name="searchByName" placeholder='Search for breeds by name' maxlength='30'
+               <Field name="searchByName" placeholder='Search for breeds by name' maxLength='30'
                   onFocus={() => onFocus()} />
             </div>
-            {buttons.map(name => <button type='button' value={name} onClick={(e) => onClick(e)}>{name}</button>)}
+            {buttons.map(name => <button type='button' value={name} onClick={(e) => onClick(e)} key={name}>{name}</button>)}
          </form>
       )}
       </Formik>

@@ -51,7 +51,7 @@ input, button{
 .container{
   display: inline-block;
   margin: auto;
-  width: 1440px;
+  width: 1420px;
 
   box-sizing: border-box;
 
@@ -60,4 +60,5 @@ input, button{
 
 .wrapper{
   display: flex;
+  height: 840px;
 }

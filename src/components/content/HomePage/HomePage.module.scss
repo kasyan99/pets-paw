@@ -1,5 +1,7 @@
 
 .homePage{
+   display: inline-block;
+   flex: 50% 0 1;
    background: #FBE0DC;
    border-radius: 20px;
    height: 100%;
@@ -9,7 +11,7 @@
    img{
       position: absolute;
 
-      top:-30px;
+      top:-70px;
       right: -30px;
    }
 }
