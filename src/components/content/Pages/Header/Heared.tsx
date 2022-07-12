@@ -2,6 +2,7 @@ import React from "react"
 import { useLocation } from "react-router"
 import { useRoutes } from "react-router-dom"
 import BreedsFilterForm from "../BreedsPage/BreedsFilterForm"
+import GalleryFilterForm from "../GalleryPage/GalleryFilterForm"
 import classes from './Header.module.scss'
 
 
@@ -18,7 +19,9 @@ const Header = () => {
       </div>
       {useRoutes([
          { path: "/breeds/*", element: <BreedsFilterForm /> },
-         { path: "/gallery", element: <div className={classes.upload}><button>UPLOAD</button></div> },
+         {
+            path: "/gallery", element: <div className={classes.upload}><button>UPLOAD</button></div>
+         },
       ])}
    </div>
 }

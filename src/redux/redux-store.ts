@@ -1,14 +1,12 @@
-import { combineReducers, legacy_createStore as createStore, compose, applyMiddleware, Action, AnyAction } from "redux"
+import { combineReducers, legacy_createStore as createStore, compose, applyMiddleware, Action } from "redux"
 import breedsReducer from "./breeds-reducer"
 import thunkMiddleware, { ThunkAction } from "redux-thunk";
+import imagesReducer from "./images-reducer";
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch
 
 const redusers = combineReducers({
-   breeds: breedsReducer
+   breeds: breedsReducer,
+   images: imagesReducer
 })
 
 type RootReducerType = typeof redusers
@@ -25,6 +23,7 @@ declare global {
       __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
    }
 }
+
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(redusers, composeEnhancers(applyMiddleware(thunkMiddleware)))
