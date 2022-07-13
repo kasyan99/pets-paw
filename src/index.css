@@ -19,7 +19,8 @@ div{
   box-sizing: border-box;
 }
 
-#breedsFilterFormSubmitBtn{
+#breedsFilterFormSubmitBtn,
+#breedsFilterFormOrderSelect{
   display: none;
 }
 

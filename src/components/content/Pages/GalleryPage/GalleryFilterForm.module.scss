@@ -59,6 +59,21 @@
 
     color: #8C8C8C;
   }
+
+  .update{
+    background: #fff url(../../../../assets/icons/gallery-page/update.svg) no-repeat center center;
+    font-size: 0;
+    cursor: pointer;
+    &:focus{
+      outline: 2px solid #FBE0DC;
+    }
+  }
+
+  &:last-child{
+    display: grid;
+    grid-template-columns: 1fr 40px;
+    column-gap: 10px;
+  }
 }
 
 

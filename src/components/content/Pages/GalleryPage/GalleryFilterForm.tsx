@@ -2,35 +2,28 @@ import { Field, Formik } from 'formik';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBreedsListNamesThunk } from '../../../../redux/breeds-reducer';
-import { getBreedsNamesList, getFilter, getOrder } from '../../../../redux/breeds-selectors';
-import { GalleryFilterFormType, getImagesListThunk } from '../../../../redux/images-reducer';
+import { getBreedsNamesList } from '../../../../redux/breeds-selectors';
+import { actions, GalleryFilterFormType, getImagesListThunk } from '../../../../redux/images-reducer';
+import { getFilter } from '../../../../redux/images-selectors';
 import classes from './GalleryFilterForm.module.scss'
 
 const GalleryFilterForm: React.FC = () => {
+   const dispatch = useDispatch<any>()
 
    useEffect(() => {
       dispatch(getBreedsListNamesThunk())
    }, [])
 
-   const submitBtn = document.getElementById('breedsFilterFormSubmitBtn')
-
-   const dispatch = useDispatch<any>()
-   const order = useSelector(getOrder)
-   // const filter = useSelector(getFilter)
+   const { order, type, filterByBreed, limitItems } = useSelector(getFilter)
 
    const onSubmit = (filter: GalleryFilterFormType) => {
-      //when a filter is chosen, we show a new list of photos from the first page
+      // dispatch(actions.setFilter(filter))
+
       dispatch(getImagesListThunk(filter, 0))
    }
 
-   //click submit btn to submit form
-   const clickOnSubmit = () => {
-      if (submitBtn !== null)
-         submitBtn.click()
-   }
-
+   //generate limitItems options values 
    const limits: Array<Number> = []
-
    for (let i = 5; i <= 20; i += 5) {
       limits.push(i)
    }
@@ -39,14 +32,14 @@ const GalleryFilterForm: React.FC = () => {
    return <div className={classes.galleryFilterForm}>
       <Formik
          enableReinitialize
-         initialValues={{ order: 'ASC', type: 'static', filterByBreed: '', limitItems: 5 } as GalleryFilterFormType}
+         initialValues={{ order: order, type: type, filterByBreed: filterByBreed, limitItems: limitItems } as GalleryFilterFormType}
          onSubmit={onSubmit}
       >{(props) => (
          <form onSubmit={props.handleSubmit}>
             <div className={classes.fieldWrapper}>
                <label>ORDER</label>
                <Field as="select" name="order" className={`${classes.selectField} ${classes.element}`}
-                  onChange={(e: any) => { props.handleChange(e); clickOnSubmit() }}>
+                  onChange={props.handleChange}>
                   <option value="RANDOM">Random</option>
                   <option value="DESC">Desc</option>
                   <option value="ASC">Asc</option>
@@ -55,7 +48,7 @@ const GalleryFilterForm: React.FC = () => {
             <div className={classes.fieldWrapper}>
                <label>TYPE</label>
                <Field as="select" name="type" className={`${classes.selectField} ${classes.element}`}
-                  onChange={(e: any) => { props.handleChange(e); clickOnSubmit() }}>
+                  onChange={props.handleChange}>
                   <option value="all">All</option>
                   <option value="static">Static</option>
                   <option value="animated">Animated</option>
@@ -64,7 +57,7 @@ const GalleryFilterForm: React.FC = () => {
             <div className={classes.fieldWrapper}>
                <label>BREED</label>
                <Field as="select" name="filterByBreed" className={`${classes.selectField} ${classes.element}`}
-                  onChange={(e: any) => { props.handleChange(e); clickOnSubmit() }}>
+                  onChange={props.handleChange}>
                   <option value="">None</option>
                   {
                      Object.keys(breedsNamesList).map((key) => {
@@ -76,12 +69,11 @@ const GalleryFilterForm: React.FC = () => {
             <div className={classes.fieldWrapper}>
                <label>LIMIT</label>
                <Field component="select" name="limitItems" className={`${classes.selectField} ${classes.element}`}
-                  //if filter was changed -> change values and submit form to get new list of photos
-                  onChange={(e: any) => { props.handleChange(e); clickOnSubmit() }}>
+                  onChange={props.handleChange}>
                   {limits.map(limit => <option value={`${limit}`} key={`${limit}`}>{`${limit} items per page`}</option>)}
                </Field>
+               <button type='submit' className={`${classes.update} ${classes.element}`}>submit</button>
             </div>
-            <button id='breedsFilterFormSubmitBtn' type='submit'>s</button>
          </form>
       )}
       </Formik>

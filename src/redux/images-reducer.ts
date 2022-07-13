@@ -1,5 +1,3 @@
-import { AnyAction, Dispatch } from "redux"
-import { ThunkDispatch } from "redux-thunk"
 import { imagesAPI } from "../api/images-api"
 import { BaseThunkType, InferActionsTypes } from "./redux-store"
 
@@ -45,7 +43,7 @@ const imagesReducer = (state = initialState, action: ActionsType): InitialStateT
       case SET_FILTER:
          return {
             ...state,
-            filter: { ...state.filter }
+            filter: { ...action.filter }
          }
       case SET_TOTAL_IMAGES_COUNT:
          return {
@@ -69,23 +67,14 @@ export const actions = {
    setTotalImagesCount: (totalImagesCount: number) => ({ type: SET_TOTAL_IMAGES_COUNT, totalImagesCount } as const)
 }
 
-// export const getImagesListThunk = (filter: GalleryFilterFormType, currentPage: number): ThunkType => async (dispatch) => {
-//    const response = await imagesAPI.getImages(filter, currentPage)
-
-//    console.log(response)
-//    return response.data
-// }
 export const getImagesListThunk = (filter: GalleryFilterFormType, currentPage: number): ThunkType => async (dispatch) => {
-   const response = await imagesAPI.getImages(null, null)
+   const response = await imagesAPI.getImages(filter, currentPage)
    const headers = response.headers
-   const imagesCount = Number(headers['pagination-count'])
 
+   const imagesCount = Number(headers['content-length'])
    const imagesList = response.data
-
-   console.log('imagesCount', imagesCount);
-   console.log('imagesList', imagesList);
-
-
+   dispatch(actions.setFilter(filter))
+   dispatch(actions.setCurrentPage(currentPage))
    dispatch(actions.setTotalImagesCount(imagesCount))
    dispatch(actions.setImagesList(imagesList))
 }

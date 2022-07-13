@@ -17,6 +17,7 @@ const BreedsFilterForm: React.FC = () => {
    }, [])
 
    const submitBtn = document.getElementById('breedsFilterFormSubmitBtn')
+   const orderSelect = document.getElementById('breedsFilterFormOrderSelect')
 
    const dispatch = useDispatch<any>()
    const order = useSelector(getOrder)
@@ -40,15 +41,17 @@ const BreedsFilterForm: React.FC = () => {
    }
 
    const changeOrder = (order: 'ASC' | 'DESC') => {
+      if (orderSelect) {
+         orderSelect.nodeValue = order
+      }
       dispatch(actions.setOrder(order))
       clickOnSubmit()
    }
-
    const breedsNamesList: any = useSelector(getBreedsNamesList)
    return <div className={classes.breedsFilterForm}>
       <Formik
          enableReinitialize
-         initialValues={{ filterByBreed: filter.filterByBreed, limitItems: filter.limitItems }}
+         initialValues={{ filterByBreed: filter.filterByBreed, limitItems: filter.limitItems, order: 'ASC' }}
          onSubmit={onSubmit}
       >{(props) => (
          <form onSubmit={props.handleSubmit}>
@@ -73,12 +76,6 @@ const BreedsFilterForm: React.FC = () => {
                <option value={15}>Limit: 15</option>
                <option value={20}>Limit: 20</option>
             </Field>
-            {/* <Field component="select" name="order" className={`${classes.element} ${classes.limitFilter}`}
-               //if filter was changed -> change values and submit form to get new list of photos
-               onChange={(e: any) => { props.handleChange(e); clickOnSubmit() }}>
-               <option value="ASC">ASC</option>
-               <option value="DESC">DESC</option>
-            </Field> */}
             <button type='button' className={`${classes.element} ${classes.btn} ${classes.btn_ZtoA}`}
                onClick={() => changeOrder('DESC')}>Sorting from Z to A</button>
             <button type='button' className={`${classes.element} ${classes.btn} ${classes.btn_AtoZ}`}

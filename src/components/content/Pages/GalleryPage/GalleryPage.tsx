@@ -2,72 +2,73 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getIsFetching } from '../../../../redux/breeds-selectors';
-import { getImagesListThunk } from '../../../../redux/images-reducer';
-import { getFilter, getImagesCount, getImagesList } from '../../../../redux/images-selectors';
+import { actions, GalleryFilterFormType, getImagesListThunk, ImgTypeType, OrderType } from '../../../../redux/images-reducer';
+import { getCurrentPage, getFilter, getImagesCount, getImagesList } from '../../../../redux/images-selectors';
 import Preloader from '../../../common/Preloader';
 import BreedsList from '../BreedsPage/BreedsList';
 import GalleryFilterForm from './GalleryFilterForm';
 import classes from './GalleryPage.module.scss'
 
 const GalleryPage: React.FC = () => {
+
    const imagesList = useSelector(getImagesList)
-   // const order = useSelector(getOrder)
+   let currentPage = useSelector(getCurrentPage)
+   const filter = useSelector(getFilter)
 
    const dispatch = useDispatch<any>()
 
-   // const navigate = useNavigate()
-
-   // const location = useLocation()
-   // const page = useSelector(getCurrentPage)
-   const filter = useSelector(getFilter)
-
-
-   // useEffect(() => {
-
-   //    if (filter.filterByBreed === '') {
-   //       const limit = filter.limitItems ? `&limit=${filter.limitItems}` : ''
-   //       const qOrder = order === 'DESC' ? `&order=${order}` : ''
-   //       navigate(`../breeds?page=${page}${limit}${qOrder}`, { replace: true })
-   //    } else {
-   //       navigate(`../breeds/images/search?breed_ids=${filter.filterByBreed}`, { replace: true })
-   //    }
-
-
-   // }, [filter.limitItems, page, order, filter.filterByBreed])
-
+   const navigate = useNavigate()
+   const location = useLocation()
 
    useEffect(() => {
-      dispatch(getImagesListThunk(filter, 0))
-      // const obj = new URLSearchParams(location.search)
+      const { order, filterByBreed, limitItems, type } = filter
+      const breed_id = filterByBreed ? `&breed_id=${filterByBreed}` : ''
+      const qType = () => {
+         switch (type) {
+            case 'static':
+               return 'jpg,png'
+            case 'animated':
+               return 'gif'
+            default: return 'gif,jpg,png'
+         }
+      }
+      navigate(`../gallery/search?page=${currentPage}&limit=${limitItems}&order=${order}&mime_types=${qType()}${breed_id}`, { replace: true })
+   }, [filter, currentPage])
 
-      // const breeds_ids: string | null = obj.get('breed_ids')
+   useEffect(() => {
+      const search = new URLSearchParams(location.search)
 
-      // const initialLimitItems: number = Number(obj.get('limit'))
+      const actualLimitItems: number = Number(search.get('limit') ? search.get('limit') : 5)
+      const actualOrder: OrderType = search.get('order') === 'ASC' ? "ASC" : search.get('order') === 'DESC' ? 'DESC' : 'RANDOM'
+      const actualfilterByBreed: string = String(search.get('breed_id') ? search.get('breed_id') : '')
+      const actualType: ImgTypeType = (() => {
+         switch (search.get('mime_types')) {
+            case 'gif':
+               return 'animated'
+            case 'jpg,png':
+               return 'static'
+            default:
+               return 'all'
+         }
+      })()
+      const actualPage: number = Number(search.get('page'))
 
-      // //prevent wrong limit items
-      // const actualLimitItems: number = initialLimitItems < 5 ? 5 : initialLimitItems > 20 ? 20 : (Math.ceil(initialLimitItems / 5) * 5)
+      const actualFilter: GalleryFilterFormType = {
+         filterByBreed: actualfilterByBreed,
+         limitItems: actualLimitItems,
+         order: actualOrder,
+         type: actualType
+      }
 
-      // const limit = actualLimitItems ? `&limit=${actualLimitItems}` : ''
+      navigate(`../gallery/search?page=${actualPage}&limit=${actualLimitItems}&order=${actualOrder}&mime_types=${actualType}`, { replace: true })
 
-      // const currentPage: number = Number(obj.get('page'))
-      // const initialOrder: 'DESC' | 'ASC' = obj.get('order') ? 'DESC' : 'ASC'
-
-      // const actualOrder: string = initialOrder === 'DESC' ? `order=${initialOrder}` : ''
-
-      // if (breeds_ids) {
-      //    navigate(`../breeds/images/search?breed_ids=${breeds_ids}`, { replace: true })
-      // } else {
-      //    navigate(`../breeds?page=${currentPage}${limit}${actualOrder}`, { replace: true })
-      // }
-      // const values: BreedsFilterFormType = {
-      //    filterByBreed: breeds_ids ? breeds_ids : filter.filterByBreed,
-      //    limitItems: actualLimitItems
-      // }
-
-      // dispatch(getBreedsListThunk(values, currentPage, initialOrder))
-
-
+      dispatch(getImagesListThunk(actualFilter, actualPage))
    }, [])
+
+   const prevNext = (btn: 'prev' | 'next') => {
+      btn === 'prev' ? --currentPage : ++currentPage
+      return getImagesListThunk(filter, currentPage)
+   }
 
    const isFetching = useSelector(getIsFetching)
    return <>
@@ -76,7 +77,12 @@ const GalleryPage: React.FC = () => {
          <Preloader />
       }
       {!isFetching &&
-         <BreedsList breedsList={imagesList} getItemsCount={getImagesCount} />
+         <BreedsList
+            breedsList={imagesList}
+            getItemsCount={getImagesCount}
+            photosFromGallery={true} prevNext={prevNext}
+            getCurrentPage={getCurrentPage}
+            getFilter={getFilter} />
       }</>
 }
 

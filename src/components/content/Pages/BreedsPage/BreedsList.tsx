@@ -1,10 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { getBreedsListThunk } from '../../../../redux/breeds-reducer';
-import { getCurrentPage, getFilter, getOrder, getBreedsCount } from '../../../../redux/breeds-selectors';
+import { BreedsFilterType } from '../../../../redux/breeds-reducer';
+import { GalleryFilterFormType } from '../../../../redux/images-reducer';
 import { AppStateType } from "../../../../redux/redux-store"
-import GalleryFilterForm from '../GalleryPage/GalleryFilterForm';
 
 import classes from './BreedsPage.module.scss'
 
@@ -13,9 +12,13 @@ const notFoundImage = 'https://s5.favim.com/orig/151213/avatar-kot-profil-gav-Fa
 type Props = {
    breedsList: Array<any>
    getItemsCount: (state: AppStateType) => number
+   photosFromGallery: boolean
+   prevNext: (btn: 'prev' | 'next') => void
+   getCurrentPage: (state: AppStateType) => number
+   getFilter: (state: AppStateType) => GalleryFilterFormType | BreedsFilterType
 }
 
-const BreedsList: React.FC<Props> = ({ breedsList, getItemsCount }) => {
+const BreedsList: React.FC<Props> = ({ breedsList, getItemsCount, photosFromGallery, prevNext, getCurrentPage, getFilter }) => {
    //filter breeds list from API and create list of img
    const breedPhotos = () => {
       if (breedsList.length > 0) {
@@ -47,37 +50,38 @@ const BreedsList: React.FC<Props> = ({ breedsList, getItemsCount }) => {
       }
    }
 
-   // const breedPhotos = () => {
-   //    console.log('breedsList breedsList', breedsList);
+   const galleryPhotos = () => {
+      if (breedsList.length > 0) {
+         return breedsList.map(breed => {
+            return <div className={classes.grid__item}
+               key={breed.id}>
+               <img src={breed.url} alt={breed.id} />
+               <div><span>{breed.id}</span></div>
+            </div>
+         })
 
-   //    if (breedsList.length > 0) {
-   //       return breedsList.map(breed => {
-   //          return <div className={classes.grid__item}
-   //             key={breed.id}>
-   //             <img src={breed.url} alt={breed.id} />
-   //             <div><span>{breed.id}</span></div>
-   //          </div>
-   //       })
-
-   //    } else {
-   //       return <></>
-   //    }
-   // }
+      } else {
+         return <></>
+      }
+   }
 
 
    return <div className={classes.breedsList}>
       <div className={classes.grid__layout}>
-         {breedPhotos()}
+         {photosFromGallery ? galleryPhotos() : breedPhotos()}
       </div>
-      <Parinator getItemsCount={getItemsCount} />
+      <Parinator getItemsCount={getItemsCount} prevNext={prevNext} getCurrentPage={getCurrentPage} getFilter={getFilter} />
    </div>
 }
 
 type PaginatorType = {
    getItemsCount: (state: AppStateType) => number
+   prevNext: (btn: 'prev' | 'next') => void
+   getCurrentPage: (state: AppStateType) => number
+   getFilter: (state: AppStateType) => any
 }
 
-const Parinator: React.FC<PaginatorType> = ({ getItemsCount }) => {
+const Parinator: React.FC<PaginatorType> = ({ getItemsCount, prevNext, getCurrentPage, getFilter }) => {
    const dispatch = useDispatch<any>()
    const location = useLocation()
    const obj = new URLSearchParams(location.search)
@@ -88,9 +92,10 @@ const Parinator: React.FC<PaginatorType> = ({ getItemsCount }) => {
    let currentPage = useSelector(getCurrentPage)
    const filter = useSelector(getFilter)
    const itemsCount = useSelector(getItemsCount)
-   const order = useSelector(getOrder)
 
    const pagesCount = Math.floor(itemsCount / filter.limitItems)
+   console.log('itemsCount', itemsCount, 'pagesCount', pagesCount, 'filter.limitItems', filter.limitItems);
+
 
    //prev and next btn
    return <div className={classes.paginator}>
@@ -99,12 +104,12 @@ const Parinator: React.FC<PaginatorType> = ({ getItemsCount }) => {
             {currentPage > 0 &&
                <button type='button'
                   className={`${classes.element} ${classes.btn} ${classes.btn_prev}`}
-                  onClick={() => currentPage > 0 && dispatch(getBreedsListThunk(filter, --currentPage, order))}
+                  onClick={() => currentPage > 0 && dispatch(prevNext('prev'))}
                >PREV</button>}
             {currentPage < pagesCount &&
                <button type='button'
                   className={`${classes.element} ${classes.btn} ${classes.btn_next}`}
-                  onClick={() => currentPage < pagesCount && dispatch(getBreedsListThunk(filter, ++currentPage, order))}
+                  onClick={() => currentPage < pagesCount && dispatch(prevNext('next'))}
                >NEXT</button>}
          </div>}
    </div>

@@ -12,18 +12,14 @@ const BreedsPage: React.FC = () => {
 
    const breedsList = useSelector(getBreedsList)
    const order = useSelector(getOrder)
+   const filter = useSelector(getFilter)
+   const isFetching = useSelector(getIsFetching)
+   let page = useSelector(getCurrentPage)
 
    const dispatch = useDispatch<any>()
 
    const navigate = useNavigate()
-
    const location = useLocation()
-   const page = useSelector(getCurrentPage)
-   const filter = useSelector(getFilter)
-
-   const isFetching = useSelector(getIsFetching)
-
-   const getItemsCount = getBreedsCount
 
    useEffect(() => {
 
@@ -71,13 +67,23 @@ const BreedsPage: React.FC = () => {
 
 
    }, [])
+   const prevNext = (btn: 'prev' | 'next') => {
+      btn === 'prev' ? --page : ++page
+      return getBreedsListThunk(filter, page, order)
+   }
 
    return <>
       {isFetching &&
          <Preloader />
       }
       {!isFetching &&
-         <BreedsList breedsList={breedsList} getItemsCount={getItemsCount} />
+         <BreedsList
+            breedsList={breedsList}
+            getItemsCount={getBreedsCount}
+            prevNext={prevNext}
+            photosFromGallery={false}
+            getCurrentPage={getCurrentPage}
+            getFilter={getFilter} />
       }</>
 
 }

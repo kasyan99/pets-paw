@@ -25,6 +25,10 @@ const TOGGLE_FETCH = 'pets-paw/breeds/TOGGLE-FETCH'
 //    breedsNamesList: Object
 //    isFetching: boolean
 // }
+export type BreedsFilterType = {
+   limitItems: number
+   filterByBreed: string
+}
 
 const initialState = {
    breedsList: [] as Array<Object>,
@@ -32,7 +36,7 @@ const initialState = {
    filter: {
       limitItems: 5,
       filterByBreed: ''
-   },
+   } as BreedsFilterType,
    currentPage: 0,
    order: 'ASC' as 'ASC' | 'DESC',
    breedsNamesList: {},
