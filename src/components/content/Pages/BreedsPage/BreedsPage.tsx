@@ -1,97 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getBreedsListThunk, getTotalUsersCount } from '../../../../redux/breeds-reducer';
-import { getBreedsList, getCurrentPage, getFilter, getIsFetching, getOrder, getUsersCount } from '../../../../redux/breeds-selectors';
+import { getBreedsListThunk, getTotalBreedsCount } from '../../../../redux/breeds-reducer';
+import { getBreedsCount, getBreedsList, getCurrentPage, getFilter, getIsFetching, getOrder } from '../../../../redux/breeds-selectors';
 import Preloader from '../../../common/Preloader';
+import GalleryFilterForm from '../GalleryPage/GalleryFilterForm';
 import { BreedsFilterFormType } from './BreedsFilterForm';
-import classes from './BreedsPage.module.scss'
-
-const notFoundImage = 'https://s5.favim.com/orig/151213/avatar-kot-profil-gav-Favim.ru-3761175.jpg'
-
-type Props = {
-   breedsList: Array<any>
-}
-
-const BreedsList: React.FC<Props> = ({ breedsList }) => {
-   //filter breeds list from API and create list of img
-   const breedPhotos = () => {
-      if (breedsList.length > 0) {
-         return breedsList.map(breed => {
-            if (breed.image && breed.image.url) {
-               return <div className={classes.grid__item}
-                  key={breed.id}>
-                  <img src={breed.image.url} alt={breed.alt_names === '' ? breed.name : breed.alt_names} />
-                  <div><span>{breed.name}</span></div>
-               </div>
-            } else {
-               const quest = breed.breeds ? breed.breeds[0].name : ''
-
-               const src = breed.url ? breed.url : notFoundImage
-               const name = breed.name ? breed.name : quest
-               const alt = breed.alt_names ? breed.alt_names :
-                  breed.name ? breed.name : quest
-
-               return <div className={classes.grid__item}
-                  key={breed.id}>
-                  <img src={src} alt={!breed.alt_names ? name : alt} />
-                  <div><span><span>{name}</span></span></div>
-               </div>
-            }
-         })
-
-      } else {
-         return <></>
-      }
-   }
-
-   return <div className={classes.breedsList}>
-      <div className={classes.grid__layout}>
-         {breedPhotos()}
-      </div>
-      <Parinator />
-   </div>
-}
-
-const Parinator = () => {
-   const dispatch = useDispatch()
-   const location = useLocation()
-   const obj = new URLSearchParams(location.search)
-
-   //button prev and next should be hide if displaed breed by id 
-   const shouldButtonDisplay = obj.get('breed_ids')
-
-   let currentPage = useSelector(getCurrentPage)
-   const filter = useSelector(getFilter)
-   const usersCount = useSelector(getUsersCount)
-   const order = useSelector(getOrder)
-
-   const pagesCount = Math.floor(usersCount / filter.limitItems)
-
-   //prev and next btn
-   return <div className={classes.paginator}>
-      {!shouldButtonDisplay &&
-         <div>
-            {currentPage > 0 &&
-               <button type='button'
-                  className={`${classes.element} ${classes.btn} ${classes.btn_prev}`}
-                  onClick={() => currentPage > 0 && dispatch(getBreedsListThunk(filter, --currentPage, order))}
-               >PREV</button>}
-            {currentPage < pagesCount &&
-               <button type='button'
-                  className={`${classes.element} ${classes.btn} ${classes.btn_next}`}
-                  onClick={() => currentPage < pagesCount && dispatch(getBreedsListThunk(filter, ++currentPage, order))}
-               >NEXT</button>}
-         </div>}
-   </div>
-}
+import BreedsList from './BreedsList';
 
 const BreedsPage: React.FC = () => {
 
    const breedsList = useSelector(getBreedsList)
    const order = useSelector(getOrder)
 
-   const dispatch = useDispatch()
+   const dispatch = useDispatch<any>()
 
    const navigate = useNavigate()
 
@@ -100,6 +22,8 @@ const BreedsPage: React.FC = () => {
    const filter = useSelector(getFilter)
 
    const isFetching = useSelector(getIsFetching)
+
+   const getItemsCount = getBreedsCount
 
    useEffect(() => {
 
@@ -116,7 +40,7 @@ const BreedsPage: React.FC = () => {
 
 
    useEffect(() => {
-      dispatch(getTotalUsersCount())
+      dispatch(getTotalBreedsCount())
       const obj = new URLSearchParams(location.search)
 
       const breeds_ids: string | null = obj.get('breed_ids')
@@ -153,7 +77,7 @@ const BreedsPage: React.FC = () => {
          <Preloader />
       }
       {!isFetching &&
-         <BreedsList breedsList={breedsList} />
+         <BreedsList breedsList={breedsList} getItemsCount={getItemsCount} />
       }</>
 
 }

@@ -14,7 +14,7 @@ const GalleryFilterForm: React.FC = () => {
 
    const submitBtn = document.getElementById('breedsFilterFormSubmitBtn')
 
-   const dispatch = useDispatch()
+   const dispatch = useDispatch<any>()
    const order = useSelector(getOrder)
    // const filter = useSelector(getFilter)
 

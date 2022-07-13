@@ -18,7 +18,7 @@ export const breedsAPI = {
    },
 
    async getByBreed(filterByBreed: string) {
-      const response = await instance.get(`images/search?breed_ids=${filterByBreed}&limit=5`, {
+      const response = await instance.get(`images/search?breed_ids=${filterByBreed}`, {
          headers: {
             'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d',
             'type': 'xhr'
@@ -28,7 +28,7 @@ export const breedsAPI = {
       return response.data
    },
 
-   async getTotalUsersCount() {
+   async getTotalBreedsCount() {
       const response = await instance.get('breeds', {
          headers: {
             'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d',

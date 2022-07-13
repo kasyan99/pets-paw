@@ -12,8 +12,8 @@ export const getFilter = (state: AppStateType) => {
    return state.breeds.filter
 }
 
-export const getUsersCount = (state: AppStateType) => {
-   return state.breeds.usersCount
+export const getBreedsCount = (state: AppStateType) => {
+   return state.breeds.breedsCount
 }
 
 export const getOrder = (state: AppStateType) => {

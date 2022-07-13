@@ -1,8 +1,12 @@
+import { AnyAction, Dispatch } from "redux"
+import { ThunkDispatch } from "redux-thunk"
 import { imagesAPI } from "../api/images-api"
 import { BaseThunkType, InferActionsTypes } from "./redux-store"
 
 const SET_CURRENT_PAGE = 'pets-paw/images/SET-CURRENT-PAGE'
 const SET_FILTER = 'pets-paw/images/SET-FILTER'
+const SET_TOTAL_IMAGES_COUNT = 'pets-paw/images/SET-TOTAL-IMAGES-COUNT'
+const SET_IMAGES_LIST = 'pets-paw/images/SET-IMAGES-LIST'
 
 export type OrderType = 'ASC' | 'DESC' | 'RANDOM'
 export type ImgTypeType = 'all' | 'static' | 'animated'
@@ -21,13 +25,15 @@ const initialState = {
       limitItems: 5,
       type: 'all'
    } as GalleryFilterFormType,
-   currentPage: 0
+   currentPage: 0,
+   totalImagesCount: 0,
+   imagesList: [] as Array<Object>
 }
 
 export type InitialStateType = typeof initialState
 
-type ActionsType = InferActionsTypes<typeof actions>
-type ThunkType = BaseThunkType<ActionsType>
+export type ActionsType = InferActionsTypes<typeof actions>
+export type ThunkType = BaseThunkType<ActionsType>
 
 const imagesReducer = (state = initialState, action: ActionsType): InitialStateType => {
    switch (action.type) {
@@ -41,67 +47,47 @@ const imagesReducer = (state = initialState, action: ActionsType): InitialStateT
             ...state,
             filter: { ...state.filter }
          }
+      case SET_TOTAL_IMAGES_COUNT:
+         return {
+            ...state,
+            totalImagesCount: action.totalImagesCount
+         }
+      case SET_IMAGES_LIST:
+         return {
+            ...state,
+            imagesList: [...action.imagesList]
+         }
       default:
          return state
    }
 }
 
 export const actions = {
+   setImagesList: (imagesList: Array<Object>) => ({ type: SET_IMAGES_LIST, imagesList } as const),
    setCurrentPage: (currentPage: number) => ({ type: SET_CURRENT_PAGE, currentPage } as const),
    setFilter: (filter: GalleryFilterFormType) => ({ type: SET_FILTER, filter } as const),
+   setTotalImagesCount: (totalImagesCount: number) => ({ type: SET_TOTAL_IMAGES_COUNT, totalImagesCount } as const)
 }
 
-export const getImagesListThunk = (filter: GalleryFilterFormType, currentPage: number): any => async (dispatch: any) => {
-   const response = await imagesAPI.getImages(filter, currentPage)
+// export const getImagesListThunk = (filter: GalleryFilterFormType, currentPage: number): ThunkType => async (dispatch) => {
+//    const response = await imagesAPI.getImages(filter, currentPage)
 
-   console.log(response)
+//    console.log(response)
+//    return response.data
+// }
+export const getImagesListThunk = (filter: GalleryFilterFormType, currentPage: number): ThunkType => async (dispatch) => {
+   const response = await imagesAPI.getImages(null, null)
+   const headers = response.headers
+   const imagesCount = Number(headers['pagination-count'])
 
+   const imagesList = response.data
+
+   console.log('imagesCount', imagesCount);
+   console.log('imagesList', imagesList);
+
+
+   dispatch(actions.setTotalImagesCount(imagesCount))
+   dispatch(actions.setImagesList(imagesList))
 }
-
-// export const getBreedsListThunk = (values: BreedsFilterFormType, page: number | null, order = 'ASC' as 'ASC' | 'DESC'): any => async (dispatch: any) => {
-
-//    dispatch(actions.toggleIsFetching(true))
-
-//    const { filterByBreed, limitItems } = values
-//    let response
-//    if (filterByBreed !== '') {
-//       response = await breedsAPI.getByBreed(filterByBreed)
-//    } else {
-
-//       response = await breedsAPI.getBreads(limitItems, page, order)
-
-//       await dispatch(actions.setOrder(order))
-//       // const breeds = await breedsAPI.getBreads(null, null)
-//       if (limitItems) {
-//          await dispatch(actions.setLimitItems(limitItems))
-//       }
-//       // await dispatch(actions.setUsersCount(breeds.length))
-//       if (page || page === 0) {
-//          await dispatch(actions.setCurrentPage(page))
-//       }
-//    }
-//    await dispatch(actions.setByBreed(filterByBreed))
-//    dispatch(actions.setBreedsList(response))
-
-//    dispatch(actions.toggleIsFetching(false))
-
-// }
-
-// export const getBreedsListNamesThunk = (): any => async (dispatch: Dispatch<ActionsType>) => {
-//    const breeds = await breedsAPI.getBreads(null, null)
-
-//    let breedsNamesList: any = {}
-//    breeds.map(((breed: any) => {
-//       breedsNamesList[breed.id] = breed.name
-//    }))
-
-//    dispatch(actions.setBreedsNamesList(breedsNamesList))
-// }
-
-// export const getTotalUsersCount = (): any => async (dispatch: any) => {
-//    const headers = await breedsAPI.getTotalUsersCount()
-//    const usersCount = Number(headers['pagination-count'])
-//    dispatch(actions.setUsersCount(usersCount))
-// }
 
 export default imagesReducer

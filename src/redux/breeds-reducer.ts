@@ -28,7 +28,7 @@ const TOGGLE_FETCH = 'pets-paw/breeds/TOGGLE-FETCH'
 
 const initialState = {
    breedsList: [] as Array<Object>,
-   usersCount: 70,
+   breedsCount: 0,
    filter: {
       limitItems: 5,
       filterByBreed: ''
@@ -59,7 +59,7 @@ const breedsReducer = (state = initialState, action: ActionsType): InitialStateT
       case SET_USERS_COUNT:
          return {
             ...state,
-            usersCount: action.usersCount
+            breedsCount: action.breedsCount
          }
       case SET_LIMIT_ITEMS:
          return {
@@ -94,7 +94,7 @@ const breedsReducer = (state = initialState, action: ActionsType): InitialStateT
 export const actions = {
    setBreedsList: (breedsList: Array<Object>) => ({ type: SET_BREEDS_LIST, breedsList } as const),
    setCurrentPage: (currentPage: number) => ({ type: SET_CURRENT_PAGE, currentPage } as const),
-   setUsersCount: (usersCount: number) => ({ type: SET_USERS_COUNT, usersCount } as const),
+   setBreedsCount: (breedsCount: number) => ({ type: SET_USERS_COUNT, breedsCount } as const),
    setLimitItems: (limitItems: number) => ({ type: SET_LIMIT_ITEMS, limitItems } as const),
    setOrder: (order: 'ASC' | 'DESC') => ({ type: SET_ORDER, order } as const),
    setBreedsNamesList: (breedsNamesList: Object) => ({ type: SET_BREEDS_NAMES_LIST, breedsNamesList } as const),
@@ -102,7 +102,7 @@ export const actions = {
    toggleIsFetching: (isFetching: boolean) => ({ type: TOGGLE_FETCH, isFetching } as const)
 }
 
-export const getBreedsListThunk = (values: BreedsFilterFormType, page: number | null, order = 'ASC' as 'ASC' | 'DESC'): any => async (dispatch: any) => {
+export const getBreedsListThunk = (values: BreedsFilterFormType, page: number | null, order = 'ASC' as 'ASC' | 'DESC'): ThunkType => async (dispatch) => {
 
    dispatch(actions.toggleIsFetching(true))
 
@@ -114,17 +114,17 @@ export const getBreedsListThunk = (values: BreedsFilterFormType, page: number | 
 
       response = await breedsAPI.getBreads(limitItems, page, order)
 
-      await dispatch(actions.setOrder(order))
+      dispatch(actions.setOrder(order))
       // const breeds = await breedsAPI.getBreads(null, null)
       if (limitItems) {
-         await dispatch(actions.setLimitItems(limitItems))
+         dispatch(actions.setLimitItems(limitItems))
       }
       // await dispatch(actions.setUsersCount(breeds.length))
       if (page || page === 0) {
-         await dispatch(actions.setCurrentPage(page))
+         dispatch(actions.setCurrentPage(page))
       }
    }
-   await dispatch(actions.setByBreed(filterByBreed))
+   dispatch(actions.setByBreed(filterByBreed))
    dispatch(actions.setBreedsList(response))
 
    dispatch(actions.toggleIsFetching(false))
@@ -142,10 +142,11 @@ export const getBreedsListNamesThunk = (): any => async (dispatch: Dispatch<Acti
    dispatch(actions.setBreedsNamesList(breedsNamesList))
 }
 
-export const getTotalUsersCount = (): any => async (dispatch: any) => {
-   const headers = await breedsAPI.getTotalUsersCount()
-   const usersCount = Number(headers['pagination-count'])
-   dispatch(actions.setUsersCount(usersCount))
+export const getTotalBreedsCount = (): any => async (dispatch: any) => {
+   const headers = await breedsAPI.getTotalBreedsCount()
+   const breedsCount = Number(headers['pagination-count'])
+
+   dispatch(actions.setBreedsCount(breedsCount))
 }
 
 export default breedsReducer

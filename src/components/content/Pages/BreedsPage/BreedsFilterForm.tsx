@@ -18,7 +18,7 @@ const BreedsFilterForm: React.FC = () => {
 
    const submitBtn = document.getElementById('breedsFilterFormSubmitBtn')
 
-   const dispatch = useDispatch()
+   const dispatch = useDispatch<any>()
    const order = useSelector(getOrder)
    const filter = useSelector(getFilter)
 
@@ -73,6 +73,12 @@ const BreedsFilterForm: React.FC = () => {
                <option value={15}>Limit: 15</option>
                <option value={20}>Limit: 20</option>
             </Field>
+            {/* <Field component="select" name="order" className={`${classes.element} ${classes.limitFilter}`}
+               //if filter was changed -> change values and submit form to get new list of photos
+               onChange={(e: any) => { props.handleChange(e); clickOnSubmit() }}>
+               <option value="ASC">ASC</option>
+               <option value="DESC">DESC</option>
+            </Field> */}
             <button type='button' className={`${classes.element} ${classes.btn} ${classes.btn_ZtoA}`}
                onClick={() => changeOrder('DESC')}>Sorting from Z to A</button>
             <button type='button' className={`${classes.element} ${classes.btn} ${classes.btn_AtoZ}`}

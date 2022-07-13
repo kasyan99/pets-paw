@@ -19,9 +19,7 @@ const Header = () => {
       </div>
       {useRoutes([
          { path: "/breeds/*", element: <BreedsFilterForm /> },
-         {
-            path: "/gallery", element: <div className={classes.upload}><button>UPLOAD</button></div>
-         },
+         { path: "/gallery", element: <div className={classes.upload}><button>UPLOAD</button></div> },
       ])}
    </div>
 }
