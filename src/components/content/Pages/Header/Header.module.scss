@@ -11,6 +11,36 @@ $element-height: 40px;
    margin-bottom: 20px;
 }
 
+.idNumberWrapper{
+  width: 100%;
+  display: flex;
+
+}
+.idNumber{
+  display: inline-flex;
+  width: 90px;
+  height: 40px;
+
+  background: #FF868E;
+  border-radius: 10px;
+
+  justify-content: center;
+  align-items: center;
+
+  span{
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height, or 150% */
+
+    text-align: center;
+    letter-spacing: 2px;
+
+    color: #FFFFFF;
+  }
+}
 
 .element{
    display: inline-block;
@@ -57,6 +87,12 @@ $element-height: 40px;
    justify-content: center;
 
    margin-right: 10px;
+ }
+
+ .pageNameOnInfo{
+  background: #FBE0DC;
+  color: #FF868E;
+
  }
 
  .upload{

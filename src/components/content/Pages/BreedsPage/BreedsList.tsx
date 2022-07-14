@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { BreedsFilterType } from '../../../../redux/breeds-reducer';
 import { GalleryFilterFormType } from '../../../../redux/images-reducer';
 import { AppStateType } from "../../../../redux/redux-store"
@@ -19,15 +19,20 @@ type Props = {
 }
 
 const BreedsList: React.FC<Props> = ({ breedsList, getItemsCount, photosFromGallery, prevNext, getCurrentPage, getFilter }) => {
+   const navigate = useNavigate()
+   const getBreedId = (e: any) => {
+      navigate(`../breeds/info/${e.target.id}`, { replace: true })
+   }
    //filter breeds list from API and create list of img
    const breedPhotos = () => {
       if (breedsList.length > 0) {
          return breedsList.map(breed => {
             if (breed.image && breed.image.url) {
                return <div className={classes.grid__item}
-                  key={breed.id}>
+                  key={breed.id} onClick={(e: any) => getBreedId(e)}>
+
                   <img src={breed.image.url} alt={breed.alt_names === '' ? breed.name : breed.alt_names} />
-                  <div><span>{breed.name}</span></div>
+                  <div id={breed.id}><span>{breed.name}</span></div>
                </div>
             } else {
                const quest = breed.breeds ? breed.breeds[0].name : ''
@@ -94,8 +99,6 @@ const Parinator: React.FC<PaginatorType> = ({ getItemsCount, prevNext, getCurren
    const itemsCount = useSelector(getItemsCount)
 
    const pagesCount = Math.floor(itemsCount / filter.limitItems)
-   console.log('itemsCount', itemsCount, 'pagesCount', pagesCount, 'filter.limitItems', filter.limitItems);
-
 
    //prev and next btn
    return <div className={classes.paginator}>

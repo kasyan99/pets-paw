@@ -3,8 +3,8 @@ import classes from './Content.module.scss'
 import { useRoutes } from 'react-router-dom';
 import Preloader from '../common/Preloader';
 import SearchForm from '../common/SearchForm';
-import BreedsFilterForm from './Pages/BreedsPage/BreedsFilterForm';
 import Header from './Pages/Header/Heared';
+import BreedsInfo from './Pages/BreedsPage/BreedsInfo/BreedsInfo';
 
 const VotingPage = React.lazy(() => import('./Pages/VotingPage/VotingPage'))
 const BreedsPage = React.lazy(() => import('./Pages/BreedsPage/BreedsPage'))
@@ -20,13 +20,13 @@ const Content: React.FC = () => {
    return <div className={classes.content}>
       <SearchForm />
       <div className={classes.page}>
-         {/* <BreedsFilterForm /> */}
          <Header />
          <div className={classes.wrapper}>
             <Suspense fallback={<Preloader />}>
                {useRoutes([
                   { path: "/voting", element: <VotingPage /> },
                   { path: "/breeds/*", element: <BreedsPage /> },
+                  { path: "/breeds/info/*", element: <BreedsInfo /> },
                   { path: "/gallery/*", element: <GalleryPage /> },
                   { path: "/search", element: <SearchPage /> },
                   { path: "/favourities", element: <FavouritiesPage /> },

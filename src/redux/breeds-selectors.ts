@@ -27,3 +27,15 @@ export const getBreedsNamesList = (state: AppStateType) => {
 export const getIsFetching = (state: AppStateType) => {
    return state.breeds.isFetching
 }
+
+export const getBreedInfoPhotos = (state: AppStateType) => {
+   return state.breeds.breedInfoPhotos
+}
+
+export const getInfoPhotoNumber = (state: AppStateType) => {
+   return state.breeds.infoPhotoNumber
+}
+
+export const getNumbersById = (state: AppStateType) => {
+   return state.breeds.numbersById
+}

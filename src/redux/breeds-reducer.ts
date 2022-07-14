@@ -12,6 +12,9 @@ const SET_ORDER = 'pets-paw/breeds/SET-ORDER'
 const SET_BREEDS_NAMES_LIST = 'pets-paw/breeds/SET-BREEDS-NAMES-LIST'
 const SET_FILTER = 'pets-paw/breeds/SET-FILTER'
 const TOGGLE_FETCH = 'pets-paw/breeds/TOGGLE-FETCH'
+const SET_INFO_PHOTOS = 'pets-paw/breeds/SET-INFO-PHOTOS'
+const SET_INFO_PHOTO_NUMBER = 'pets-paw/breeds/SET-INFO-PHOTO_NUMBER'
+const SET_BREEDS_NUMBERS_BY_ID = 'pets-paw/breeds/SET-BREEDS-NUMBERS-BY-ID'
 
 // export type InitialStateType = {
 //    breedsList: Array<Object>
@@ -41,6 +44,9 @@ const initialState = {
    order: 'ASC' as 'ASC' | 'DESC',
    breedsNamesList: {},
    isFetching: false,
+   breedInfoPhotos: [] as Array<any>,
+   infoPhotoNumber: 0,
+   numbersById: {} as any
 }
 
 export type InitialStateType = typeof initialState
@@ -90,6 +96,22 @@ const breedsReducer = (state = initialState, action: ActionsType): InitialStateT
             ...state,
             isFetching: action.isFetching
          }
+      case SET_INFO_PHOTOS:
+         return {
+            ...state,
+            breedInfoPhotos: [...action.breedInfoPhotos]
+         }
+      case SET_INFO_PHOTO_NUMBER:
+         return {
+            ...state,
+            infoPhotoNumber: action.infoPhotoNumber
+         }
+      case SET_BREEDS_NUMBERS_BY_ID:
+         return {
+            ...state,
+            numbersById: { ...action.numbersById }
+         }
+
       default:
          return state
    }
@@ -103,7 +125,10 @@ export const actions = {
    setOrder: (order: 'ASC' | 'DESC') => ({ type: SET_ORDER, order } as const),
    setBreedsNamesList: (breedsNamesList: Object) => ({ type: SET_BREEDS_NAMES_LIST, breedsNamesList } as const),
    setByBreed: (filterByBreed: string) => ({ type: SET_FILTER, filterByBreed } as const),
-   toggleIsFetching: (isFetching: boolean) => ({ type: TOGGLE_FETCH, isFetching } as const)
+   toggleIsFetching: (isFetching: boolean) => ({ type: TOGGLE_FETCH, isFetching } as const),
+   setInfoPhotos: (breedInfoPhotos: Array<string>) => ({ type: SET_INFO_PHOTOS, breedInfoPhotos } as const),
+   setInfoPhotoNumber: (infoPhotoNumber: number) => ({ type: SET_INFO_PHOTO_NUMBER, infoPhotoNumber } as const),
+   setBreedsNumbersById: (numbersById: any) => ({ type: SET_BREEDS_NUMBERS_BY_ID, numbersById } as const),
 }
 
 export const getBreedsListThunk = (values: BreedsFilterFormType, page: number | null, order = 'ASC' as 'ASC' | 'DESC'): ThunkType => async (dispatch) => {
@@ -147,10 +172,36 @@ export const getBreedsListNamesThunk = (): any => async (dispatch: Dispatch<Acti
 }
 
 export const getTotalBreedsCount = (): any => async (dispatch: any) => {
-   const headers = await breedsAPI.getTotalBreedsCount()
+   const headers = (await breedsAPI.getTotalBreeds()).headers
    const breedsCount = Number(headers['pagination-count'])
 
    dispatch(actions.setBreedsCount(breedsCount))
+}
+
+export const getBreedsNumbersById = (): any => async (dispatch: any) => {
+   const data = (await breedsAPI.getTotalBreeds()).data
+
+
+   if (data) {
+      let arr = {} as any
+
+      data.map((breed: any, index: number) => {
+         arr[`${breed.id}`] = index + 1
+      })
+      console.log('arr', arr);
+
+      dispatch(actions.setBreedsNumbersById(arr))
+   }
+}
+
+export const getBreedById = (id: string): any => async (dispatch: any) => {
+   dispatch(actions.toggleIsFetching(true))
+
+   const breedPhotos = await breedsAPI.getByBreed(id)
+   dispatch(actions.setInfoPhotos(breedPhotos))
+
+   dispatch(actions.toggleIsFetching(false))
+
 }
 
 export default breedsReducer

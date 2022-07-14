@@ -1,0 +1,117 @@
+.infoPage{
+   font-family: 'Jost';
+   font-style: normal;
+   font-weight: 500;
+
+   .imagesWrapper{
+      height: 360px;
+      border-radius: 20px;
+      margin-bottom: 51px;
+      position: relative;
+      // overflow: hidden;
+      img{
+         position: absolute;
+         top: 0%;
+         left: 0%;
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         border-radius: 20px;
+      }
+      .btnContainer{
+         position: absolute;
+         width: 100%;
+         height: 30px;
+         bottom: -15px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         div{
+            width: 90px;
+            background: #FFFFFF;
+            border-radius: 20px;
+            // display: flex;
+            // justify-content: center;
+            // align-items: center;
+            button{
+               width: 10px;
+               height: 10px;
+               font-size: 0;
+               background: #FBE0DC;
+               border-radius: 10px;
+               margin-right: 5px;
+               &:last-of-type{
+                  margin-right: 0;
+               }
+            }
+
+            .selected{
+               background: #FF868E;
+            }
+         }
+      }
+   }
+   .infoWrapper{
+      border: 2px solid #FBE0DC;
+      height: 204px;
+      border-radius: 20px;
+      position: relative;
+      h3{
+         position: absolute;
+         top: -31px;
+         text-align: center;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         width: 100%;
+         height: 62px;
+         margin: 0;
+         span{
+            display: inline-block;
+            // width: 193px;
+            padding: 5px 40px;
+            background: #FFFFFF;
+            border-radius: 20px;
+            font-size: 36px;
+            color: #1D1D1D;
+         }
+      }
+
+      p{
+         font-size: 20px;
+         line-height: 29px;
+         color: #8C8C8C;
+         margin: 26px;
+      }
+
+      .info{
+         display: flex;
+         margin-left: 40px;
+         dl{
+            flex: 1 1 50%;
+            text-align: left;
+            font-size: 16px;
+            line-height: 23px;
+            margin-right: 40px;
+            dt{
+               color:#1D1D1D;
+            }
+            dd{
+               color: #8C8C8C;
+               font-weight: normal;
+            }
+            &:last-child{
+               dd,dt{
+                  display: inline-block;
+               }
+               dt{
+                  padding-right: 4px;
+                  margin-bottom: 8px;
+               }
+            }
+         }
+         
+      }
+   }
+}
+
