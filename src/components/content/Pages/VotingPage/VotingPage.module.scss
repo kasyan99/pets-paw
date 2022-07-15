@@ -1,7 +1,98 @@
 
 .votingPage{
-  border: 1px solid red;
    border-radius: 20px;
    height: 100%;
+
+   .imagesWrapper{
+    height: 360px;
+    border-radius: 20px;
+    margin-bottom: 51px;
+    position: relative;
+    margin-bottom: 52px;
+    &>img{
+       position: absolute;
+       top: 0%;
+       left: 0%;
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+       border-radius: 20px;
+    }
+    .btnContainer{
+      position: absolute;
+      width: 100%;
+      height: 80px;
+      bottom: -40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      div{
+         width: 248px;
+         outline: 4px solid #fff;
+         background: #FFFFFF;
+         border-radius: 20px;
+         display: grid;
+         grid-template-columns: 1fr 1fr 1fr;
+         column-gap: 4px;
+        height: 100%;
+        overflow: hidden;
+        button{
+          box-sizing: border-box;
+          display: inline-block;
+          font-size: 0;
+          height: 100%;
+          &:first-of-type{
+            background: #97EAB9 url(../../../../assets/icons/voting-page/like.svg) no-repeat center center;
+          }
+          &:nth-of-type(2){
+            background: #FF868E url(../../../../assets/icons/voting-page/favourite.svg) no-repeat center center;
+          }
+          &:last-of-type{
+            background: #FFD280 url(../../../../assets/icons/voting-page/dislike.svg) no-repeat center center;
+          }
+        }
+      }
+   }
+  }
+  
+  .actionsWrapper{
+    .action{
+      height: 60px;
+      border-radius: 10px;
+      background: #F8F8F7;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      margin-bottom: 10px;
+      .time{
+        // width: 61px;
+        // height: 30px;
+        padding: 3px 10px;
+        border-radius: 5px;
+        background: #fff;
+        margin-right: 20px;
+        span{
+          font-family: 'Jost';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+          color: #1D1D1D;
+        }
+      }
+      .text{
+        font-family: 'Jost';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: #8C8C8C;
+        span{
+          color: #1D1D1D;
+          font-weight: 500;
+        }
+      }
+    }
+  }
 }
 

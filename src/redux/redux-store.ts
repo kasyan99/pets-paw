@@ -2,11 +2,13 @@ import { combineReducers, legacy_createStore as createStore, compose, applyMiddl
 import breedsReducer from "./breeds-reducer"
 import thunkMiddleware, { ThunkAction } from "redux-thunk";
 import imagesReducer from "./images-reducer";
+import votingReducer from "./voting-reducer";
 
 
 const redusers = combineReducers({
    breeds: breedsReducer,
-   images: imagesReducer
+   images: imagesReducer,
+   voting: votingReducer
 })
 
 type RootReducerType = typeof redusers
