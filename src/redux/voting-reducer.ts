@@ -10,6 +10,8 @@ const REMOVE_USER_ACTION = 'pets-paw/voting/REMOVE-USER-ACTION'
 const ADD_FAVOURITES = 'pets-paw/voting/ADD-FAVOURITES'
 const REMOVE_FAVOURITES = 'pets-paw/voting/REMOVE-FAVOURITES'
 const SET_FAVOURITES = 'pets-paw/voting/SET-FAVOURITES'
+const ADD_FAV_BY_IMAGE_ID = 'pets-paw/voting/ADD-FAV-BY-IMAGE-ID'
+
 
 export type BreedImageType = {
    url: string
@@ -34,7 +36,8 @@ const initialState = {
       //    time: '20:22'
       // }
    ] as Array<UsersActionType>,
-   favourites: [] as Array<string>
+   favourites: [] as Array<string>,
+   favByImageId: {} as any
 }
 
 export type InitialStateType = typeof initialState
@@ -76,6 +79,12 @@ const votingReducer = (state = initialState, action: ActionsType): InitialStateT
             ...state,
             favourites: [...state.favourites, action.id]
          }
+      case ADD_FAV_BY_IMAGE_ID:
+         const obj = Object.assign(state.favByImageId, ...action.fav)
+         return {
+            ...state,
+            favByImageId: { ...obj }
+         }
       case REMOVE_FAVOURITES:
          return {
             ...state,
@@ -93,6 +102,7 @@ export const actions = {
    removeUserAction: () => ({ type: REMOVE_USER_ACTION } as const),
    setFavourites: (favourites: Array<string>) => ({ type: SET_FAVOURITES, favourites } as const),
    addFavourites: (id: string) => ({ type: ADD_FAVOURITES, id } as const),
+   addFavByImageId: (fav: any) => ({ type: ADD_FAV_BY_IMAGE_ID, fav } as const),
    removeFavourites: (id: string) => ({ type: REMOVE_FAVOURITES, id } as const),
 }
 
@@ -122,11 +132,14 @@ export const setVote = (id: string, value: 0 | 1): ThunkType => async (dispatch)
 export const addToFavourite = (breed_id: string): ThunkType => async (dispatch) => {
    await votingAPI.addToFavourite(breed_id)
    dispatch(actions.addFavourites(breed_id))
+   dispatch(getFavourites())
+
 }
 
 export const deleteFavourite = (fav_id: string, breed_id: string): ThunkType => async (dispatch) => {
    await votingAPI.deleteFavourites(fav_id)
    dispatch(actions.removeFavourites(breed_id))
+   dispatch(getFavourites())
 }
 
 export const getVotes = (): ThunkType => async (dispatch) => {
@@ -139,6 +152,10 @@ export const getFavourites = (): ThunkType => async (dispatch) => {
 
    const imageIdList = data.map((item: any) => item.image_id)
    dispatch(actions.setFavourites(imageIdList))
+
+   const favByImageId = data.map((item: any) => ({ [item.image_id]: item.id }))
+
+   dispatch(actions.addFavByImageId(favByImageId))
 
 }
 

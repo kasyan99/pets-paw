@@ -16,3 +16,7 @@ export const getFavouritesList = (state: AppStateType) => {
    return state.voting.favourites
 }
 
+export const getFavByImageId = (state: AppStateType) => {
+   return state.voting.favByImageId
+}
+

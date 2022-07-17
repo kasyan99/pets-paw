@@ -7,7 +7,7 @@ import { GalleryFilterFormType } from '../../../../redux/images-reducer';
 import { getDisFav } from '../../../../redux/images-selectors';
 import { AppStateType } from "../../../../redux/redux-store"
 import { actions, addToFavourite, deleteFavourite, getFavourites } from '../../../../redux/voting-reducer';
-import { getFavouritesList } from '../../../../redux/voting-selectors';
+import { getFavByImageId, getFavouritesList } from '../../../../redux/voting-selectors';
 
 import classes from './BreedsPage.module.scss'
 
@@ -84,22 +84,25 @@ const BreedsList: React.FC<Props> = ({ breedsList, getItemsCount, photosFromGall
 
       console.log(votingAPI.getFavourites())
    }
+   const favourites = useSelector(getFavouritesList)
 
+   const favByImageId = useSelector(getFavByImageId)
+   console.log('favourites', favourites);
+   console.log('favByImageId', favByImageId);
    useEffect(() => {
       console.log('sdfsd');
 
       dispatch(getFavourites())
    }, [])
 
-   const favourites = useSelector(getFavouritesList)
 
-   console.log('favourites', favourites);
 
    const galleryPhotos = () => {
 
       if (breedsList.length > 0) {
          return breedsList.map(breed => {
-            const fav_id = breed.favourite && breed.favourite.id
+            const fav_id = breed.favourite ? favByImageId[breed.id] : ''
+            // const fav_id = breed.favourite && breed.favourite.id
             return <div className={`${classes.grid__item} ${isGallery ? classes.grid__item_gallery : ''}`}
                key={breed.id}>
                <img src={breed.url} alt={breed.id} />
@@ -167,3 +170,4 @@ const Parinator: React.FC<PaginatorType> = ({ getItemsCount, prevNext, getCurren
 }
 
 export default BreedsList
+
