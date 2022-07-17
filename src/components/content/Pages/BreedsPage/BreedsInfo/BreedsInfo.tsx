@@ -2,7 +2,8 @@ import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { actions, getBreedById, getBreedsNumbersById } from "../../../../../redux/breeds-reducer";
-import { getBreedInfoPhotos, getInfoPhotoNumber, getNumbersById } from "../../../../../redux/breeds-selectors";
+import { getBreedInfoPhotos, getInfoPhotoNumber, getIsFetching, getNumbersById } from "../../../../../redux/breeds-selectors";
+import Preloader from "../../../../common/Preloader";
 import classes from './BreedsInfo.module.scss'
 
 const notFoundImage = 'https://s5.favim.com/orig/151213/avatar-kot-profil-gav-Favim.ru-3761175.jpg'
@@ -52,9 +53,15 @@ const BreedsInfo: React.FC = () => {
 
    //change displaed picture
    const onBtnClick = (e: any) => {
+      dispatch(actions.toggleIsFetching(true))
       dispatch(actions.setInfoPhotoNumber(e.target.innerText))
       selecterBtn = e.target.innerText
+      setTimeout(() => {
+         dispatch(actions.toggleIsFetching(false))
+      }, 200)
+
    }
+
    //creating buttons as many as pictures
    const buttons = () => {
       if (breedPhotos) {
@@ -66,9 +73,14 @@ const BreedsInfo: React.FC = () => {
       return ''
    }
 
+   const isFetching = useSelector(getIsFetching)
+
    return <div className={classes.infoPage}>
       <div className={classes.imagesWrapper}>
-         <img src={url} alt={alt} />
+         {isFetching &&
+            <Preloader />}
+         {!isFetching &&
+            <img src={url} alt={alt} />}
          <div className={classes.btnContainer}>
             <div>
                {buttons()}

@@ -7,6 +7,9 @@ const SET_BREED_IMAGE = 'pets-paw/voting/SET-BREED-IMAGE'
 const TOGGLE_FETCHING = 'pets-paw/voting/TOGGLE-FETCHING'
 const SET_USER_ACTION = 'pets-paw/voting/SET-USER-ACTION'
 const REMOVE_USER_ACTION = 'pets-paw/voting/REMOVE-USER-ACTION'
+const ADD_FAVOURITES = 'pets-paw/voting/ADD-FAVOURITES'
+const REMOVE_FAVOURITES = 'pets-paw/voting/REMOVE-FAVOURITES'
+const SET_FAVOURITES = 'pets-paw/voting/SET-FAVOURITES'
 
 export type BreedImageType = {
    url: string
@@ -16,7 +19,7 @@ export type BreedImageType = {
 export type UsersActionType = {
    id: string
    type: 'Favourites' | 'Likes' | 'Dislikes'
-   action: 'addes' | 'removed'
+   action: 'added' | 'removed'
    time: string
 }
 
@@ -24,13 +27,14 @@ const initialState = {
    breedImage: {} as BreedImageType,
    isFetching: false,
    userActions: [
-      {
-         id: 'sdfsdf',
-         type: 'Favourites',
-         action: 'addes',
-         time: '20:22'
-      }
-   ] as Array<UsersActionType>
+      // {
+      //    id: 'sdfsdf',
+      //    type: 'Favourites',
+      //    action: 'added',
+      //    time: '20:22'
+      // }
+   ] as Array<UsersActionType>,
+   favourites: [] as Array<string>
 }
 
 export type InitialStateType = typeof initialState
@@ -62,6 +66,21 @@ const votingReducer = (state = initialState, action: ActionsType): InitialStateT
             ...state,
             userActions: [...copy]
          }
+      case SET_FAVOURITES:
+         return {
+            ...state,
+            favourites: action.favourites
+         }
+      case ADD_FAVOURITES:
+         return {
+            ...state,
+            favourites: [...state.favourites, action.id]
+         }
+      case REMOVE_FAVOURITES:
+         return {
+            ...state,
+            favourites: [...state.favourites.filter((item: string) => item !== action.id)]
+         }
       default:
          return state
    }
@@ -71,7 +90,10 @@ export const actions = {
    setBreedImage: (breedImage: any) => ({ type: SET_BREED_IMAGE, breedImage } as const),
    toggleIsFetching: (isFetching: boolean) => ({ type: TOGGLE_FETCHING, isFetching } as const),
    addUserAction: (userAction: UsersActionType) => ({ type: SET_USER_ACTION, userAction } as const),
-   removeUserAction: () => ({ type: REMOVE_USER_ACTION } as const)
+   removeUserAction: () => ({ type: REMOVE_USER_ACTION } as const),
+   setFavourites: (favourites: Array<string>) => ({ type: SET_FAVOURITES, favourites } as const),
+   addFavourites: (id: string) => ({ type: ADD_FAVOURITES, id } as const),
+   removeFavourites: (id: string) => ({ type: REMOVE_FAVOURITES, id } as const),
 }
 
 export const getRandomBreed = (): ThunkType => async (dispatch) => {
@@ -85,9 +107,7 @@ export const getRandomBreed = (): ThunkType => async (dispatch) => {
    }
    const { url, id } = (await imagesAPI.getImages(filter, 0)).data[0]
 
-   const breedImage: BreedImageType = { url, id }
-   console.log('breed', breedImage);
-
+   const breedImage: BreedImageType = { url, id };
 
    dispatch(actions.setBreedImage(breedImage))
    dispatch(actions.toggleIsFetching(false))
@@ -99,10 +119,28 @@ export const setVote = (id: string, value: 0 | 1): ThunkType => async (dispatch)
    dispatch(actions.toggleIsFetching(false))
 }
 
+export const addToFavourite = (breed_id: string): ThunkType => async (dispatch) => {
+   await votingAPI.addToFavourite(breed_id)
+   dispatch(actions.addFavourites(breed_id))
+}
+
+export const deleteFavourite = (fav_id: string, breed_id: string): ThunkType => async (dispatch) => {
+   await votingAPI.deleteFavourites(fav_id)
+   dispatch(actions.removeFavourites(breed_id))
+}
+
 export const getVotes = (): ThunkType => async (dispatch) => {
    const data = await votingAPI.getVotes()
-   console.log(data);
+}
+
+export const getFavourites = (): ThunkType => async (dispatch) => {
+   const data = (await votingAPI.getFavourites())
+
+
+   const imageIdList = data.map((item: any) => item.image_id)
+   dispatch(actions.setFavourites(imageIdList))
 
 }
+
 
 export default votingReducer

@@ -113,6 +113,28 @@
       }
     }
   }
+
+  .grid__item_gallery{
+    div{
+      align-items: center;
+      padding: 0;
+      button{
+        width: 40px;
+        height: 40px;
+        font-size: 0;
+        border-radius: 10px;
+      }
+      .add{
+        background: #FFFFFF url(../../../../assets/icons/search-form/favourities.svg) no-repeat center center;
+        background-size:  20px 17px;
+      }
+
+      .remove{
+        background: #FFFFFF url(../../../../assets/icons/voting-page/favourited.svg) no-repeat center center;
+        background-size:  20px 17px;
+      }
+    }
+  }
   
 }
 

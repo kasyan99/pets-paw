@@ -15,3 +15,11 @@ export const getFilter = (state: AppStateType) => {
 export const getImagesCount = (state: AppStateType) => {
    return state.images.totalImagesCount
 }
+
+export const getIsFetching = (state: AppStateType) => {
+   return state.images.isFetching
+}
+
+export const getDisFav = (state: AppStateType) => {
+   return state.images.displayedFavourites
+}

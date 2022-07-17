@@ -16,10 +16,6 @@ const Header = () => {
    const pageName = pathnames[0].toUpperCase()
    const breedsNumbersById = useSelector(getNumbersById)
 
-   useEffect(() => {
-      console.log(breedsNumbersById);
-   }, [breedsNumbersById])
-
    const id = breedsNumbersById ? breedsNumbersById[`${pathnames[2]}`] : ''
 
    return <div className={classes.header}>

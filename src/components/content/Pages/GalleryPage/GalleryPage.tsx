@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getIsFetching } from '../../../../redux/breeds-selectors';
 import { actions, GalleryFilterFormType, getImagesListThunk, ImgTypeType, OrderType } from '../../../../redux/images-reducer';
-import { getCurrentPage, getFilter, getImagesCount, getImagesList } from '../../../../redux/images-selectors';
+import { getCurrentPage, getFilter, getImagesCount, getImagesList, getIsFetching } from '../../../../redux/images-selectors';
+import { addToFavourite, deleteFavourite } from '../../../../redux/voting-reducer';
 import Preloader from '../../../common/Preloader';
 import BreedsList from '../BreedsPage/BreedsList';
 import GalleryFilterForm from './GalleryFilterForm';
@@ -71,6 +71,8 @@ const GalleryPage: React.FC = () => {
    }
 
    const isFetching = useSelector(getIsFetching)
+
+
    return <>
       <GalleryFilterForm />
       {isFetching &&
@@ -83,7 +85,8 @@ const GalleryPage: React.FC = () => {
             photosFromGallery={true} prevNext={prevNext}
             getCurrentPage={getCurrentPage}
             getFilter={getFilter} />
-      }</>
+      }
+   </>
 }
 
 export default GalleryPage

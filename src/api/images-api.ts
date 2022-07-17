@@ -18,7 +18,7 @@ export const imagesAPI = {
          }
       })()
 
-      const response = await instance.get(`images/search?page=${currentPage}&limit=${limitItems}&order=${order}&mime_types=${qType}${breed_id}`, {
+      const response = await instance.get(`images/search?page=${currentPage}&limit=${limitItems}&order=${order}&mime_types=${qType}${breed_id}&sub_id=kas_99`, {
          headers: {
             'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d',
          }

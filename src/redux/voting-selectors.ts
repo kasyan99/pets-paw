@@ -11,3 +11,8 @@ export const getIsFetching = (state: AppStateType) => {
 export const getUserActions = (state: AppStateType) => {
    return state.voting.userActions
 }
+
+export const getFavouritesList = (state: AppStateType) => {
+   return state.voting.favourites
+}
+

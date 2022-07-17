@@ -179,8 +179,8 @@ export const getTotalBreedsCount = (): any => async (dispatch: any) => {
 }
 
 export const getBreedsNumbersById = (): any => async (dispatch: any) => {
-   const data = (await breedsAPI.getTotalBreeds()).data
 
+   const data = (await breedsAPI.getTotalBreeds()).data
 
    if (data) {
       let arr = {} as any
@@ -188,10 +188,10 @@ export const getBreedsNumbersById = (): any => async (dispatch: any) => {
       data.map((breed: any, index: number) => {
          arr[`${breed.id}`] = index + 1
       })
-      console.log('arr', arr);
 
       dispatch(actions.setBreedsNumbersById(arr))
    }
+
 }
 
 export const getBreedById = (id: string): any => async (dispatch: any) => {
