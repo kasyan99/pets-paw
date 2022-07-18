@@ -12,11 +12,12 @@ export const getUserActions = (state: AppStateType) => {
    return state.voting.userActions
 }
 
-export const getFavouritesList = (state: AppStateType) => {
+export const getFavouritesIds = (state: AppStateType) => {
    return state.voting.favourites
 }
 
 export const getFavByImageId = (state: AppStateType) => {
    return state.voting.favByImageId
 }
+
 

@@ -32,7 +32,7 @@ const Content: React.FC = () => {
                   { path: "/breeds/info/*", element: <BreedsInfo /> },
                   { path: "/gallery/*", element: <GalleryPage /> },
                   { path: "/search", element: <SearchPage /> },
-                  { path: "/favourities", element: <FavouritiesPage /> },
+                  { path: "/favourities/*", element: <FavouritiesPage /> },
                   { path: "/likes", element: <LikesPage /> },
                   { path: "/dislikes", element: <DislikesPage /> },
                ])}

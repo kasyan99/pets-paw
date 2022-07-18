@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { votingAPI } from '../../../../api/voting-api';
 import { actions, addToFavourite, BreedImageType, getRandomBreed, getVotes, setVote, UsersActionType } from '../../../../redux/voting-reducer';
 import { getBreedImage, getIsFetching, getUserActions } from '../../../../redux/voting-selectors';
+import { addUserActionCreator } from '../../../../utils/usersActionLogsCreator';
 import Preloader from '../../../common/Preloader';
 import classes from './VotingPage.module.scss'
 
@@ -26,48 +27,48 @@ const VotingPage: React.FC = () => {
       if (id)
          dispatch(setVote(id, value))
       if (!isFetching) {
-         addUserAction(value)
+         addUserAction(id, value, 'add')
          dispatch(getRandomBreed())
       }
 
       // dispatch(getVotes())
    }
+   const addUserAction = addUserActionCreator(usersActions, () => dispatch(actions.removeUserAction()), (userAction) => dispatch(actions.addUserAction(userAction)))
+   // const addUserAction = (value: 0 | 1 | null) => {
+   //    const type = (() => {
+   //       switch (value) {
+   //          case 0:
+   //             return 'Dislikes'
+   //          case 1:
+   //             return 'Likes'
+   //          default:
+   //             return 'Favourites'
+   //       }
+   //    })()
 
-   const addUserAction = (value: 0 | 1 | null) => {
-      const type = (() => {
-         switch (value) {
-            case 0:
-               return 'Dislikes'
-            case 1:
-               return 'Likes'
-            default:
-               return 'Favourites'
-         }
-      })()
+   //    if (usersActions.length > 3) {
+   //       dispatch(actions.removeUserAction())
+   //    }
 
-      if (usersActions.length > 3) {
-         dispatch(actions.removeUserAction())
-      }
+   //    const data = new Date
+   //    const hours = data.getHours() < 10 ? `0${data.getHours()}` : `${data.getHours()}`
+   //    const minutes = data.getMinutes() < 10 ? `0${data.getMinutes()}` : `${data.getMinutes()}`
 
-      const data = new Date
-      const hours = data.getHours() < 10 ? `0${data.getHours()}` : `${data.getHours()}`
-      const minutes = data.getMinutes() < 10 ? `0${data.getMinutes()}` : `${data.getMinutes()}`
+   //    const userAction: UsersActionType = {
+   //       id: id,
+   //       action: 'added',
+   //       time: `${hours}:${minutes}`,
+   //       type: type
+   //    }
 
-      const userAction: UsersActionType = {
-         id: id,
-         action: 'added',
-         time: `${hours}:${minutes}`,
-         type: type
-      }
-
-      dispatch(actions.addUserAction(userAction))
-   }
+   //    dispatch(actions.addUserAction(userAction))
+   // }
 
    const toFavourite = () => {
       if (id)
          dispatch(addToFavourite(id))
       if (!isFetching) {
-         addUserAction(null)
+         addUserAction(id, null, 'add')
          dispatch(getRandomBreed())
       }
 
@@ -76,23 +77,23 @@ const VotingPage: React.FC = () => {
 
    const userActions = useSelector(getUserActions)
 
-   const createUserActions = () => {
-      if (userActions) {
-         return userActions.map((action, index) => {
-            return <div className={classes.action} key={index}>
-               <span className={classes.time}>
-                  <span>{action.time}</span>
-               </span>
-               <span className={classes.text}>
-                  Image ID: <span>{action.id}</span> was {action.action} to {action.type}
-               </span>
-            </div>
-         })
-      }
-      else {
-         return ''
-      }
-   }
+   // const createUserActions = () => {
+   //    if (userActions) {
+   //       return userActions.map((action, index) => {
+   //          return <div className={classes.action} key={index}>
+   //             <span className={classes.time}>
+   //                <span>{action.time}</span>
+   //             </span>
+   //             <span className={classes.text}>
+   //                Image ID: <span>{action.id}</span> was {action.action} {action.type}
+   //             </span>
+   //          </div>
+   //       })
+   //    }
+   //    else {
+   //       return ''
+   //    }
+   // }
 
    return <div className={classes.votingPage}>
       <div className={classes.imagesWrapper}>
@@ -109,9 +110,33 @@ const VotingPage: React.FC = () => {
          </div>
       </div>
       <div className={classes.actionsWrapper}>
-         {createUserActions()}
+         {/* {createUserActions()}
+          */}
+         <UserActionLogs userActions={userActions} />
       </div>
    </div>
+}
+
+export const UserActionLogs: React.FC<{ userActions: Array<UsersActionType> }> = ({ userActions }) => {
+   const createUserActions = (userActions: Array<UsersActionType> | null) => {
+      if (userActions) {
+         return userActions.map((action, index) => {
+            return <div className={classes.action} key={index}>
+               <span className={classes.time}>
+                  <span>{action.time}</span>
+               </span>
+               <span className={classes.text}>
+                  Image ID: <span>{action.id}</span> was {action.action} {action.type}
+               </span>
+            </div>
+         })
+      }
+      else {
+         return ''
+      }
+   }
+
+   return <>{createUserActions(userActions)}</>
 }
 
 export default VotingPage

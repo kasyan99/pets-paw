@@ -44,15 +44,16 @@ export const votingAPI = {
    },
 
    async getFavourites(limit = 5, page = 0) {
-      // const response = await instance.get(`favourites?limit=${limit}&page=${page}`, {
+      const response = await instance.get(`favourites?sub_id=kas_99&limit=${limit}&page=${page}`, {
 
-      const response = await instance.get(`favourites?sub_id=kas_99`, {
+         // const response = await instance.get(`favourites?sub_id=kas_99`, {
          headers: {
             'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d',
          }
       })
+      console.log('response', response);
 
-      return response.data
+      return response
    },
 
    async deleteFavourites(id: string) {

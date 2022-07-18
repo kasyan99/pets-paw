@@ -55,44 +55,45 @@
    }
   }
   
-  .actionsWrapper{
-    .action{
-      height: 60px;
-      border-radius: 10px;
-      background: #F8F8F7;
-      display: flex;
-      align-items: center;
-      padding: 10px;
-      margin-bottom: 10px;
-      .time{
-        // width: 61px;
-        // height: 30px;
-        padding: 3px 10px;
-        border-radius: 5px;
-        background: #fff;
-        margin-right: 20px;
-        span{
-          font-family: 'Jost';
-          font-style: normal;
-          font-weight: 400;
-          font-size: 16px;
-          line-height: 24px;
-          color: #1D1D1D;
-        }
-      }
-      .text{
+  
+}
+
+.actionsWrapper{
+  .action{
+    height: 60px;
+    border-radius: 10px;
+    background: #F8F8F7;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    .time{
+      // width: 61px;
+      // height: 30px;
+      padding: 3px 10px;
+      border-radius: 5px;
+      background: #fff;
+      margin-right: 20px;
+      span{
         font-family: 'Jost';
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
         line-height: 24px;
-        color: #8C8C8C;
-        span{
-          color: #1D1D1D;
-          font-weight: 500;
-        }
+        color: #1D1D1D;
+      }
+    }
+    .text{
+      font-family: 'Jost';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #8C8C8C;
+      span{
+        color: #1D1D1D;
+        font-weight: 500;
       }
     }
   }
 }
-

@@ -7,7 +7,7 @@ import { GalleryFilterFormType } from '../../../../redux/images-reducer';
 import { getDisFav } from '../../../../redux/images-selectors';
 import { AppStateType } from "../../../../redux/redux-store"
 import { actions, addToFavourite, deleteFavourite, getFavourites } from '../../../../redux/voting-reducer';
-import { getFavByImageId, getFavouritesList } from '../../../../redux/voting-selectors';
+import { getFavByImageId, getFavouritesIds } from '../../../../redux/voting-selectors';
 
 import classes from './BreedsPage.module.scss'
 
@@ -67,31 +67,18 @@ const BreedsList: React.FC<Props> = ({ breedsList, getItemsCount, photosFromGall
 
 
    const addFavourite = async (breed_id: string) => {
-      console.log('addFavourite', 'breed_id', breed_id);
 
-      const f = await dispatch(addToFavourite(breed_id))
-      // dispatch(actions.addFavourites(breed_id))
-      console.log(votingAPI.getFavourites())
+      await dispatch(addToFavourite(breed_id))
 
    }
    const removeFavourite = async (fav_id: string, breed_id: string) => {
-      console.log('removeFavourite', 'fav_id', fav_id, 'breed_id', breed_id);
 
-      const f = await dispatch(deleteFavourite(fav_id, breed_id))
-      // dispatch(actions.removeFavourites(breed_id))
-
-      // dispatch(actions.removeDisplayedFav(breed_id))
-
-      console.log(votingAPI.getFavourites())
+      await dispatch(deleteFavourite(fav_id, breed_id))
    }
-   const favourites = useSelector(getFavouritesList)
+   const favourites = useSelector(getFavouritesIds)
 
    const favByImageId = useSelector(getFavByImageId)
-   console.log('favourites', favourites);
-   console.log('favByImageId', favByImageId);
    useEffect(() => {
-      console.log('sdfsd');
-
       dispatch(getFavourites())
    }, [])
 
@@ -126,18 +113,18 @@ const BreedsList: React.FC<Props> = ({ breedsList, getItemsCount, photosFromGall
       <div className={classes.grid__layout}>
          {photosFromGallery ? galleryPhotos() : breedPhotos()}
       </div>
-      <Parinator getItemsCount={getItemsCount} prevNext={prevNext} getCurrentPage={getCurrentPage} getFilter={getFilter} />
+      <Paginator getItemsCount={getItemsCount} prevNext={prevNext} getCurrentPage={getCurrentPage} getFilter={getFilter} />
    </div>
 }
 
 type PaginatorType = {
    getItemsCount: (state: AppStateType) => number
-   prevNext: (btn: 'prev' | 'next') => void
+   prevNext?: (btn: 'prev' | 'next') => void
    getCurrentPage: (state: AppStateType) => number
    getFilter: (state: AppStateType) => any
 }
 
-const Parinator: React.FC<PaginatorType> = ({ getItemsCount, prevNext, getCurrentPage, getFilter }) => {
+export const Paginator: React.FC<PaginatorType> = ({ getItemsCount, prevNext, getCurrentPage, getFilter }) => {
    const dispatch = useDispatch<any>()
    const location = useLocation()
    const obj = new URLSearchParams(location.search)
@@ -158,12 +145,12 @@ const Parinator: React.FC<PaginatorType> = ({ getItemsCount, prevNext, getCurren
             {currentPage > 0 &&
                <button type='button'
                   className={`${classes.element} ${classes.btn} ${classes.btn_prev}`}
-                  onClick={() => currentPage > 0 && dispatch(prevNext('prev'))}
+                  onClick={() => currentPage > 0 && prevNext && dispatch(prevNext('prev'))}
                >PREV</button>}
             {currentPage < pagesCount &&
                <button type='button'
                   className={`${classes.element} ${classes.btn} ${classes.btn_next}`}
-                  onClick={() => currentPage < pagesCount && dispatch(prevNext('next'))}
+                  onClick={() => currentPage < pagesCount && prevNext && dispatch(prevNext('next'))}
                >NEXT</button>}
          </div>}
    </div>
