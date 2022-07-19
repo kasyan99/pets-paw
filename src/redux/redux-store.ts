@@ -5,6 +5,7 @@ import imagesReducer from "./images-reducer";
 import votingReducer from "./voting-reducer";
 import favouritesReducer from "./favourites-reducer";
 import likesReducer from "./likes-reducer";
+import searchReducer from "./search-reducer";
 
 
 const redusers = combineReducers({
@@ -12,7 +13,8 @@ const redusers = combineReducers({
    images: imagesReducer,
    voting: votingReducer,
    favourites: favouritesReducer,
-   likes: likesReducer
+   likes: likesReducer,
+   search: searchReducer
 })
 
 type RootReducerType = typeof redusers

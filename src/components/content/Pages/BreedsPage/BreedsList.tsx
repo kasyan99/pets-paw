@@ -30,6 +30,8 @@ const BreedsList: React.FC<Props> = ({ breedsList, getItemsCount, photosFromGall
    }
    //filter breeds list from API and create list of img
    const breedPhotos = () => {
+      console.log('sdfsdfsdf', breedsList);
+
       if (breedsList.length > 0) {
          return breedsList.map(breed => {
             if (breed.image && breed.image.url) {
