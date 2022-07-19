@@ -4,13 +4,15 @@ import thunkMiddleware, { ThunkAction } from "redux-thunk";
 import imagesReducer from "./images-reducer";
 import votingReducer from "./voting-reducer";
 import favouritesReducer from "./favourites-reducer";
+import likesReducer from "./likes-reducer";
 
 
 const redusers = combineReducers({
    breeds: breedsReducer,
    images: imagesReducer,
    voting: votingReducer,
-   favourites: favouritesReducer
+   favourites: favouritesReducer,
+   likes: likesReducer
 })
 
 type RootReducerType = typeof redusers

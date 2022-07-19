@@ -8,7 +8,8 @@ export const votingAPI = {
 
       const response = await instance.post(`votes`, {
          "image_id": `${id}`,
-         "value": value
+         "value": value,
+         "sub_id": 'kas_99'
       }, {
          headers: {
             'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d',
@@ -18,15 +19,26 @@ export const votingAPI = {
       return response
    },
 
-   async getVotes(limit = 5, page = 0) {
-
-      const response = await instance.get(`votes?limit=${limit}&page=${page}`, {
+   async getVotes(limit = null as number | null, page = 0) {
+      const pLimit = limit ? `&limit=${limit}` : ''
+      const response = await instance.get(`votes?sub_id=kas_99${pLimit}&page=${page}`, {
          headers: {
             'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d',
          }
       })
 
-      return response.data
+      return response
+   },
+
+   async deleteVote(vote_id: string) {
+
+      const response = await instance.delete(`votes/${vote_id}`, {
+         headers: {
+            'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d',
+         }
+      })
+
+      return response
    },
 
    async addToFavourite(id: string) {
