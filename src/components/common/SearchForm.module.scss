@@ -49,12 +49,35 @@
       cursor: pointer;
       &:first-of-type{
          background: #fff url(../../assets/icons/search-form/likes.svg) no-repeat center center;
+         &:active{
+         background: #FF868E url(../../assets/icons/search-form/likes_active.svg) no-repeat center center;
+         }
       }
       &:nth-of-type(2){
          background: #fff url(../../assets/icons/search-form/favourities.svg) no-repeat center center;
+         &:active{
+         background: #FF868E url(../../assets/icons/search-form/favourites_active.svg) no-repeat center center;
+         }
       }
       &:last-of-type{
          background: #fff url(../../assets/icons/search-form/dislikes.svg) no-repeat center center;
+         &:active{
+         background: #FF868E url(../../assets/icons/search-form/dislikes_active.svg) no-repeat center center;
+         }
+      }
+      &:hover{
+         background-color: #FBE0DC;
       }
    }
+
+   button.likes_active{
+      background: #FF868E url(../../assets/icons/search-form/likes_active.svg) no-repeat center center;
+   }
+   button.dislikes_active{
+      background: #FF868E url(../../assets/icons/search-form/dislikes_active.svg) no-repeat center center;
+   }
+   button.favourities_active{
+      background: #FF868E url(../../assets/icons/search-form/favourites_active.svg) no-repeat center center;
+   }
+   
 }

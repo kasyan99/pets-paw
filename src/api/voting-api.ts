@@ -63,7 +63,6 @@ export const votingAPI = {
             'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d',
          }
       })
-      console.log('response', response);
 
       return response
    },

@@ -1,6 +1,6 @@
 import { Field, Formik } from 'formik';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import classes from './SearchForm.module.scss'
 
 export type SearchFormType = {
@@ -10,6 +10,9 @@ export type SearchFormType = {
 
 const SearchForm: React.FC = () => {
    const navigate = useNavigate()
+   const location = useLocation()
+   const pageName = location.pathname.slice(1)
+   console.log(pageName);
 
    const onSubmit = () => {
 
@@ -36,7 +39,8 @@ const SearchForm: React.FC = () => {
                <Field name="searchByName" placeholder='Search for breeds by name' maxLength='30'
                   onFocus={() => onFocus()} />
             </div>
-            {buttons.map(name => <button type='button' value={name} onClick={(e) => onClick(e)} key={name}>{name}</button>)}
+            {buttons.map(name => <button type='button' value={name} onClick={(e) => onClick(e)} key={name}
+               className={pageName === name ? classes[`${pageName}_active`] : ''}>{name}</button>)}
          </form>
       )}
       </Formik>

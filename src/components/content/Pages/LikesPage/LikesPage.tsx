@@ -1,21 +1,24 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteVote, getLikesList } from '../../../../redux/likes-reducer';
-import { getLikedImagesList } from '../../../../redux/likes-selectors';
+import { deleteVote, getVotesList } from '../../../../redux/likes-reducer';
+import { getIsFetching, getLikedImagesList } from '../../../../redux/likes-selectors';
 import classes from './LikesPage.module.scss'
 import breedClasses from '../BreedsPage/BreedsPage.module.scss'
 import votingClasses from '../VotingPage/VotingPage.module.scss'
+import Preloader from '../../../common/Preloader';
 
-const LikesPage: React.FC = () => {
+//it will be LikesPage if value = 1, DislikesPage if value = 0
+const LikesPage: React.FC<{ value: 0 | 1 }> = ({ value }) => {
    const dispatch = useDispatch<any>()
 
    useEffect(() => {
-      dispatch(getLikesList())
-   }, [])
+      dispatch(getVotesList(value))
+   }, [value])
 
    const likesList = Object.values(useSelector(getLikedImagesList))
 
-   console.log(likesList);
+   const isFetching = useSelector(getIsFetching)
+
    const removeLikedImage = (vote_id: string) => {
       dispatch(deleteVote(vote_id))
    }
@@ -31,7 +34,7 @@ const LikesPage: React.FC = () => {
                <div><button onClick={() => {
                   removeLikedImage(image.vote_id);
                   // addUserAction(breed.image.id, null, 'remove') 
-               }} className={breedClasses.remove_from_likes}>remove from likes</button>
+               }} className={value === 1 ? breedClasses.remove_from_likes : breedClasses.remove_from_dislikes}>remove from {value === 1 ? 'likes' : 'dislikes'}</button>
                </div>
             </div>
          })
@@ -41,18 +44,24 @@ const LikesPage: React.FC = () => {
       }
    }
 
-   return <div className={breedClasses.breedsList}>
-      <div className={breedClasses.grid__layout}>
-         {imagesList()}
-      </div>
-      <div className={breedClasses.bottomWrapper}>
-         <div className={votingClasses.actionsWrapper}>
-            {/* <UserActionLogs userActions={userActions} /> */}
-         </div>
-         {/* <Paginator getCurrentPage={getCurrentPage} getItemsCount={getTotalCount} getFilter={() => ({ limitItems: limit })} prevNext={prevNext} /> */}
-      </div>
+   return <>
+      {!isFetching &&
+         <div className={breedClasses.breedsList}>
+            <div className={breedClasses.grid__layout}>
+               {imagesList()}
+            </div>
+            <div className={breedClasses.bottomWrapper}>
+               <div className={votingClasses.actionsWrapper}>
+                  {/* <UserActionLogs userActions={userActions} /> */}
+               </div>
+               {/* <Paginator getCurrentPage={getCurrentPage} getItemsCount={getTotalCount} getFilter={() => ({ limitItems: limit })} prevNext={prevNext} /> */}
+            </div>
 
-   </div>
+         </div>
+      }
+      {isFetching &&
+         <Preloader />}
+   </>
 }
 
 export default LikesPage

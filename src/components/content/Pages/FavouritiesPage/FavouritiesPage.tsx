@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteFavourite } from '../../../../redux/voting-reducer';
-import { getCurrentPage, getFavList, getLimit, getTotalCount, getUserActions } from '../../../../redux/favourites-selectors';
+import { getCurrentPage, getFavList, getIsFetching, getLimit, getTotalCount, getUserActions } from '../../../../redux/favourites-selectors';
 import { Paginator } from '../BreedsPage/BreedsList';
 import favClasses from './FavouritiesPage.module.scss'
 import breedClasses from '../BreedsPage/BreedsPage.module.scss'
@@ -10,6 +10,7 @@ import { actions, getFavouritesList } from '../../../../redux/favourites-reducer
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UserActionLogs } from '../VotingPage/VotingPage';
 import { addUserActionCreator } from '../../../../utils/usersActionLogsCreator';
+import Preloader from '../../../common/Preloader';
 
 const FavouritiesPage: React.FC = () => {
    const dispatch = useDispatch<any>()
@@ -35,7 +36,7 @@ const FavouritiesPage: React.FC = () => {
    const removeFavourite = async (fav_id: string, breed_id: string) => {
 
       await dispatch(deleteFavourite(fav_id, breed_id))
-      dispatch(getFavouritesList(limit, currentPage))
+      dispatch(getFavouritesList(limit, currentPage, false))
    }
 
    const galleryPhotos = () => {
@@ -65,16 +66,18 @@ const FavouritiesPage: React.FC = () => {
 
    const addUserAction = addUserActionCreator(userActions, () => dispatch(actions.removeUserAction()), (userAction) => dispatch(actions.addUserAction(userAction)), 2)
 
+   const isFetching = useSelector(getIsFetching)
+   return <>
+      {!isFetching &&
+         <div className={breedClasses.breedsList}>
+            <div className={breedClasses.grid__layout}>
+               {galleryPhotos()}
 
-   return <div className={breedClasses.breedsList}>
-      <div className={breedClasses.grid__layout}>
-         {galleryPhotos()}
-
-      </div>
-      <div className={breedClasses.bottomWrapper}>
-         <div className={votingClasses.actionsWrapper}>
-            <UserActionLogs userActions={userActions} />
-            {/* <div className={votingClasses.action}>
+            </div>
+            <div className={breedClasses.bottomWrapper}>
+               <div className={votingClasses.actionsWrapper}>
+                  <UserActionLogs userActions={userActions} />
+                  {/* <div className={votingClasses.action}>
                <span className={votingClasses.time}>
                   <span>20:22</span>
                </span>
@@ -90,11 +93,17 @@ const FavouritiesPage: React.FC = () => {
                   Image ID: <span>h4l1h543</span> was removed from fav
                </span>
             </div> */}
-         </div>
-         <Paginator getCurrentPage={getCurrentPage} getItemsCount={getTotalCount} getFilter={() => ({ limitItems: limit })} prevNext={prevNext} />
-      </div>
+               </div>
+               <Paginator getCurrentPage={getCurrentPage} getItemsCount={getTotalCount} getFilter={() => ({ limitItems: limit })} prevNext={prevNext} />
+            </div>
 
-   </div>
+         </div>
+      }
+      {
+         isFetching &&
+         <Preloader />
+      }
+   </>
 }
 
 export default FavouritiesPage

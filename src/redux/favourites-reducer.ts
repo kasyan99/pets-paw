@@ -59,8 +59,6 @@ const favouritesReducer = (state = initialState, action: ActionsType): InitialSt
          }
 
       case ADD_USER_ACTION:
-         console.log('ADD_USER_ACTION');
-
          return {
             ...state,
             userActions: [action.userAction, ...state.userActions]
@@ -89,16 +87,15 @@ export const actions = {
 }
 
 
-export const getFavouritesList = (limit = 5, page = 0): ThunkType => async (dispatch) => {
-   dispatch(actions.toggleIsFetching(true))
+export const getFavouritesList = (limit = 5, page = 0, fetch = true): ThunkType => async (dispatch) => {
+   fetch && dispatch(actions.toggleIsFetching(true))
    const { data, headers } = (await votingAPI.getFavourites(limit, page))
    dispatch(actions.setLimit(limit))
    dispatch(actions.setCurrentPage(page))
-   console.log(headers);
    dispatch(actions.setTotalCount(Number(headers['pagination-count'])))
    dispatch(actions.setFavouritesList(data))
 
-   dispatch(actions.toggleIsFetching(false))
+   fetch && dispatch(actions.toggleIsFetching(false))
 }
 
 // export const getImagesListThunk = (limit: number, currentPage: number): ThunkType => async (dispatch) => {

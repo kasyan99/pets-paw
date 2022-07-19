@@ -7,7 +7,7 @@ import { UsersActionType } from "./voting-reducer"
 const SET_CURRENT_PAGE = 'pets-paw/likes/SET-CURRENT-PAGE'
 const SET_LIMIT = 'pets-paw/likes/SET-LIMIT'
 const TOGGLE_FETCHING = 'pets-paw/likes/TOGGLE-FETCHING'
-// const SET_LIKES_LIST = 'pets-paw/likes/SET-FAVOURITES-LIST'
+const CLEAR_LIKES_LIST = 'pets-paw/likes/CLEAR-LIKES-LIST'
 const ADD_LIKED_IMAGE = 'pets-paw/likes/ADD-LIKED-IMAGE'
 const REMOVE_LIKED_IMAGE = 'pets-paw/likes/REMOVE-LIKED-IMAGE'
 const SET_TOTAL_COUNT = 'pets-paw/likes/SET-TOTAL-COUNT'
@@ -49,11 +49,11 @@ const likesReducer = (state = initialState, action: ActionsType): InitialStateTy
             ...state,
             isFetching: action.isFetching
          }
-      // case SET_LIKES_LIST:
-      //    return {
-      //       ...state,
-      //       likesList: [...action.likesList]
-      //    }
+      case CLEAR_LIKES_LIST:
+         return {
+            ...state,
+            likesList: []
+         }
       case ADD_LIKED_IMAGE:
          return {
             ...state,
@@ -93,7 +93,7 @@ export const actions = {
    setCurrentPage: (currentPage: number) => ({ type: SET_CURRENT_PAGE, currentPage } as const),
    setLimit: (limit: number) => ({ type: SET_LIMIT, limit } as const),
    toggleIsFetching: (isFetching: boolean) => ({ type: TOGGLE_FETCHING, isFetching } as const),
-   // setLikesList: (likesList: any) => ({ type: SET_LIKES_LIST, likesList } as const),
+   clearLikesList: () => ({ type: CLEAR_LIKES_LIST } as const),
    removeLikedImage: (vote_id: string) => ({ type: REMOVE_LIKED_IMAGE, vote_id } as const),
    addLikedImage: (likedImage: any) => ({ type: ADD_LIKED_IMAGE, likedImage } as const),
    setTotalCount: (totalImagesCount: number) => ({ type: SET_TOTAL_COUNT, totalImagesCount } as const),
@@ -103,21 +103,23 @@ export const actions = {
 }
 
 
-export const getLikesList = (limit = null, page = 0): ThunkType => async (dispatch) => {
+export const getVotesList = (value: 0 | 1, limit = null, page = 0): ThunkType => async (dispatch) => {
    dispatch(actions.toggleIsFetching(true))
+
+   dispatch(actions.clearLikesList())
+
    const { data, headers } = (await votingAPI.getVotes(limit, page))
    limit && dispatch(actions.setLimit(limit))
    dispatch(actions.setCurrentPage(page))
 
-   const voteList = data.filter((item: any) => item.value == 1)
+   const voteList = data.filter((item: any) => item.value == value)
 
-   type likesImagesIdType = { image_id: string, vote_id: string }
-   const likesImagesIdList: Array<likesImagesIdType> = voteList.map((item: any) => ({ image_id: item.image_id, vote_id: item.id }))
-   dispatch(actions.setTotalCount(likesImagesIdList.length))
+   type votesImagesIdType = { image_id: string, vote_id: string }
+   const votesImagesIdList: Array<votesImagesIdType> = voteList.map((item: any) => ({ image_id: item.image_id, vote_id: item.id }))
+   dispatch(actions.setTotalCount(votesImagesIdList.length))
 
-   likesImagesIdList.map(async (image: likesImagesIdType) => {
+   votesImagesIdList.map(async (image: votesImagesIdType) => {
       const item = await imagesAPI.getImageById(image.image_id)
-      console.log('item', item);
 
       dispatch(actions.addLikedImage({ [image.vote_id]: { ...item, vote_id: image.vote_id } }))
    })

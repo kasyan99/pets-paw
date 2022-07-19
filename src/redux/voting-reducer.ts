@@ -142,7 +142,7 @@ export const addToFavourite = (breed_id: string): ThunkType => async (dispatch) 
 export const deleteFavourite = (fav_id: string, breed_id: string): ThunkType => async (dispatch) => {
    await votingAPI.deleteFavourites(fav_id)
    dispatch(actions.removeFavourites(breed_id))
-   dispatch(getFavourites())
+   // dispatch(getFavourites())
 }
 
 export const getVotes = (): ThunkType => async (dispatch) => {

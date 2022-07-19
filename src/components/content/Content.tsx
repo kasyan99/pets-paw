@@ -14,7 +14,6 @@ const GalleryPage = React.lazy(() => import('./Pages/GalleryPage/GalleryPage'))
 const SearchPage = React.lazy(() => import('./Pages/SearchPage/SearchPage'))
 const FavouritiesPage = React.lazy(() => import('./Pages/FavouritiesPage/FavouritiesPage'))
 const LikesPage = React.lazy(() => import('./Pages/LikesPage/LikesPage'))
-const DislikesPage = React.lazy(() => import('./Pages/DislikesPage/DislikesPage'))
 
 
 const Content: React.FC = () => {
@@ -33,8 +32,8 @@ const Content: React.FC = () => {
                   { path: "/gallery/*", element: <GalleryPage /> },
                   { path: "/search", element: <SearchPage /> },
                   { path: "/favourities/*", element: <FavouritiesPage /> },
-                  { path: "/likes", element: <LikesPage /> },
-                  { path: "/dislikes", element: <DislikesPage /> },
+                  { path: "/likes", element: <LikesPage value={1} /> },
+                  { path: "/dislikes", element: <LikesPage value={0} /> },
                ])}
             </Suspense>
          </div>
