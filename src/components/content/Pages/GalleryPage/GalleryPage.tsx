@@ -72,7 +72,6 @@ const GalleryPage: React.FC = () => {
 
    const isFetching = useSelector(getIsFetching)
 
-
    return <>
       <GalleryFilterForm />
       {isFetching &&

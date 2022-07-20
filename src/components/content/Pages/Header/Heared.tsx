@@ -5,6 +5,7 @@ import { useRoutes } from "react-router-dom"
 import { breedsAPI } from "../../../../api/breeds-api"
 import { getBreedsNumbersById } from "../../../../redux/breeds-reducer"
 import { getNumbersById } from "../../../../redux/breeds-selectors"
+import { actions } from "../../../../redux/uploading-reducer"
 import BreedsFilterForm from "../BreedsPage/BreedsFilterForm"
 import GalleryFilterForm from "../GalleryPage/GalleryFilterForm"
 import classes from './Header.module.scss'
@@ -18,16 +19,22 @@ const Header = () => {
 
    const id = breedsNumbersById ? breedsNumbersById[`${pathnames[2]}`] : ''
 
+   const dispatch = useDispatch()
+
+   const openModal = () => {
+      dispatch(actions.toggleIsUploading(true))
+   }
+
    return <div className={classes.header}>
       <div className={classes.wrapper}>
-         <button type='button' className={`${classes.element} ${classes.btn} ${classes.btn_back}`}></button>
+         <button type='button' className={`${classes.element} ${classes.btn} ${classes.btn_back}`}>back</button>
          <div className={`${classes.element} ${classes.pageName} ${pathnames[1] === 'info' ? classes.pageNameOnInfo : ''}`}>
             <span>{pageName}</span>
          </div>
       </div>
       {useRoutes([
          { path: "/breeds/*", element: <>{pathnames[1] === 'info' ? <div className={classes.idNumberWrapper}><div className={classes.idNumber}><span>{id}</span></div></div> : <BreedsFilterForm />}</> },
-         { path: "/gallery", element: <div className={classes.upload}><button>UPLOAD</button></div> },
+         { path: "/gallery/*", element: <div className={classes.upload}><button onClick={openModal}>UPLOAD</button></div> },
       ])}
    </div>
 }

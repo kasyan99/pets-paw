@@ -134,4 +134,14 @@ $element-height: 40px;
       left: 30px;
       background: url(../../../../assets/icons/gallery-page/upload.svg) no-repeat center center;
    }
+
+   &:active{
+    background: #FF868E;
+    &::before{
+      background: url(../../../../assets/icons/gallery-page/upload_active.svg) no-repeat center center;
+   }
+   button{
+    color: #FFF;
+   }
+   }
  }

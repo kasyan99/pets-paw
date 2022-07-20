@@ -35,16 +35,29 @@ export const imagesAPI = {
       })
 
       return response.data
-   }
+   },
 
-   // async getTotalUsersCount() {
-   //    const response = await instance.get(`images/search?page=0&limit=5&order=ASC&mime_types=png`, {
+   async uploadImage(file: File) {
+      const response = await instance.post(`images/upload`, {
+         "file": file,
+         "sub_id": "kas_99"
+      }, {
+         headers: {
+            'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d',
+            'Content-Type': 'multipart/form-data'
+         }
+      })
+
+      return response
+   },
+
+   // async getAnalysisResults(image_id: string) {
+   //    const response = await instance.get(`images/${image_id}/analysis`, {
    //       headers: {
-   //          'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d',
-   //          'type': 'xhr'
+   //          'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d'
    //       }
    //    })
 
-   //    return response.headers
+   //    return response.data
    // }
 }

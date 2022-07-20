@@ -3,6 +3,7 @@
   font-family: 'Jost';
   font-style: normal;
   font-weight: 400;
+  position: relative;
 }
 
 input, button{

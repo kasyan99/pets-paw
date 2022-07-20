@@ -48,7 +48,6 @@ export const getBreadsByName = (name: string): ThunkType => async (dispatch) => 
 
       listOfAllBreeds.then((data: any) => {
          const searchedBreedsList = data.data.filter((breed: any) => listIds.includes(breed.id))
-         // console.log(searchedBreedsList);
          dispatch(actions.setBreedsList(searchedBreedsList))
       })
 
