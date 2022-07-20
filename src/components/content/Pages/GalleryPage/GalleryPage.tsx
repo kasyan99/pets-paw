@@ -32,7 +32,7 @@ const GalleryPage: React.FC = () => {
             default: return 'gif,jpg,png'
          }
       }
-      navigate(`../gallery/search?page=${currentPage}&limit=${limitItems}&order=${order}&mime_types=${qType()}${breed_id}`, { replace: true })
+      navigate(`../gallery?page=${currentPage}&limit=${limitItems}&order=${order}&mime_types=${qType()}${breed_id}`, { replace: true })
    }, [filter, currentPage])
 
    useEffect(() => {
@@ -60,7 +60,7 @@ const GalleryPage: React.FC = () => {
          type: actualType
       }
 
-      navigate(`../gallery/search?page=${actualPage}&limit=${actualLimitItems}&order=${actualOrder}&mime_types=${actualType}`, { replace: true })
+      navigate(`../gallery?page=${actualPage}&limit=${actualLimitItems}&order=${actualOrder}&mime_types=${actualType}`, { replace: true })
 
       dispatch(getImagesListThunk(actualFilter, actualPage))
    }, [])

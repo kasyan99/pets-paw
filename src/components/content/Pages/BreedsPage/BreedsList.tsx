@@ -30,7 +30,6 @@ const BreedsList: React.FC<Props> = ({ breedsList, getItemsCount, photosFromGall
    }
    //filter breeds list from API and create list of img
    const breedPhotos = () => {
-      console.log('sdfsdfsdf', breedsList);
 
       if (breedsList.length > 0) {
          return breedsList.map(breed => {
@@ -63,7 +62,7 @@ const BreedsList: React.FC<Props> = ({ breedsList, getItemsCount, photosFromGall
    }
 
    const location = useLocation()
-   const isGallery = location.pathname === '/gallery/search'
+   const isGallery = location.pathname === '/gallery'
 
    const dispatch = useDispatch<any>()
 

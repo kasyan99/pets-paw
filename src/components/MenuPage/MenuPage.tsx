@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Menu from './Menu';
 import classes from './MenuPage.module.scss'
 import logo from '../../assets/Logo.png'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { actions } from '../../redux/location-reducer';
+import { getCurrentLocation, getIsBack } from '../../redux/location-selectors';
 
 const MenuPage: React.FC = () => {
+
+   const dispatch = useDispatch()
+   const location = useLocation()
+
+   const currentlocation = useSelector(getCurrentLocation)
+   const isBack = useSelector(getIsBack)
+
+   useEffect(() => {
+      if (!isBack) {
+         const newLocation = currentlocation + 1
+
+         dispatch(actions.setCurrentlocation(newLocation))
+         dispatch(actions.addLocation(location.pathname))
+      } else {
+         dispatch(actions.setIsBack(false))
+      }
+   }, [location.pathname])
+
    return <div className={classes.menuPage}>
       <div className={classes.menuBody}>
          <h2>Hi intern!</h2>
