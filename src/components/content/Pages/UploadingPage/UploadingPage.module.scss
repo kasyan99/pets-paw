@@ -48,7 +48,7 @@
       border-radius: 20px;
       width: 100%;
       height: 320px;
-      background: #FFFFFF url(../../../../assets/icons/upload-page/img.jpg) no-repeat center center;
+      background: #FFFFFF url(../../../../assets/icons/upload-page/img.png) no-repeat center center;
 
       display: flex;
       justify-content: center;
@@ -156,3 +156,28 @@
 }
 
 
+.UploadingPage.black{
+   background: #282828;
+   h2{
+      color: #FFFFFF;
+   }
+   .imageWrapper{
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 2px dashed rgba(255, 134, 142, 0.2);
+      span{
+         color: #FFFFFF;
+      }
+   }
+
+   .result_success,
+   .result_failure{
+      background-color: rgba(255, 255, 255, 0.05);
+   }
+
+   .btnClose{
+      background-color: rgba(255, 255, 255, 0.05);
+      &:active{
+         background-color: #FF868E;
+      }
+   }
+}

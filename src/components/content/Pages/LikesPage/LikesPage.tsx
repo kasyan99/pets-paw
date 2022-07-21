@@ -6,6 +6,8 @@ import classes from './LikesPage.module.scss'
 import breedClasses from '../BreedsPage/BreedsPage.module.scss'
 import votingClasses from '../VotingPage/VotingPage.module.scss'
 import Preloader from '../../../common/Preloader';
+import NoItemFound from '../../../common/NoItemFound';
+import { getIsBlack } from '../../../../redux/theme-selectors';
 
 //it will be LikesPage if value = 1, DislikesPage if value = 0
 const LikesPage: React.FC<{ value: 0 | 1 }> = ({ value }) => {
@@ -44,10 +46,14 @@ const LikesPage: React.FC<{ value: 0 | 1 }> = ({ value }) => {
       }
    }
 
+   const isBlack = useSelector(getIsBlack)
+
    return <>
+      {likesList.length === 0 &&
+         <NoItemFound />}
       {!isFetching &&
          <div className={breedClasses.breedsList}>
-            <div className={breedClasses.grid__layout}>
+            <div className={`${breedClasses.grid__layout} ${isBlack && breedClasses.black}`}>
                {imagesList()}
             </div>
             <div className={breedClasses.bottomWrapper}>

@@ -97,3 +97,30 @@
     }
   }
 }
+
+//BLACK THEME -----------------------------
+$bg-black: rgba(255, 255, 255, 0.05);
+.votingPage.black{
+  .btnContainer{
+    div{
+      outline: $bg-black;
+    }
+  }
+}
+
+.actionsWrapper.black{
+  .action{
+    background: $bg-black;
+    .time{
+      background: #1D1D1D;
+      span{
+        color: #FFF;
+      }
+    }
+    .text{
+      span{
+        color: #FFF;
+      }
+  }
+}
+}

@@ -1,8 +1,9 @@
 import { Field, Formik } from 'formik';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getBreadsByName } from '../../redux/search-reducer';
+import { getIsBlack } from '../../redux/theme-selectors';
 import classes from './SearchForm.module.scss'
 
 
@@ -22,11 +23,10 @@ const SearchForm: React.FC = () => {
       navigate(`../${path}`, { replace: true })
    }
 
-   // const onFocus = () => {
-   //    navigate(`../search`, { replace: true })
-   // }
+   const isBlack = useSelector(getIsBlack)
+
    const buttons = ['likes', 'favourities', 'dislikes']
-   return <div className={classes.searchForm}>
+   return <div className={`${classes.searchForm} ${isBlack && classes.black}`}>
       <Formik
          enableReinitialize
          initialValues={{ breedName: '', }}
@@ -34,7 +34,7 @@ const SearchForm: React.FC = () => {
       >{(props) => (
          <form onSubmit={props.handleSubmit}>
             <div className={classes.inputWrap}>
-               <Field name="breedName" placeholder='Search for breeds by name' maxLength='30' />
+               <Field name="breedName" placeholder='Search for breeds by name' maxLength='30' autocomplete="off" />
                <button type='submit' className={classes.searchBtn}>search</button>
             </div>
             {buttons.map(name => <button type='button' value={name} onClick={(e) => onClick(e)} key={name}

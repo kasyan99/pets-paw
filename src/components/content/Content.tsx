@@ -8,6 +8,7 @@ import BreedsInfo from './Pages/BreedsPage/BreedsInfo/BreedsInfo';
 import { useSelector } from 'react-redux';
 import { getIsUploading } from '../../redux/uploading-selectors';
 import UploadingPage from './Pages/UploadingPage/UploadingPage';
+import { getIsBlack } from '../../redux/theme-selectors';
 
 
 const VotingPage = React.lazy(() => import('./Pages/VotingPage/VotingPage'))
@@ -22,12 +23,13 @@ const LikesPage = React.lazy(() => import('./Pages/LikesPage/LikesPage'))
 const Content: React.FC = () => {
    const location = useLocation()
    const isIploading = useSelector(getIsUploading)
-   return <div className={classes.content}>
+   const isBlack = useSelector(getIsBlack)
+   return <div className={`${classes.content}`}>
       {isIploading &&
          <UploadingPage />}
       <>
          <SearchForm />
-         <div className={`${classes.page} ${location.pathname === '/voting' && classes.pageOnVoting}`}>
+         <div className={`${classes.page} ${isBlack && classes.black} ${location.pathname === '/voting' && classes.pageOnVoting}`}>
             <Header />
             <div className={classes.wrapper}>
                <Suspense fallback={<Preloader />}>

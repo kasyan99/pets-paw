@@ -1,5 +1,6 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { getIsBlack } from "../../../../redux/theme-selectors"
 import { actions, setCurrentFile, uploadImage } from "../../../../redux/uploading-reducer"
 import { getCurrentFile, getFileName, getFilePath, getIsCat, getIsFetching } from "../../../../redux/uploading-selectors"
 import Preloader from "../../../common/Preloader"
@@ -31,7 +32,10 @@ const UploadingPage = () => {
    const filePath = useSelector(getFilePath)
    const isFetching = useSelector(getIsFetching)
    const isCat = useSelector(getIsCat)
-   return <div className={classes.UploadingPage}>
+
+   const isBlack = useSelector(getIsBlack)
+
+   return <div className={`${classes.UploadingPage} ${isBlack && classes.black}`}>
       <h2>Upload a .jpg or .png Cat Image</h2>
       <p>Any uploads must comply with the <span>upload guidelines</span> or face deletion.</p>
       <div className={`${classes.imageWrapper} ${isCat === false && classes.failure}`}>

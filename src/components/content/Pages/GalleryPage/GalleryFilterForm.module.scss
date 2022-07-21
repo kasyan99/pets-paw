@@ -64,7 +64,7 @@
     background: #fff url(../../../../assets/icons/gallery-page/update.svg) no-repeat center center;
     font-size: 0;
     cursor: pointer;
-    &:focus{
+    &:active{
       outline: 2px solid #FBE0DC;
     }
   }
@@ -76,169 +76,20 @@
   }
 }
 
-
-
-// .btn{
-//   width: 40px;
-//   font-size: 0;
-// }
-
-// .btn_back{
-//   background:#FBE0DC url(../../../../assets/icons/breeds-page/back-btn.svg) no-repeat center center;
-// }
-
-// .btn_AtoZ{
-//   background:#F8F8F7 url(../../../../assets/icons/breeds-page/btn_AtoZ.svg) no-repeat center center;
-//   &:active{
-//     background:#F8F8F7 url(../../../../assets/icons/breeds-page/btn_AtoZ_pink.svg) no-repeat center center;
-//   }
-// }
-
-// .btn_ZtoA{
-//   background:#F8F8F7 url(../../../../assets/icons/breeds-page/btn_ZtoA.svg) no-repeat center center;
-//   &:active{
-//     background:#F8F8F7 url(../../../../assets/icons/breeds-page/btn_ZtoA_pink.svg) no-repeat center center;
-//   }
-// }
-
-// .btn_AtoZ,
-// .btn_ZtoA{
-//   cursor: pointer;
-//   &:active{
-//     outline: 2px solid #FBE0DC;
-//   }
-// }
-
-// // .breedsFilterWrap{
-// //   width: 226px;
-// //   padding: 0 8px;
-// // }
-
-// // .breedsFilter,
-// // .limitFilter{
-// //   padding: 0 10px;
-// //   width: 100%;
-// //   -moz-appearance: none;
-// //   -webkit-appearance: none;
-// //   box-sizing: border-box;
-// //   background: #F8F8F7 url(../../../../assets/icons/breeds-page/select_arrow.svg) no-repeat right 10px center;
-// //   cursor: pointer;
-// //   &:focus{
-// //     outline: 2px solid #FBE0DC;
-// //   }
-// // }
-
-// .breedsFilter{
-//   width: 226px;
-// }
-
-// .limitFilter{
-//   width: 101px;
-// }
-
-// // .limitFilterWrap{
-// //   width: 101px;
-// //   padding: 0 8px;
-  
-// // }
-
-// .pageName{
-//   padding: 0 30px;
-//   background: #FF868E;
-
-//   font-family: 'Jost';
-//   font-style: normal;
-//   font-weight: 500;
-//   font-size: 20px;
-//   /* identical to box height, or 150% */
-
-//   text-align: center;
-//   letter-spacing: 2px;
-
-//   color: #FFFFFF;
-
-//   display: inline-flex;
-//   align-items: center;
-//   justify-content: center;
-
-// }
-
-
-// .paginator{
-//   padding-top: 20px;
-//   display: flex;
-//   justify-content: center;
-//   div{
-//     display: grid;
-//     grid-template-areas: 'prev space next';
-//     grid-template-columns: 122px 40px 122px;
-//     width: 284px;
-//   }
-// }
-
-// .btn_prev,.btn_next{
-//   width: 122px;
-
-//   font-family: 'Jost';
-//   font-style: normal;
-//   font-weight: 500;
-//   font-size: 12px;
-
-//   letter-spacing: 2px;
-
-//   color: #8C8C8C;
-
-//   position: relative;
-
-//   background: #F8F8F7;
-
-//   &::after{
-//     content: '';
-//     position: absolute;
-//     background: url(../../../../assets/icons/breeds-page/prevNext_btn_gray.svg) no-repeat center center;
-//     width: 7px;
-//     height: 100%;
-
-//     top: 0;
-//   }
-//   &:hover{
-//     cursor: pointer;
-//     background: #FBE0DC;
-//     color: #FF868E;
-//     &::after{
-//       background: url(../../../../assets/icons/breeds-page/prevNext_btn_pink.svg) no-repeat center center;
-//     }
-//   }
-//   &:active{
-//     background: #FF868E;
-//     color: #fff;
-//     &::after{
-//       background: url(../../../../assets/icons/breeds-page/prevNext_btn_white.svg) no-repeat center center;
-//     }
-//   }
-// }
-
-// .btn_prev{
-//   grid-area: prev;
-//   text-align: right;
-//   padding-right: 34px;
-//   &::after{
-//       left: 34px;
-//   }
-// }
-// .btn_next{
-//   grid-area: next;
-//   text-align: left;
-//   padding-left: 34px;
-//   &::after{
-//     right: 34px;
-//     transform: rotate(180deg);
-//   }
-// } 
-
-// .btn_next:hover,
-// .btn_prev:hover{
-//   cursor: pointer;
-//   background: #FBE0DC;
-//   color: #FF868E;
-// }
+.galleryFilterForm.black{
+  background: rgba(255, 255, 255, 0.05);
+  .element{
+    background-color: #1D1D1D;
+    color: #FFF;
+  }
+  .selectField{
+    &:focus{
+      outline: 2px solid rgba(255, 134, 142, 0.2);
+    }
+  }
+  .update{
+    &:active{
+      outline: 2px solid rgba(255, 134, 142, 0.2);
+    }
+  }
+}

@@ -1,6 +1,11 @@
 @import './nullstyle.scss';
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500&display=swap');
+html,body{
+  height: 100%;
+  width: 100%;
+  margin: 0;
 
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -8,7 +13,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f8f8f7;
+  /* background-color: #f8f8f7; */
 }
 
 code {
@@ -30,4 +35,8 @@ div{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#root{
+ height: 100%;
 }

@@ -1,12 +1,11 @@
-import React, { MouseEventHandler, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { votingAPI } from '../../../../api/voting-api';
 import { BreedsFilterType } from '../../../../redux/breeds-reducer';
 import { GalleryFilterFormType } from '../../../../redux/images-reducer';
-import { getDisFav } from '../../../../redux/images-selectors';
 import { AppStateType } from "../../../../redux/redux-store"
-import { actions, addToFavourite, deleteFavourite, getFavourites } from '../../../../redux/voting-reducer';
+import { getIsBlack } from '../../../../redux/theme-selectors';
+import { addToFavourite, deleteFavourite, getFavourites } from '../../../../redux/voting-reducer';
 import { getFavByImageId, getFavouritesIds } from '../../../../redux/voting-selectors';
 
 import classes from './BreedsPage.module.scss'
@@ -90,7 +89,6 @@ const BreedsList: React.FC<Props> = ({ breedsList, getItemsCount, photosFromGall
       if (breedsList.length > 0) {
          return breedsList.map(breed => {
             const fav_id = breed.favourite ? favByImageId[breed.id] : ''
-            // const fav_id = breed.favourite && breed.favourite.id
             return <div className={`${classes.grid__item} ${isGallery ? classes.grid__item_gallery : ''}`}
                key={breed.id}>
                <img src={breed.url} alt={breed.id} />
@@ -109,9 +107,10 @@ const BreedsList: React.FC<Props> = ({ breedsList, getItemsCount, photosFromGall
       }
    }
 
+   const isBlack = useSelector(getIsBlack)
 
    return <div className={classes.breedsList}>
-      <div className={classes.grid__layout}>
+      <div className={`${classes.grid__layout} ${isBlack && classes.black}`}>
          {photosFromGallery ? galleryPhotos() : breedPhotos()}
       </div>
       <Paginator getItemsCount={getItemsCount} prevNext={prevNext} getCurrentPage={getCurrentPage} getFilter={getFilter} />
@@ -139,8 +138,9 @@ export const Paginator: React.FC<PaginatorType> = ({ getItemsCount, prevNext, ge
 
    const pagesCount = Math.floor(itemsCount / filter.limitItems)
 
-   //prev and next btn
-   return <div className={classes.paginator}>
+   const isBlack = useSelector(getIsBlack)
+
+   return <div className={`${classes.paginator} ${isBlack && classes.black}`}>
       {!shouldButtonDisplay &&
          <div>
             {currentPage > 0 &&

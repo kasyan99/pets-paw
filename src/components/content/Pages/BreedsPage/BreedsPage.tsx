@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { getBreedsListThunk, getTotalBreedsCount } from '../../../../redux/breeds-reducer';
 import { getBreedsCount, getBreedsList, getCurrentPage, getFilter, getIsFetching, getOrder } from '../../../../redux/breeds-selectors';
 import Preloader from '../../../common/Preloader';
-import GalleryFilterForm from '../GalleryPage/GalleryFilterForm';
 import { BreedsFilterFormType } from './BreedsFilterForm';
 import BreedsList from './BreedsList';
 

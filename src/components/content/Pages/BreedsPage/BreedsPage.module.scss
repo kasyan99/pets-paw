@@ -1,4 +1,4 @@
-
+$bg-black: rgba(255, 255, 255, 0.1);
 
 .breedsPage{
   height: 770px;
@@ -153,8 +153,25 @@
   }
   
 }
+//BLACK THEME LIST---------------------------------------------------------------------------------------------
+.grid__layout.black{
+  .grid__item{
+    span{
+      background-color: #282828;
+    }
+  }
+  .grid__item_gallery{
+    div{
+      .add, .remove,.remove_from_likes,.remove_from_dislikes{
+        background-color: #282828;
+      }
+    }
+    
+  }
+}
 
 
+//-------------------------------------------------------------------------------------------------------------
 
 .breedsFilterForm{
   padding-bottom: 20px;
@@ -239,12 +256,6 @@
   width: 101px;
 }
 
-// .limitFilterWrap{
-//   width: 101px;
-//   padding: 0 8px;
-  
-// }
-
 .pageName{
   padding: 0 30px;
   background: #FF868E;
@@ -253,7 +264,6 @@
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
-  /* identical to box height, or 150% */
 
   text-align: center;
   letter-spacing: 2px;
@@ -276,6 +286,18 @@
     grid-template-areas: 'prev space next';
     grid-template-columns: 122px 40px 122px;
     width: 284px;
+  }
+}
+
+.paginator.black{
+  .btn_prev,.btn_next{
+  background: rgba(255, 255, 255, 0.05);
+  &:hover{
+  background: rgba(255, 134, 142, 0.2)
+  }
+  &:active{
+    background-color: #FF868E;
+  }
   }
 }
 
@@ -329,6 +351,7 @@
       left: 34px;
   }
 }
+
 .btn_next{
   grid-area: next;
   text-align: left;
@@ -339,9 +362,19 @@
   }
 } 
 
-// .btn_next:hover,
-// .btn_prev:hover{
-//   cursor: pointer;
-//   background: #FBE0DC;
-//   color: #FF868E;
-// }
+//BLACK THEME FILTER FORM---------------------------------------------------------------------------------------------
+.breedsFilterForm.black{
+  .element{
+    background-color: rgba(255, 255, 255, 0.05);
+    &:active{
+      outline: 2px solid rgba(255, 134, 142, 0.2);
+    }
+  }
+
+  .breedsFilter,
+.limitFilter{
+  &:focus{
+    outline: 2px solid rgba(255, 134, 142, 0.2);
+  }
+}
+}

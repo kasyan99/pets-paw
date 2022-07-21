@@ -20,20 +20,6 @@
 
    .inputWrap{
       position: relative;
-      // &::after{
-      //    content: '';
-      //    display: inline-block;
-      //    position: absolute;
-      //    width: 40px;
-      //    height: 40px;
-
-      //    top: 10px;
-      //    right: 10px;
-      //    background: #FBE0DC;
-      //    border-radius: 10px;
-      //    background: #FBE0DC url(../../assets/icons/search-form/search.svg) no-repeat center center;
-      // }
-
       button.searchBtn{
          display: inline-block;
          position: absolute;
@@ -97,4 +83,24 @@
       background: #FF868E url(../../assets/icons/search-form/favourites_active.svg) no-repeat center center;
    }
    
+}
+
+.searchForm.black{
+   input, button{
+      background-color: rgba(255, 255, 255, 0.05);
+      color: #fff;
+   }
+
+   button:active{
+      background-color: #FF868E;
+   }
+   
+   button.likes_active,
+   button.dislikes_active,
+   button.favourities_active{
+      background-color: #FF868E;
+   }
+   button.searchBtn{
+      background-color: rgba(255, 134, 142, 0.2);
+   }
 }

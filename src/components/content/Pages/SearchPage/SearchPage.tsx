@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getBreedsByname, getIsFetching } from '../../../../redux/search-selectors';
+import NoItemFound from '../../../common/NoItemFound';
 import Preloader from '../../../common/Preloader';
 import classes from '../BreedsPage/BreedsPage.module.scss'
 
@@ -49,6 +50,8 @@ const SearchPage: React.FC = () => {
    }
    const isFetching = useSelector(getIsFetching)
    return <>
+      {breedsList.length === 0 &&
+         <NoItemFound />}
       {!isFetching &&
          <div className={classes.breedsList}>
             <div className={classes.grid__layout}>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { votingAPI } from '../../../../api/voting-api';
-import { actions, addToFavourite, BreedImageType, getRandomBreed, getVotes, setVote, UsersActionType } from '../../../../redux/voting-reducer';
+import { getIsBlack } from '../../../../redux/theme-selectors';
+import { actions, addToFavourite, BreedImageType, getRandomBreed, setVote, UsersActionType } from '../../../../redux/voting-reducer';
 import { getBreedImage, getIsFetching, getUserActions } from '../../../../redux/voting-selectors';
 import { addUserActionCreator } from '../../../../utils/usersActionLogsCreator';
 import Preloader from '../../../common/Preloader';
@@ -30,39 +30,9 @@ const VotingPage: React.FC = () => {
          addUserAction(id, value, 'add')
          dispatch(getRandomBreed())
       }
-
-      // dispatch(getVotes())
    }
    const addUserAction = addUserActionCreator(usersActions, () => dispatch(actions.removeUserAction()), (userAction) => dispatch(actions.addUserAction(userAction)))
-   // const addUserAction = (value: 0 | 1 | null) => {
-   //    const type = (() => {
-   //       switch (value) {
-   //          case 0:
-   //             return 'Dislikes'
-   //          case 1:
-   //             return 'Likes'
-   //          default:
-   //             return 'Favourites'
-   //       }
-   //    })()
 
-   //    if (usersActions.length > 3) {
-   //       dispatch(actions.removeUserAction())
-   //    }
-
-   //    const data = new Date
-   //    const hours = data.getHours() < 10 ? `0${data.getHours()}` : `${data.getHours()}`
-   //    const minutes = data.getMinutes() < 10 ? `0${data.getMinutes()}` : `${data.getMinutes()}`
-
-   //    const userAction: UsersActionType = {
-   //       id: id,
-   //       action: 'added',
-   //       time: `${hours}:${minutes}`,
-   //       type: type
-   //    }
-
-   //    dispatch(actions.addUserAction(userAction))
-   // }
 
    const toFavourite = () => {
       if (id)
@@ -71,31 +41,12 @@ const VotingPage: React.FC = () => {
          addUserAction(id, null, 'add')
          dispatch(getRandomBreed())
       }
-
-      // votingAPI.getFavourites()
    }
 
    const userActions = useSelector(getUserActions)
+   const isBlack = useSelector(getIsBlack)
 
-   // const createUserActions = () => {
-   //    if (userActions) {
-   //       return userActions.map((action, index) => {
-   //          return <div className={classes.action} key={index}>
-   //             <span className={classes.time}>
-   //                <span>{action.time}</span>
-   //             </span>
-   //             <span className={classes.text}>
-   //                Image ID: <span>{action.id}</span> was {action.action} {action.type}
-   //             </span>
-   //          </div>
-   //       })
-   //    }
-   //    else {
-   //       return ''
-   //    }
-   // }
-
-   return <div className={classes.votingPage}>
+   return <div className={`${classes.votingPage} ${isBlack && classes.black}`}>
       <div className={classes.imagesWrapper}>
          {!isFetching &&
             <img src={url} alt="" />}
@@ -109,9 +60,7 @@ const VotingPage: React.FC = () => {
             </div>
          </div>
       </div>
-      <div className={classes.actionsWrapper}>
-         {/* {createUserActions()}
-          */}
+      <div className={`${classes.actionsWrapper} ${isBlack && classes.black}`}>
          <UserActionLogs userActions={userActions} />
       </div>
    </div>

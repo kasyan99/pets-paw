@@ -11,6 +11,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { UserActionLogs } from '../VotingPage/VotingPage';
 import { addUserActionCreator } from '../../../../utils/usersActionLogsCreator';
 import Preloader from '../../../common/Preloader';
+import NoItemFound from '../../../common/NoItemFound';
+import { getIsBlack } from '../../../../redux/theme-selectors';
 
 const FavouritiesPage: React.FC = () => {
    const dispatch = useDispatch<any>()
@@ -67,32 +69,19 @@ const FavouritiesPage: React.FC = () => {
    const addUserAction = addUserActionCreator(userActions, () => dispatch(actions.removeUserAction()), (userAction) => dispatch(actions.addUserAction(userAction)), 2)
 
    const isFetching = useSelector(getIsFetching)
+   const isBlack = useSelector(getIsBlack)
    return <>
+      {favouritesList.length === 0 &&
+         <NoItemFound />}
       {!isFetching &&
          <div className={breedClasses.breedsList}>
-            <div className={breedClasses.grid__layout}>
+            <div className={`${breedClasses.grid__layout} ${isBlack && breedClasses.black}`}>
                {galleryPhotos()}
 
             </div>
             <div className={breedClasses.bottomWrapper}>
                <div className={votingClasses.actionsWrapper}>
                   <UserActionLogs userActions={userActions} />
-                  {/* <div className={votingClasses.action}>
-               <span className={votingClasses.time}>
-                  <span>20:22</span>
-               </span>
-               <span className={votingClasses.text}>
-                  Image ID: <span>h4l1h543</span> was removed from fav
-               </span>
-            </div>
-            <div className={votingClasses.action}>
-               <span className={votingClasses.time}>
-                  <span>20:22</span>
-               </span>
-               <span className={votingClasses.text}>
-                  Image ID: <span>h4l1h543</span> was removed from fav
-               </span>
-            </div> */}
                </div>
                <Paginator getCurrentPage={getCurrentPage} getItemsCount={getTotalCount} getFilter={() => ({ limitItems: limit })} prevNext={prevNext} />
             </div>

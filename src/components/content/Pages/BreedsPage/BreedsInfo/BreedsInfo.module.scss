@@ -26,13 +26,15 @@
          display: flex;
          justify-content: center;
          align-items: center;
-         div{
+         &>div{
             width: 90px;
             background: #FFFFFF;
             border-radius: 20px;
-            // display: flex;
-            // justify-content: center;
-            // align-items: center;
+            height: 30px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
             button{
                width: 10px;
                height: 10px;
@@ -112,6 +114,31 @@
          }
          
       }
+   }
+}
+
+.infoPage.black{
+   .btnContainer{
+      &>div{
+         background: #282828;
+         button{
+            background: rgba(255, 134, 142, 0.2);
+         }
+      }
+   }
+   .infoWrapper{
+      h3{
+         span{
+          background: #282828;
+          color: #FFFFFF;
+      }
+      }
+      .info{
+         dt{
+            color: #FFF
+         }
+      }
+      
    }
 }
 

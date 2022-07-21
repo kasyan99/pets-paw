@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { actions, getBreedById, getBreedsNumbersById } from "../../../../../redux/breeds-reducer";
 import { getBreedInfoPhotos, getInfoPhotoNumber, getIsFetching, getNumbersById } from "../../../../../redux/breeds-selectors";
+import { getIsBlack } from "../../../../../redux/theme-selectors";
 import Preloader from "../../../../common/Preloader";
 import classes from './BreedsInfo.module.scss'
 
@@ -74,8 +75,9 @@ const BreedsInfo: React.FC = () => {
    }
 
    const isFetching = useSelector(getIsFetching)
+   const isBlack = useSelector(getIsBlack)
 
-   return <div className={classes.infoPage}>
+   return <div className={`${classes.infoPage} ${isBlack && classes.black}`}>
       <div className={classes.imagesWrapper}>
          {isFetching &&
             <Preloader />}

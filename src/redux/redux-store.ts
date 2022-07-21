@@ -8,6 +8,7 @@ import likesReducer from "./likes-reducer";
 import searchReducer from "./search-reducer";
 import uploadingReducer from "./uploading-reducer";
 import locationReducer from "./location-reducer";
+import themeReducer from "./theme-reducer";
 
 
 const redusers = combineReducers({
@@ -18,7 +19,8 @@ const redusers = combineReducers({
    likes: likesReducer,
    search: searchReducer,
    uploading: uploadingReducer,
-   location: locationReducer
+   location: locationReducer,
+   theme: themeReducer
 })
 
 type RootReducerType = typeof redusers

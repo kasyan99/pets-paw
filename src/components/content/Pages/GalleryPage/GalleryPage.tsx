@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { actions, GalleryFilterFormType, getImagesListThunk, ImgTypeType, OrderType } from '../../../../redux/images-reducer';
+import { GalleryFilterFormType, getImagesListThunk, ImgTypeType, OrderType } from '../../../../redux/images-reducer';
 import { getCurrentPage, getFilter, getImagesCount, getImagesList, getIsFetching } from '../../../../redux/images-selectors';
-import { addToFavourite, deleteFavourite } from '../../../../redux/voting-reducer';
 import Preloader from '../../../common/Preloader';
 import BreedsList from '../BreedsPage/BreedsList';
 import GalleryFilterForm from './GalleryFilterForm';
-import classes from './GalleryPage.module.scss'
 
 const GalleryPage: React.FC = () => {
 

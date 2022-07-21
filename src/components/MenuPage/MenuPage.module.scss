@@ -1,6 +1,6 @@
 .menuPage{
    flex: 50% 0 1;
-   position: relative;
+   // position: relative;
    .logo {
       position: absolute;
       top: 5px;
@@ -13,11 +13,13 @@
 .menuBody{
    width: 446px;
    height: 544px;
+   // height: 100%;
    border-radius: 20px;
 
    text-align: left;
 
-   margin-top: 107px;
+   padding-top: 107px;
+   position: relative;
 
    h2{
 
@@ -26,10 +28,6 @@
       font-weight: 500;
       font-size: 44px;
       line-height: 58px;
-      /* identical to box height, or 132% */
-
-
-      color: #1D1D1D;
       margin-top: 0;
       margin-bottom: 10px;
    }
@@ -42,15 +40,48 @@
       font-weight: 400;
       font-size: 20px;
       line-height: 29px;
-      /* identical to box height */
-
-
       color: #8C8C8C;
 
       &:last-of-type{
          font-weight: 500;
          color: #1D1D1D;
          margin-bottom: 20px;
+      }
+   }
+
+   .themeBtn{
+      position: absolute;
+      display: inline-flex;
+      padding: 4px;
+      width: 44px;
+      height: 24px;
+      background: #FBE0DC;
+      border-radius: 50px;
+      right: 0px;
+      top: 0px;
+
+      justify-content: end;
+      button{
+         display: inline-block;
+         width: 16px;
+         height: 16px;
+         font-size: 0;
+
+         background: #FF868E;
+         border-radius: 50%;
+      }
+
+      &::before{
+         content: '';
+         width: 24px;
+         height: 24px;
+         border-radius: 50%;
+         background: #fff url(../../assets/eye.svg) no-repeat center center;
+
+
+         position: absolute;
+         left: -29px;
+         top: 0px;
       }
    }
 }
@@ -125,3 +156,33 @@
    
 }
 
+//BLACK THEME -------------------------------------------------------------------------------------------------
+$bg-black: rgba(255, 255, 255, 0.1);
+.menuPage.black{
+   .menuBody{
+      p{
+         &:last-of-type{
+            color: #FFF;
+         }
+      }
+      .menu{
+         .item{
+            div{
+               background: $bg-black;
+            }
+            div.active{
+               background: #FF868E;
+         }
+      }
+   }
+
+   .themeBtn{
+      background: $bg-black;
+      justify-content: start;
+      &::before{
+         background: $bg-black url(../../assets/eye_black.svg) no-repeat center center;
+      }
+   }
+
+}
+}

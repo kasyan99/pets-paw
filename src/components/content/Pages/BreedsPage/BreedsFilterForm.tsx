@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions, getBreedsListNamesThunk, getBreedsListThunk } from '../../../../redux/breeds-reducer';
 import { getBreedsNamesList, getFilter, getOrder } from '../../../../redux/breeds-selectors';
+import { getIsBlack } from '../../../../redux/theme-selectors';
 import classes from './BreedsPage.module.scss'
 
 export type BreedsFilterFormType = {
@@ -47,8 +48,11 @@ const BreedsFilterForm: React.FC = () => {
       dispatch(actions.setOrder(order))
       clickOnSubmit()
    }
+
    const breedsNamesList: any = useSelector(getBreedsNamesList)
-   return <div className={classes.breedsFilterForm}>
+   const isBlack = useSelector(getIsBlack)
+
+   return <div className={`${classes.breedsFilterForm} ${isBlack && classes.black}`}>
       <Formik
          enableReinitialize
          initialValues={{ filterByBreed: filter.filterByBreed, limitItems: filter.limitItems, order: 'ASC' }}
