@@ -27,6 +27,7 @@ const MenuPage: React.FC = () => {
       } else {
          dispatch(actions.setIsBack(false))
       }
+      dispatch(actionsTheme.toggleIsMenu(false))
    }, [location.pathname])
 
    const isBlack = useSelector(getIsBlack)
@@ -37,7 +38,7 @@ const MenuPage: React.FC = () => {
    }
 
    const closeMenu = () => {
-      dispatch(actionsTheme.toggleIsMenu())
+      dispatch(actionsTheme.toggleIsMenu(false))
    }
 
    return <div className={`${classes.menuPage} ${isBlack && classes.black} ${location.pathname === '/' && classes.menuPageOnHome} ${isMenu && classes.coverMenu}`}>

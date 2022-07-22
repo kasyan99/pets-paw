@@ -225,8 +225,61 @@ $bg-black: rgba(255, 255, 255, 0.1);
       }
     }
   }
- }
 
+  .grid__item_gallery{
+    div{
+      align-items: center;
+      padding: 0;
+      button{
+        width: 40px;
+        height: 40px;
+        font-size: 0;
+        border-radius: 10px;
+      }
+      .add{
+        background: #FFFFFF url(../../../../assets/icons/search-form/favourities.svg) no-repeat center center;
+        background-size:  20px 17px;
+      }
+
+      .remove{
+        background: #FFFFFF url(../../../../assets/icons/voting-page/favourited.svg) no-repeat center center;
+        background-size:  20px 17px;
+      }
+
+      .remove_from_likes{
+        background: #FFFFFF url(../../../../assets/icons/likes-page/like.svg) no-repeat center center;
+        background-size:  20px 17px;
+      }
+
+      .remove_from_dislikes{
+        background: #FFFFFF url(../../../../assets/icons/dislikes-page/dislike.svg) no-repeat center center;
+        background-size:  20px 17px;
+      }
+    }
+  }
+ }
+ @media (max-width:550px) {
+  grid-template-rows: repeat(auto-fit, 206.5px);
+  gap: 10px;
+.grid__item{
+  padding: 0 0 206.5px 0;
+  &:nth-child(1),
+  &:nth-child(10n+1),
+  &:nth-child(8),
+  &:nth-child(10n+8){
+    grid-row: span 1;
+    padding: 0 0 206.5px 0;
+  }
+  &:nth-child(4),
+  &:nth-child(10n+4),
+  &:nth-child(9),
+  &:nth-child(10n+9){
+    grid-row: span 1;
+    grid-column: span 1;
+    padding: 0 0 206.5px 0;
+  }
+}
+}
 }
 //BLACK THEME LIST---------------------------------------------------------------------------------------------
 .grid__layout.black{
@@ -265,7 +318,8 @@ $bg-black: rgba(255, 255, 255, 0.1);
     margin-top: 10px;
     form{
       // width: 100%;
-      grid-template-rows: 50px 50px;
+      margin-top: 0;
+      grid-template-rows: 40px 40px;
       grid-template-columns: 1fr 40px 40px;
     }
     

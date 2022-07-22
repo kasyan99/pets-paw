@@ -18,6 +18,7 @@
     margin-bottom: 51px;
     position: relative;
     margin-bottom: 52px;
+    
     &>img{
        position: absolute;
        top: 0%;
@@ -63,7 +64,30 @@
       }
    }
   }
-  
+  @media (max-width: 550px) {
+    .imagesWrapper{
+      height: 166px;
+      .btnContainer{
+        height: 60px;
+        bottom: -30px;
+
+        div{
+          column-gap: 3px;
+          width: 186px;
+        border-radius: 10px;
+
+          button{
+            &:first-of-type,
+            &:nth-of-type(2),
+            &:last-of-type{
+              background-size: 22.5px;
+            }
+          }
+        }
+      }
+    }
+    
+    }
   
 }
 
@@ -105,6 +129,28 @@
       }
     }
   }
+  .action_Likes{
+    background: #F8F8F7 url(../../../../assets/icons/voting-page/action_like.svg) no-repeat top 20px right 20px;
+  }
+  .action_Favourites{
+    background: #F8F8F7 url(../../../../assets/icons/voting-page/action_fav.svg) no-repeat top 20px right 20px;
+  }
+  .action_Dislikes{
+    background: #F8F8F7 url(../../../../assets/icons/voting-page/action_dislike.svg) no-repeat top 20px right 20px;
+  }
+  @media (max-width: 550px){
+    .action{
+      height: 118px;
+      padding: 15px;
+      padding-top: 55px;
+      position: relative;
+      .time{
+        position: absolute;
+        top: 15px;
+        left: 15px;
+      }
+    }
+  }
 }
 
 //BLACK THEME -----------------------------
@@ -131,5 +177,14 @@ $bg-black: rgba(255, 255, 255, 0.05);
         color: #FFF;
       }
   }
+}
+.action_Likes{
+  background: rgba(255, 255, 255, 0.05) url(../../../../assets/icons/voting-page/action_like.svg) no-repeat top 20px right 20px;
+}
+.action_Favourites{
+  background: rgba(255, 255, 255, 0.05) url(../../../../assets/icons/voting-page/action_fav.svg) no-repeat top 20px right 20px;
+}
+.action_Dislikes{
+  background: rgba(255, 255, 255, 0.05) url(../../../../assets/icons/voting-page/action_dislike.svg) no-repeat top 20px right 20px;
 }
 }

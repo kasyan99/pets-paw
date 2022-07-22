@@ -23,7 +23,7 @@ const themeReducer = (state = initialState, action: ActionsType): InitialStateTy
       case TOGGLE_IS_MENU:
          return {
             ...state,
-            isMenu: !state.isMenu
+            isMenu: action.isMenu
          }
       default:
          return state
@@ -32,7 +32,7 @@ const themeReducer = (state = initialState, action: ActionsType): InitialStateTy
 
 export const actions = {
    toggleIsBlack: () => ({ type: TOGGLE_IS_BLACK } as const),
-   toggleIsMenu: () => ({ type: TOGGLE_IS_MENU } as const),
+   toggleIsMenu: (isMenu: boolean) => ({ type: TOGGLE_IS_MENU, isMenu } as const),
 }
 
 export default themeReducer

@@ -1,7 +1,7 @@
 .searchForm{
    height: 60px;
    margin-bottom: 10px;
-
+   max-width: 680px;
    form{
       display: grid;
       gap: 10px;
@@ -42,7 +42,7 @@
       padding: 0 20px;
       width: 100%;
       &:focus{
-         outline: 2px solid #FF868E;
+         border: 2px solid #FF868E;
       }
       
    }
@@ -100,7 +100,7 @@
          background: #fff url(../../assets/icons/search-form/burger.svg) no-repeat center center;
          border-radius: 20px;
          &:active{
-            outline: 2px solid #FF868E;
+            border: 2px solid #FF868E;
             }
       }
    }
@@ -158,5 +158,8 @@
    }
    button.searchBtn{
       background-color: rgba(255, 134, 142, 0.2);
+   }
+   .menuBtn{
+      background-color: rgba(255, 255, 255, 0.05);
    }
 }

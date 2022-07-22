@@ -43,12 +43,21 @@ input, button{
   justify-content: center;
   max-height: 900px;
 }
-
+/* @media (max-width:1430px) {
+  .wrapper{
+    width: 1320px;
+  }
+  
+} */
 @media (max-width:1230px) {
   .wrapper{
     flex: 680px 1 1;
   }
 }
-@media (max-width:740px) {
-  
+
+@media (max-width:550px) {
+  .wrapper{
+    padding: 20px;
+  }
 }
+

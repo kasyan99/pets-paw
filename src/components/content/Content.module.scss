@@ -1,5 +1,5 @@
 .content{
-   flex: 50% 1 0;
+   flex: 680px 1 0;
    position: relative;
    overflow-y: auto;
    -ms-overflow-style: none;
@@ -47,6 +47,9 @@
    @media (max-width:740px) {
       grid-template-rows: 120px 1fr;
    }
+   // @media (max-width:680px){
+   //    height: 800px;
+   // }
    @media (max-width:541px) {
       grid-template-rows: 160px 1fr;
    }

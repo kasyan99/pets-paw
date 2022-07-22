@@ -31,7 +31,7 @@ const SearchForm: React.FC = () => {
    const buttons = ['likes', 'favourities', 'dislikes']
 
    const openMenu = () => {
-      dispatch(actions.toggleIsMenu())
+      dispatch(actions.toggleIsMenu(true))
    }
 
    return <div className={`${classes.searchForm} ${isBlack && classes.black}`}>

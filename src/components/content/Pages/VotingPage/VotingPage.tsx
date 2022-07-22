@@ -70,7 +70,7 @@ export const UserActionLogs: React.FC<{ userActions: Array<UsersActionType> }> =
    const createUserActions = (userActions: Array<UsersActionType> | null) => {
       if (userActions) {
          return userActions.map((action, index) => {
-            return <div className={classes.action} key={index}>
+            return <div className={`${classes.action} ${action.action === 'added to' && classes[`action_${action.type}`]}`} key={index}>
                <span className={classes.time}>
                   <span>{action.time}</span>
                </span>
