@@ -90,7 +90,8 @@ $element-height: 40px;
    align-items: center;
    justify-content: center;
 
-   margin-right: 10px;
+  //  margin-right: 10px;
+   box-sizing: border-box;
  }
 
  .pageName.black{
@@ -160,3 +161,7 @@ $element-height: 40px;
     background: #FF868E;
   }
  }
+
+//  .searchResults{
+//   flex: 100% 1 1;
+//  }

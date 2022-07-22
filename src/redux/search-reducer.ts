@@ -1,13 +1,14 @@
 import { breedsAPI } from "../api/breeds-api"
-import { imagesAPI } from "../api/images-api"
 import { BaseThunkType, InferActionsTypes } from "./redux-store"
 
 const SET_BREEDS_LIST = 'pets-paw/search/SET-BREEDS-LIST'
 const TOGGLE_FETCHING = 'pets-paw/search/TOGGLE-FETCHING'
+const SET_BREED_NAME = 'pets-paw/search/SET-BREED-NAME'
 
 const initialState = {
    breedsList: [] as Array<any>,
-   isFetching: false
+   isFetching: false,
+   breedName: ''
 }
 
 export type InitialStateType = typeof initialState
@@ -27,6 +28,11 @@ const searchReducer = (state = initialState, action: ActionsType): InitialStateT
             ...state,
             isFetching: action.isFetching
          }
+      case SET_BREED_NAME:
+         return {
+            ...state,
+            breedName: action.breedName
+         }
       default:
          return state
    }
@@ -35,11 +41,13 @@ const searchReducer = (state = initialState, action: ActionsType): InitialStateT
 export const actions = {
    setBreedsList: (breedsList: Array<Object>) => ({ type: SET_BREEDS_LIST, breedsList } as const),
    toggleIsFetching: (isFetching: boolean) => ({ type: TOGGLE_FETCHING, isFetching } as const),
+   setBreedName: (breedName: string) => ({ type: SET_BREED_NAME, breedName } as const),
 }
 
 export const getBreadsByName = (name: string): ThunkType => async (dispatch) => {
 
    dispatch(actions.toggleIsFetching(true))
+   dispatch(actions.setBreedName(name))
    const breedsListByName = breedsAPI.getBreadByName(name)
    const listOfAllBreeds = breedsAPI.getTotalBreeds()
 

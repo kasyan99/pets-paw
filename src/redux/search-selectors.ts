@@ -8,6 +8,10 @@ export const getIsFetching = (state: AppStateType) => {
    return state.search.isFetching
 }
 
+export const getBreedName = (state: AppStateType) => {
+   return state.search.breedName
+}
+
 
 
 

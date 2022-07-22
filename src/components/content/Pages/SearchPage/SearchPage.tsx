@@ -1,10 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getBreedsByname, getIsFetching } from '../../../../redux/search-selectors';
+import { getBreedName, getBreedsByname, getIsFetching } from '../../../../redux/search-selectors';
+import { getIsBlack } from '../../../../redux/theme-selectors';
 import NoItemFound from '../../../common/NoItemFound';
 import Preloader from '../../../common/Preloader';
 import classes from '../BreedsPage/BreedsPage.module.scss'
+import searchClasses from './SearchPage.module.scss'
 
 const notFoundImage = 'https://s5.favim.com/orig/151213/avatar-kot-profil-gav-Favim.ru-3761175.jpg'
 
@@ -48,16 +50,24 @@ const SearchPage: React.FC = () => {
          return <></>
       }
    }
+
    const isFetching = useSelector(getIsFetching)
+   const breedName = useSelector(getBreedName)
+   const isBlack = useSelector(getIsBlack)
+
    return <>
       {breedsList.length === 0 &&
          <NoItemFound />}
       {!isFetching &&
-         <div className={classes.breedsList}>
-            <div className={classes.grid__layout}>
-               {breedPhotos()}
+         <>
+            {breedsList.length !== 0 && <div className={`${searchClasses.searchResultsFor} ${isBlack && searchClasses.black}`}>Search results for: <span>{breedName}</span></div>}
+            <div className={classes.breedsList}>
+               <div className={`${classes.grid__layout} ${isBlack && classes.black}`}>
+                  {breedPhotos()}
+               </div>
             </div>
-         </div>}
+         </>
+      }
       {isFetching &&
          <Preloader />}
    </>

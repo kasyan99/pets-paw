@@ -80,7 +80,7 @@ const FavouritiesPage: React.FC = () => {
 
             </div>
             <div className={breedClasses.bottomWrapper}>
-               <div className={votingClasses.actionsWrapper}>
+               <div className={`${votingClasses.actionsWrapper} ${isBlack && votingClasses.black}`}>
                   <UserActionLogs userActions={userActions} />
                </div>
                <Paginator getCurrentPage={getCurrentPage} getItemsCount={getTotalCount} getFilter={() => ({ limitItems: limit })} prevNext={prevNext} />

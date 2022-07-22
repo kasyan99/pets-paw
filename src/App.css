@@ -1,6 +1,5 @@
 
 .App {
-  text-align: center;
   font-family: 'Jost';
   font-style: normal;
   font-weight: 400;
@@ -8,6 +7,8 @@
   background-color: #f8f8f7;
   height: 100%;
   color:#1D1D1D;
+  display: flex;
+  justify-content: center;
 }
 
 .black{
@@ -26,17 +27,18 @@ input, button{
 
 .container{
   display: inline-block;
-  margin: auto;
-  width: 1420px;
+  /* margin: 0 auto; */
+  width: 1440px;
+  padding:30px;
 
   box-sizing: border-box;
 
-  padding: 30px;
   
 }
 
 .wrapper{
+  width: 1420px;
+  padding:30px;
   display: flex;
-  height: 840px;
-  
+  max-height: 900px;
 }

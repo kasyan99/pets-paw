@@ -16,6 +16,8 @@ const SearchForm: React.FC = () => {
 
    const onSubmit = (values: { breedName: string }) => {
       navigate(`../search`, { replace: true })
+      console.log('values.breedName', values.breedName);
+
       dispatch(getBreadsByName(values.breedName))
    }
    const onClick = (e: any) => {
@@ -34,7 +36,7 @@ const SearchForm: React.FC = () => {
       >{(props) => (
          <form onSubmit={props.handleSubmit}>
             <div className={classes.inputWrap}>
-               <Field name="breedName" placeholder='Search for breeds by name' maxLength='30' autocomplete="off" />
+               <Field name="breedName" placeholder='Search for breeds by name' maxLength='30' autoComplete="off" />
                <button type='submit' className={classes.searchBtn}>search</button>
             </div>
             {buttons.map(name => <button type='button' value={name} onClick={(e) => onClick(e)} key={name}

@@ -4,6 +4,10 @@ export const getBreedsList = (state: AppStateType) => {
    return state.breeds.breedsList
 }
 
+// export const getTotalBreedsList = (state: AppStateType) => {
+//    return state.breeds.totalBreedsList
+// }
+
 export const getCurrentPage = (state: AppStateType) => {
    return state.breeds.currentPage
 }

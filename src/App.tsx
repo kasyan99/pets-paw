@@ -19,17 +19,17 @@ const App: React.FC = () => {
   return (
     <div className={`App ${isBlack && 'black'}`}>
       {isUploading && <div className={uploadingClasses.cover}></div>}
-      <div className="container">
-        <div className="wrapper">
-          <MenuPage />
-          <Suspense fallback={<Preloader />}>
-            {useRoutes([
-              { path: "/", element: <HomePage /> },
-              { path: "/*", element: <Content /> }
-            ])}
-          </Suspense>
-        </div>
+      {/* <div className="container"> */}
+      <div className="wrapper">
+        <MenuPage />
+        <Suspense fallback={<Preloader />}>
+          {useRoutes([
+            { path: "/", element: <HomePage /> },
+            { path: "/*", element: <Content /> }
+          ])}
+        </Suspense>
       </div>
+      {/* </div> */}
     </div>
   );
 }

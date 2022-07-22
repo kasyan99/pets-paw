@@ -1,10 +1,10 @@
 import { Dispatch } from "react"
-import { AnyAction } from "redux"
 import { breedsAPI } from "../api/breeds-api"
 import { BreedsFilterFormType } from "../components/content/Pages/BreedsPage/BreedsFilterForm"
-import { BaseThunkType, InferActionsTypes } from "./redux-store"
+import store, { BaseThunkType, InferActionsTypes } from "./redux-store"
 
 const SET_BREEDS_LIST = 'pets-paw/breeds/SET-BREEDS-LIST'
+const SET_TOTAL_BREEDS_LIST = 'pets-paw/breeds/SET-TOTAL-BREEDS-LIST'
 const SET_CURRENT_PAGE = 'pets-paw/breeds/SET-CURRENT-PAGE'
 const SET_USERS_COUNT = 'pets-paw/breeds/SET-USERS-COUNT'
 const SET_LIMIT_ITEMS = 'pets-paw/breeds/SET-LIMIT-ITEMS'
@@ -35,6 +35,7 @@ export type BreedsFilterType = {
 
 const initialState = {
    breedsList: [] as Array<Object>,
+   // totalBreedsList: [] as Array<any>,
    breedsCount: 0,
    filter: {
       limitItems: 5,
@@ -61,6 +62,11 @@ const breedsReducer = (state = initialState, action: ActionsType): InitialStateT
             ...state,
             breedsList: [...action.breedsList]
          }
+      // case SET_TOTAL_BREEDS_LIST:
+      //    return {
+      //       ...state,
+      //       totalBreedsList: [...action.totalBreedsList]
+      //    }
       case SET_CURRENT_PAGE:
          return {
             ...state,
@@ -119,6 +125,7 @@ const breedsReducer = (state = initialState, action: ActionsType): InitialStateT
 
 export const actions = {
    setBreedsList: (breedsList: Array<Object>) => ({ type: SET_BREEDS_LIST, breedsList } as const),
+   // setTotalBreedsList: (totalBreedsList: Array<any>) => ({ type: SET_TOTAL_BREEDS_LIST, totalBreedsList } as const),
    setCurrentPage: (currentPage: number) => ({ type: SET_CURRENT_PAGE, currentPage } as const),
    setBreedsCount: (breedsCount: number) => ({ type: SET_USERS_COUNT, breedsCount } as const),
    setLimitItems: (limitItems: number) => ({ type: SET_LIMIT_ITEMS, limitItems } as const),
@@ -138,7 +145,10 @@ export const getBreedsListThunk = (values: BreedsFilterFormType, page: number | 
    const { filterByBreed, limitItems } = values
    let response
    if (filterByBreed !== '') {
-      response = await breedsAPI.getByBreed(filterByBreed)
+      // response = await breedsAPI.getByBreed(filterByBreed)
+      const allBreeds = await breedsAPI.getBreads(null, null)
+
+      response = allBreeds.filter((item: any) => item.id === filterByBreed)
    } else {
 
       response = await breedsAPI.getBreads(limitItems, page, order)
@@ -167,7 +177,9 @@ export const getBreedsListNamesThunk = (): any => async (dispatch: Dispatch<Acti
    breeds.map(((breed: any) => {
       breedsNamesList[breed.id] = breed.name
    }))
+   console.log('breeds', breeds);
 
+   // dispatch(actions.setTotalBreedsList(breeds))
    dispatch(actions.setBreedsNamesList(breedsNamesList))
 }
 

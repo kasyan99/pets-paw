@@ -5,3 +5,23 @@
    height: 100%;
 }
 
+.searchResultsFor{
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 29px;
+  color: #8C8C8C;
+  margin-bottom: 20px;
+  text-align: left;
+  span{
+    color: #1d1d1d;
+    font-weight: 500;
+  }
+}
+
+.black{
+  span{
+    color: #FFF;
+  }
+}
