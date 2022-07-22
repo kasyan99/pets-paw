@@ -1,87 +1,80 @@
-.content{
+.content {
    flex: 680px 1 0;
    position: relative;
    overflow-y: auto;
    -ms-overflow-style: none;
-  overflow: -moz-scrollbars-none;
-  //  overflow-x: scroll;
-  //  overflow-y: hidden;
-  &::-webkit-scrollbar{
-     width: 0 !important;
-     height: 0;
-     display: none !important;
-     background: transparent;}
-   @media (max-width:1230px) {
+   overflow: -moz-scrollbars-none;
+   //  overflow-x: scroll;
+   //  overflow-y: hidden;
+   &::-webkit-scrollbar {
+      width: 0 !important;
+      height: 0;
+      display: none !important;
+      background: transparent;
+   }
+   @media (max-width: 1230px) {
       flex: 680px 0 1;
    }
-   @media (max-width:740px) {
+   @media (max-width: 740px) {
       flex: 680px 1 1;
    }
 }
 
-.contentOnHome{
-   @media (max-width:1230px) {
+.contentOnHome {
+   @media (max-width: 1230px) {
       display: none;
    }
 }
 
-.page{
+.page {
    width: 680px;
    height: 770px;
    display: grid;
 
    grid-template-rows: 60px 1fr;
-   @media (max-width:740px) {
-      width: 100% ;
+   @media (max-width: 740px) {
+      width: 100%;
    }
    background-color: #fff;
    border-radius: 20px;
    padding: 20px;
-
-   // @media (max-height:940px) {
-   //    height: 730px;
-   // }
 }
 
-.page.onBreedsPage{
-   @media (max-width:740px) {
+.page.onBreedsPage {
+   @media (max-width: 740px) {
       grid-template-rows: 120px 1fr;
    }
-   // @media (max-width:680px){
-   //    height: 800px;
-   // }
-   @media (max-width:541px) {
+   @media (max-width: 541px) {
       grid-template-rows: 160px 1fr;
    }
 }
 
-.page.onGalleryPage{
-   @media (max-width:460px) {
+.page.onGalleryPage {
+   @media (max-width: 460px) {
       grid-template-rows: 100px 1fr;
       grid-template-columns: 1fr;
    }
 }
-.page.onInfo{
-   @media (max-width:740px) {
+.page.onInfo {
+   @media (max-width: 740px) {
       grid-template-rows: 60px 1fr;
    }
-   @media (max-width:400px) {
-      height: 620px;       
-}
-}
-
-.page.black{
-   background-color:  rgba(255, 255, 255, 0.05);
+   @media (max-width: 400px) {
+      height: 620px;
+   }
 }
 
-.pageOnVoting{
+.page.black {
+   background-color: rgba(255, 255, 255, 0.05);
+}
+
+.pageOnVoting {
    height: 782px;
 }
 
-@media (max-height: 900px){
-   .page{
-   height: 670px;
-
+@media (max-height: 900px) {
+   .page {
+      height: 670px;
    }
 }
 
@@ -89,8 +82,6 @@
    overflow: hidden;
    position: relative;
    box-sizing: border-box;
-   // display: grid;
-   // grid-template-rows: 1fr;
    display: flex;
    flex-direction: column;
- }
+}

@@ -1,6 +1,4 @@
-import { imagesAPI } from "../api/images-api"
 import { votingAPI } from "../api/voting-api"
-import { GalleryFilterFormType } from "./images-reducer"
 import { BaseThunkType, InferActionsTypes } from "./redux-store"
 import { UsersActionType } from "./voting-reducer"
 
@@ -97,23 +95,5 @@ export const getFavouritesList = (limit = 5, page = 0, fetch = true): ThunkType 
 
    fetch && dispatch(actions.toggleIsFetching(false))
 }
-
-// export const getImagesListThunk = (limit: number, currentPage: number): ThunkType => async (dispatch) => {
-
-//    dispatch(actions.toggleIsFetching(true))
-
-//    const response = await votingAPI.getFavourites(limit, currentPage)
-//    // const headers = response.headers
-
-//    // const imagesCount = Number(headers['content-length'])
-//    // const imagesList = response.data
-//    // dispatch(actions.setFilter(filter))
-//    // dispatch(actions.setCurrentPage(currentPage))
-//    // dispatch(actions.setTotalImagesCount(imagesCount))
-//    // dispatch(actions.setImagesList(imagesList))
-
-//    dispatch(actions.toggleIsFetching(false))
-
-// }
 
 export default favouritesReducer

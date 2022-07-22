@@ -1,31 +1,29 @@
-
-.homePage{
+.homePage {
    display: inline-block;
    flex: 50% 0 1;
-   background: #FBE0DC;
+   background: #fbe0dc;
    border-radius: 20px;
    height: 100%;
 
    position: relative;
 
-   img{
+   img {
       position: absolute;
 
-      top:-70px;
+      top: -70px;
       right: -30px;
       @media (max-width: 1400px) {
          width: 110%;
       }
    }
-   
 }
 
-.homePage{
-   @media (max-width:1230px) {
+.homePage {
+   @media (max-width: 1230px) {
       display: none;
    }
 }
 
-.black{
-   background: rgba(255, 255, 255, 0.1)
+.black {
+   background: rgba(255, 255, 255, 0.1);
 }

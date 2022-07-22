@@ -12,8 +12,6 @@ const REMOVE_FAVOURITES = 'pets-paw/voting/REMOVE-FAVOURITES'
 const SET_FAVOURITES = 'pets-paw/voting/SET-FAVOURITES'
 const ADD_FAV_BY_IMAGE_ID = 'pets-paw/voting/ADD-FAV-BY-IMAGE-ID'
 
-
-
 export type BreedImageType = {
    url: string
    id: string
@@ -142,12 +140,11 @@ export const addToFavourite = (breed_id: string): ThunkType => async (dispatch) 
 export const deleteFavourite = (fav_id: string, breed_id: string): ThunkType => async (dispatch) => {
    await votingAPI.deleteFavourites(fav_id)
    dispatch(actions.removeFavourites(breed_id))
-   // dispatch(getFavourites())
 }
 
-export const getVotes = (): ThunkType => async (dispatch) => {
-   const data = await votingAPI.getVotes()
-}
+// export const getVotes = (): ThunkType => async (dispatch) => {
+//    const data = await votingAPI.getVotes()
+// }
 
 export const getFavourites = (): ThunkType => async (dispatch) => {
    const data = (await votingAPI.getFavourites()).data

@@ -1,113 +1,111 @@
-.galleryFilterForm{
+.galleryFilterForm {
   height: 156px;
-  background: #F8F8F7;
+  background: #f8f8f7;
   padding: 20px;
   padding-top: 28px;
 
   border-radius: 20px;
 
   margin-bottom: 20px;
-  form{
+  form {
     display: grid;
-    grid-template-columns: minmax(150px,290px) minmax(150px,290px);
+    grid-template-columns: minmax(150px, 290px) minmax(150px, 290px);
     grid-template-rows: 1fr 1fr;
     column-gap: 20px;
     row-gap: 28px;
   }
 
-  @media (max-width:640px) {
+  @media (max-width: 640px) {
     height: 332px;
-    form{
+    form {
       grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
     }
   }
-  @media (max-width:380px) {
+  @media (max-width: 380px) {
     padding: 10px;
     padding-top: 28px;
 
     height: 332px;
-    form{
+    form {
       grid-template-columns: 1fr;
       grid-template-rows: 1fr 1fr 1fr 90px;
-      .update{
-        &:active{
-          outline: 2px solid #FBE0DC;
+      .update {
+        &:active {
+          outline: 2px solid #fbe0dc;
         }
       }
-      
     }
   }
-  
 }
 
-.fieldWrapper{
+.fieldWrapper {
   width: 100%;
   position: relative;
   height: 40px;
- .selectField{
+  .selectField {
     padding: 0 10px;
     width: 100%;
     -moz-appearance: none;
     -webkit-appearance: none;
     box-sizing: border-box;
-    background: #FFF url(../../../../assets/icons/breeds-page/select_arrow.svg) no-repeat right 10px center;
+    background: #fff url(../../../../assets/icons/breeds-page/select_arrow.svg) no-repeat right 10px center;
     cursor: pointer;
-    &:focus{
-      outline: 2px solid #FBE0DC;
+    &:focus {
+      outline: 2px solid #fbe0dc;
     }
   }
-  .element{
+  .element {
     display: inline-block;
     height: 40px;
     border: none;
     border-radius: 10px;
-  
-    font-family: 'Jost';
+
+    font-family: "Jost";
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-  
-    color: #1D1D1D;
+
+    color: #1d1d1d;
   }
 
-  label{
+  label {
     position: absolute;
     top: -18px;
     left: 10px;
 
-    font-family: 'Jost';
+    font-family: "Jost";
     font-style: normal;
     font-weight: 500;
     font-size: 10px;
     line-height: 18px;
 
-    color: #8C8C8C;
+    color: #8c8c8c;
   }
 
-  .update{
+  .update {
     background: #fff url(../../../../assets/icons/gallery-page/update.svg) no-repeat center center;
     font-size: 0;
     cursor: pointer;
-    &:active{
-      outline: 2px solid #FBE0DC;
+    &:active {
+      outline: 2px solid #fbe0dc;
     }
   }
 
-  &:last-child{
+  &:last-child {
     display: grid;
     grid-template-columns: 1fr 40px;
     column-gap: 10px;
   }
 
-  @media (max-width:380px) {
-    &:last-child{
+  @media (max-width: 380px) {
+    &:last-child {
       display: block;
       // grid-template-columns: 1fr;
       // grid-template-rows: 40px 40px;
     }
-    .update{
+    .update {
       width: 100%;
       margin-top: 10px;
       display: block;
@@ -115,19 +113,19 @@
   }
 }
 
-.galleryFilterForm.black{
+.galleryFilterForm.black {
   background: rgba(255, 255, 255, 0.05);
-  .element{
-    background-color: #1D1D1D;
-    color: #FFF;
+  .element {
+    background-color: #1d1d1d;
+    color: #fff;
   }
-  .selectField{
-    &:focus{
+  .selectField {
+    &:focus {
       outline: 2px solid rgba(255, 134, 142, 0.2);
     }
   }
-  .update{
-    &:active{
+  .update {
+    &:active {
       outline: 2px solid rgba(255, 134, 142, 0.2);
     }
   }

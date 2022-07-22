@@ -1,7 +1,5 @@
 import { instance } from "./api"
 
-
-
 export const breedsAPI = {
 
    async getBreads(limit: number | null, page: number | null, order = 'ASC' as string | null) {

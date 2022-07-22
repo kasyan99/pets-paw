@@ -1,6 +1,5 @@
 import { imagesAPI } from "../api/images-api"
 import { votingAPI } from "../api/voting-api"
-import { GalleryFilterFormType } from "./images-reducer"
 import { BaseThunkType, InferActionsTypes } from "./redux-store"
 import { UsersActionType } from "./voting-reducer"
 
@@ -108,7 +107,7 @@ export const getVotesList = (value: 0 | 1, limit = null, page = 0): ThunkType =>
 
    dispatch(actions.clearLikesList())
 
-   const { data, headers } = (await votingAPI.getVotes(limit, page))
+   const { data } = (await votingAPI.getVotes(limit, page))
    limit && dispatch(actions.setLimit(limit))
    dispatch(actions.setCurrentPage(page))
 

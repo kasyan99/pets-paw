@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteVote, getVotesList } from '../../../../redux/likes-reducer';
 import { getIsFetching, getLikedImagesList } from '../../../../redux/likes-selectors';
-import classes from './LikesPage.module.scss'
 import breedClasses from '../BreedsPage/BreedsPage.module.scss'
 import votingClasses from '../VotingPage/VotingPage.module.scss'
 import Preloader from '../../../common/Preloader';

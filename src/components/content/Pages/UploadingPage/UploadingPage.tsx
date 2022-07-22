@@ -6,7 +6,7 @@ import { getCurrentFile, getFileName, getFilePath, getIsCat, getIsFetching } fro
 import Preloader from "../../../common/Preloader"
 import classes from './UploadingPage.module.scss'
 
-const UploadingPage = () => {
+const UploadingPage: React.FC = () => {
    const dispatch = useDispatch<any>()
 
    const closeModal = () => {
@@ -14,11 +14,7 @@ const UploadingPage = () => {
    }
 
    const chooseFile = (e: any) => {
-
       dispatch(setCurrentFile(e.target))
-      // dispatch(actions.setCurrentFile(e.target.files[0]))
-
-      // dispatch(uploadImage(e.target.files[0]))
    }
 
    const currentFile = useSelector(getCurrentFile)
@@ -51,7 +47,6 @@ const UploadingPage = () => {
             </>}
       </div>
       <p>{fileName ? `Image File Name: ${fileName}` : 'No file selected'}</p>
-      {/* <button type="button"></button> */}
       <button type='button' className={classes.btnClose} onClick={closeModal}>Close</button>
       {filePath && isCat !== false &&
          <button type="button" className={classes.btnUpload} onClick={uploadFile}><span>UPLOAD PHOTO</span></button>}

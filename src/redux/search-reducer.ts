@@ -60,7 +60,6 @@ export const getBreadsByName = (name: string): ThunkType => async (dispatch) => 
       })
 
    })
-   // breedsList.then((data: any) => dispatch(actions.setBreedsList(data)))
 
    dispatch(actions.toggleIsFetching(false))
 

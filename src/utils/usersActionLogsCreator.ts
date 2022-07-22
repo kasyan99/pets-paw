@@ -13,7 +13,6 @@ export const addUserActionCreator = (usersActions: Array<UsersActionType>, remov
    })()
 
    if (usersActions.length >= maxLength) {
-      // dispatch(actions.removeUserAction())
       removeUserAction()
    }
 
@@ -33,7 +32,6 @@ export const addUserActionCreator = (usersActions: Array<UsersActionType>, remov
       type: type
    }
 
-   // dispatch(actions.addUserAction(userAction))
 
    addUserAction(userAction)
 }

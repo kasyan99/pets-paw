@@ -1,191 +1,170 @@
 $element-height: 40px;
 
-.header{
-   display: flex;
-   justify-content: space-between;
-   @media (max-width:740px){
+.header {
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 740px) {
     flex-wrap: wrap;
-   }
+  }
 }
 
-.header.onInfo{
-  @media (max-width:740px){
+.header.onInfo {
+  @media (max-width: 740px) {
     flex-wrap: nowrap;
   }
 }
 
-.wrapper{
-   display: flex;
-   justify-content: start;
+.wrapper {
+  display: flex;
+  justify-content: start;
   //  margin-bottom: 20px;
-  @media (max-width:60px){
+  @media (max-width: 60px) {
     height: 40px;
-   }
+  }
 }
 
-.idNumberWrapper{
+.idNumberWrapper {
   width: 100%;
   display: flex;
-
 }
-.idNumber{
+.idNumber {
   display: inline-flex;
   width: 90px;
   height: 40px;
 
-  background: #FF868E;
+  background: #ff868e;
   border-radius: 10px;
 
   justify-content: center;
   align-items: center;
 
-  span{
-    font-family: 'Jost';
+  span {
+    font-family: "Jost";
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 30px;
-    /* identical to box height, or 150% */
+    text-align: center;
+    letter-spacing: 2px;
+
+    color: #ffffff;
+  }
+}
+
+.element {
+  display: inline-block;
+  height: $element-height;
+  border: none;
+  border-radius: 10px;
+  background: #f8f8f7;
+  color: #8c8c8c;
+
+  font-size: 16px;
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+}
+
+.btn {
+  width: 40px;
+  font-size: 0;
+}
+
+.btn_back {
+  background: #fbe0dc url(../../../../assets/icons/breeds-page/back-btn.svg) no-repeat center center;
+  margin-right: 10px;
+  box-sizing: border-box;
+}
+
+.btn_back.black {
+  background-color: rgba(255, 134, 142, 0.2);
+}
+
+.pageName {
+  height: $element-height;
+  padding: 0 30px;
+  background: #ff868e;
+
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+
+  text-align: center;
+  letter-spacing: 2px;
+
+  color: #ffffff;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 10px;
+  box-sizing: border-box;
+}
+
+.pageName.black {
+  background: rgba(255, 134, 142, 0.2);
+}
+
+.pageNameOnInfo {
+  background: #fbe0dc;
+  color: #ff868e;
+}
+
+.upload {
+  width: 143px;
+  @media (max-width: 460px) {
+    width: 100%;
+  }
+  height: $element-height;
+
+  background: #fbe0dc;
+  border-radius: 10px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 0;
+
+  cursor: pointer;
+  button {
+    font-family: "Jost";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
 
     text-align: center;
     letter-spacing: 2px;
 
-    color: #FFFFFF;
+    color: #ff868e;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  span {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url(../../../../assets/icons/gallery-page/upload.svg) no-repeat center center;
+    margin-right: 10px;
+  }
+
+  &:active {
+    background: #ff868e;
+    &::before {
+      background: url(../../../../assets/icons/gallery-page/upload_active.svg) no-repeat center center;
+    }
+    button {
+      color: #fff;
+    }
   }
 }
 
-.element{
-   display: inline-block;
-   height: $element-height;
-   border: none;
-   border-radius: 10px;
-   background: #F8F8F7;
-   color: #8C8C8C;
- 
-   font-size: 16px;
-   font-family: 'Jost';
-   font-style: normal;
-   font-weight: 400;
- }
- 
- .btn{
-   width: 40px;
-   font-size: 0;
- }
- 
- .btn_back{
-   background:#FBE0DC url(../../../../assets/icons/breeds-page/back-btn.svg) no-repeat center center;
-   margin-right: 10px;
-   box-sizing: border-box;
- }
-
- .btn_back.black{
-  background-color: rgba(255, 134, 142, 0.2);
- }
-
- .pageName{
-   height: $element-height;
-   padding: 0 30px;
-   background: #FF868E;
- 
-   font-family: 'Jost';
-   font-style: normal;
-   font-weight: 500;
-   font-size: 20px;
- 
-   text-align: center;
-   letter-spacing: 2px;
- 
-   color: #FFFFFF;
- 
-   display: inline-flex;
-   align-items: center;
-   justify-content: center;
-
-   margin-right: 10px;
-   box-sizing: border-box;
- }
-
- .pageName.black{
+.upload.black {
   background: rgba(255, 134, 142, 0.2);
- }
-
- .pageNameOnInfo{
-  background: #FBE0DC;
-  color: #FF868E;
-
- }
-
- .upload{
-   width: 143px;
-   @media (max-width:460px){
-
-      width: 100%;
-    
-   }
-   height: $element-height;
-
-   background: #FBE0DC;
-   border-radius: 10px;
-   display: inline-flex;
-   justify-content: center;
-   align-items: center;
-   position: relative;
-   padding: 0;
-   
-   cursor: pointer;
-   button{
-      font-family: 'Jost';
-      font-style: normal;
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 16px;
-      
-      text-align: center;
-      letter-spacing: 2px;
-      
-      color: #FF868E;
-      background: none;
-      border: none;
-      padding: 0;
-   }
-   span{
-    display: inline-block;
-      width: 16px;
-      height: 16px;
-      background: url(../../../../assets/icons/gallery-page/upload.svg) no-repeat center center;
-      margin-right: 10px;
-   }
-
-  //  &::before{
-  //     content: '';
-  //     display: inline-block;
-  //     position: absolute;
-  //     width: 16px;
-  //     height: 16px;
-  //     left: 30px;
-  //     background: url(../../../../assets/icons/gallery-page/upload.svg) no-repeat center center;
-  //  }
-
-   &:active{
-    background: #FF868E;
-    &::before{
-      background: url(../../../../assets/icons/gallery-page/upload_active.svg) no-repeat center center;
-   }
-   button{
-    color: #FFF;
-   }
-   }
- }
-
- .upload.black{
-  background: rgba(255, 134, 142, 0.2);
-  &:active{
-    background: #FF868E;
+  &:active {
+    background: #ff868e;
   }
- }
-
-//  .searchResults{
-//   flex: 100% 1 1;
-//  }
-
+}

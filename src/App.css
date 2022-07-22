@@ -1,63 +1,53 @@
-
 .App {
-  font-family: 'Jost';
+  font-family: "Jost";
   font-style: normal;
   font-weight: 400;
   position: relative;
   background-color: #f8f8f7;
   height: 100%;
-  color:#1D1D1D;
+  color: #1d1d1d;
   display: flex;
   justify-content: center;
 }
 
-.black{
-  background-color: #1D1D1D;
-  color:#FFF;
-
+.black {
+  background-color: #1d1d1d;
+  color: #fff;
 }
 
-input, button{
-  font-family: 'Jost';
+input,
+button {
+  font-family: "Jost";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
 }
 
-
-.container{
+.container {
   display: inline-block;
   /* margin: 0 auto; */
   width: 1440px;
-  padding:30px;
+  padding: 30px;
 
   box-sizing: border-box;
-
-  
 }
 
-.wrapper{
+.wrapper {
   width: 1420px;
-  padding:30px;
+  padding: 30px;
   display: flex;
   justify-content: center;
   max-height: 900px;
 }
-/* @media (max-width:1430px) {
-  .wrapper{
-    width: 1320px;
-  }
-  
-} */
-@media (max-width:1230px) {
-  .wrapper{
+
+@media (max-width: 1230px) {
+  .wrapper {
     flex: 680px 1 1;
   }
 }
 
-@media (max-width:550px) {
-  .wrapper{
+@media (max-width: 550px) {
+  .wrapper {
     padding: 20px;
   }
 }
-

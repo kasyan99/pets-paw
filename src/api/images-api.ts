@@ -1,10 +1,7 @@
-import { GalleryFilterFormType, ImgTypeType, OrderType } from "../redux/images-reducer"
+import { GalleryFilterFormType } from "../redux/images-reducer"
 import { instance } from "./api"
 
-
-
 export const imagesAPI = {
-   //images/search?breed_id=abys&page=0&limit=5&order=ASC&mime_types=jpg,png
    async getImages(filter: GalleryFilterFormType, currentPage: number) {
       const { order, filterByBreed, limitItems, type } = filter
       const breed_id = filterByBreed ? `&breed_id=${filterByBreed}` : ''
@@ -51,13 +48,4 @@ export const imagesAPI = {
       return response
    },
 
-   // async getAnalysisResults(image_id: string) {
-   //    const response = await instance.get(`images/${image_id}/analysis`, {
-   //       headers: {
-   //          'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d'
-   //       }
-   //    })
-
-   //    return response.data
-   // }
 }

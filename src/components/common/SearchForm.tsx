@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getBreadsByName } from '../../redux/search-reducer';
 import { actions } from '../../redux/theme-reducer';
-import { getIsBlack, getIsMenu } from '../../redux/theme-selectors';
+import { getIsBlack } from '../../redux/theme-selectors';
 import classes from './SearchForm.module.scss'
-
 
 const SearchForm: React.FC = () => {
    const navigate = useNavigate()
@@ -51,7 +50,6 @@ const SearchForm: React.FC = () => {
          </form>
       )}
       </Formik>
-
    </div>
 
 }

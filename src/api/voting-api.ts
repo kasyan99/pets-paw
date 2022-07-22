@@ -1,7 +1,5 @@
 import { instance } from "./api"
 
-
-
 export const votingAPI = {
 
    async setVote(id: string, value: 0 | 1) {
@@ -58,7 +56,6 @@ export const votingAPI = {
    async getFavourites(limit = 5, page = 0) {
       const response = await instance.get(`favourites?sub_id=kas_99&limit=${limit}&page=${page}`, {
 
-         // const response = await instance.get(`favourites?sub_id=kas_99`, {
          headers: {
             'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d',
          }
@@ -75,8 +72,6 @@ export const votingAPI = {
          }
       })
 
-
       return response
    },
-
 }

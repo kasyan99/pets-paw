@@ -1,14 +1,15 @@
-.searchForm{
+.searchForm {
    height: 60px;
    margin-bottom: 10px;
    max-width: 680px;
-   form{
+   form {
       display: grid;
       gap: 10px;
       grid-template-columns: 1fr repeat(3, 60px);
    }
 
-   input, button{
+   input,
+   button {
       border-radius: 20px;
       height: 60px;
       background-color: #fff;
@@ -18,9 +19,9 @@
       box-sizing: border-box;
    }
 
-   .inputWrap{
+   .inputWrap {
       position: relative;
-      button.searchBtn{
+      button.searchBtn {
          display: inline-block;
          position: absolute;
          width: 40px;
@@ -28,138 +29,133 @@
 
          top: 10px;
          right: 10px;
-         background: #FBE0DC;
+         background: #fbe0dc;
          border-radius: 10px;
-         background: #FBE0DC url(../../assets/icons/search-form/search.svg) no-repeat center center;
-         &:active{
-         background: #FF868E url(../../assets/icons/search-form/search_active.svg) no-repeat center center;
-
+         background: #fbe0dc url(../../assets/icons/search-form/search.svg) no-repeat center center;
+         &:active {
+            background: #ff868e url(../../assets/icons/search-form/search_active.svg) no-repeat center center;
          }
       }
    }
 
-   input{
+   input {
       padding: 0 20px;
       width: 100%;
-      &:focus{
-         border: 2px solid #FF868E;
+      &:focus {
+         border: 2px solid #ff868e;
       }
-      
    }
-   
-   button{
+
+   button {
       font-size: 0px;
       width: 60px;
       cursor: pointer;
-      &:first-of-type{
+      &:first-of-type {
          background: #fff url(../../assets/icons/search-form/likes.svg) no-repeat center center;
-         &:active{
-         background: #FF868E url(../../assets/icons/search-form/likes_active.svg) no-repeat center center;
+         &:active {
+            background: #ff868e url(../../assets/icons/search-form/likes_active.svg) no-repeat center center;
          }
       }
-      &:nth-of-type(2){
+      &:nth-of-type(2) {
          background: #fff url(../../assets/icons/search-form/favourities.svg) no-repeat center center;
-         &:active{
-         background: #FF868E url(../../assets/icons/search-form/favourites_active.svg) no-repeat center center;
+         &:active {
+            background: #ff868e url(../../assets/icons/search-form/favourites_active.svg) no-repeat center center;
          }
       }
-      &:last-of-type{
+      &:last-of-type {
          background: #fff url(../../assets/icons/search-form/dislikes.svg) no-repeat center center;
-         &:active{
-         background: #FF868E url(../../assets/icons/search-form/dislikes_active.svg) no-repeat center center;
+         &:active {
+            background: #ff868e url(../../assets/icons/search-form/dislikes_active.svg) no-repeat center center;
          }
       }
-      &:hover{
-         background-color: #FBE0DC;
+      &:hover {
+         background-color: #fbe0dc;
       }
    }
 
-   button.likes_active{
-      background: #FF868E url(../../assets/icons/search-form/likes_active.svg) no-repeat center center;
+   button.likes_active {
+      background: #ff868e url(../../assets/icons/search-form/likes_active.svg) no-repeat center center;
    }
-   button.dislikes_active{
-      background: #FF868E url(../../assets/icons/search-form/dislikes_active.svg) no-repeat center center;
+   button.dislikes_active {
+      background: #ff868e url(../../assets/icons/search-form/dislikes_active.svg) no-repeat center center;
    }
-   button.favourities_active{
-      background: #FF868E url(../../assets/icons/search-form/favourites_active.svg) no-repeat center center;
+   button.favourities_active {
+      background: #ff868e url(../../assets/icons/search-form/favourites_active.svg) no-repeat center center;
    }
 
-   .menuBtn{
+   .menuBtn {
       display: none;
    }
-   @media (max-width:1230px) {
-      form{
+   @media (max-width: 1230px) {
+      form {
          display: grid;
          gap: 10px;
          grid-template-columns: 60px 1fr repeat(3, 60px);
       }
-      .menuBtn{
+      .menuBtn {
          display: inline-block;
          font-size: 0px;
          width: 60px;
          background: #fff url(../../assets/icons/search-form/burger.svg) no-repeat center center;
          border-radius: 20px;
-         &:active{
-            border: 2px solid #FF868E;
-            }
+         &:active {
+            border: 2px solid #ff868e;
+         }
       }
    }
-   @media (max-width:680px) {
+   @media (max-width: 680px) {
       height: 130px;
-      form{
+      form {
          display: grid;
          gap: 10px;
          grid-template-columns: 1fr repeat(3, 60px);
          grid-template-rows: 60px 60px;
       }
-      
 
-      button{
+      button {
          font-size: 0px;
          width: 60px;
          cursor: pointer;
-         &:first-of-type{
+         &:first-of-type {
             order: 2;
          }
-         &:nth-of-type(2){
+         &:nth-of-type(2) {
             order: 3;
-
          }
-         &:last-of-type{
+         &:last-of-type {
             order: 4;
-
          }
       }
-      .menuBtn{
+      .menuBtn {
          order: 1;
-
       }
-      .inputWrap{
+      .inputWrap {
          order: 5;
          grid-column: 4 span;
       }
    }
 }
 
-.searchForm.black{
-   input, button{
+.searchForm.black {
+   input,
+   button {
       background-color: rgba(255, 255, 255, 0.05);
       color: #fff;
    }
 
-   button:active{
-      background-color: #FF868E;
+   button:active {
+      background-color: #ff868e;
    }
-   
+
    button.likes_active,
    button.dislikes_active,
-   button.favourities_active{
-      background-color: #FF868E;
+   button.favourities_active {
+      background-color: #ff868e;
    }
-   button.searchBtn{
+   button.searchBtn {
       background-color: rgba(255, 134, 142, 0.2);
    }
-   .menuBtn{
+   .menuBtn {
       background-color: rgba(255, 255, 255, 0.05);
    }
 }

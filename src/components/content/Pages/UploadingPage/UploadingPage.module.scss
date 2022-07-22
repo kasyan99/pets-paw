@@ -1,4 +1,4 @@
-.cover{
+.cover {
    width: 100vw;
    height: 100vh;
    z-index: 80;
@@ -6,74 +6,73 @@
    position: absolute;
 }
 
-.UploadingPage{
+.UploadingPage {
    border-radius: 20px;
    height: 100%;
    width: 100%;
-   
-   background-color: #F8F8F7;
+
+   background-color: #f8f8f7;
    position: absolute;
    top: 0px;
    left: 0px;
    z-index: 90;
 
-   font-family: 'Jost';
+   font-family: "Jost";
    font-style: normal;
    font-size: 20px;
 
    padding: 20px;
    padding-top: 100px;
 
-   h2{
+   h2 {
       font-weight: 500;
       font-size: 36px;
       line-height: 52px;
-      color: #1D1D1D;
+      color: #1d1d1d;
       margin-bottom: 10px;
-      
    }
-   p{
+   p {
       font-weight: 400;
       font-size: 20px;
       line-height: 30px;
-      color: #8C8C8C;
-      span{
-         color: #FF868E;
+      color: #8c8c8c;
+      span {
+         color: #ff868e;
       }
-      &:last-of-type{
+      &:last-of-type {
          margin: 20px 0px;
       }
    }
-   @media (max-width:640px) {
-      h2{
+   @media (max-width: 640px) {
+      h2 {
          font-size: 30px;
          text-align: center;
       }
+   }
+   @media (max-width: 540px) {
+      h2 {
+         font-size: 26px;
       }
-   @media (max-width:540px) {
-         h2{
-            font-size: 26px;
-         }
-            
-         }
-   @media (max-width:480px) {
-         h2,p{
-            font-size: 20px;
-         }   
-         .imageWrapper{
-            height: 167.5px;
-         }
+   }
+   @media (max-width: 480px) {
+      h2,
+      p {
+         font-size: 20px;
       }
-   .imageWrapper{
+      .imageWrapper {
+         height: 167.5px;
+      }
+   }
+   .imageWrapper {
       margin-top: 40px;
-      border: 2px dashed #FBE0DC;
+      border: 2px dashed #fbe0dc;
       border-radius: 20px;
       width: 100%;
       height: 320px;
-      @media (max-width:480px) {
-            height: 167.5px;
+      @media (max-width: 480px) {
+         height: 167.5px;
       }
-      background: #FFFFFF url(../../../../assets/icons/upload-page/img_light.png) no-repeat center center;
+      background: #ffffff url(../../../../assets/icons/upload-page/img_light.png) no-repeat center center;
 
       display: flex;
       justify-content: center;
@@ -81,11 +80,11 @@
       position: relative;
 
       padding: 20px 40px;
-      .image{
+      .image {
          position: relative;
          width: 100%;
-            height: 100%;
-         img{
+         height: 100%;
+         img {
             position: absolute;
             top: 0%;
             left: 0%;
@@ -95,12 +94,12 @@
             border-radius: 10px;
          }
       }
-      span{
-         color: #1D1D1D;
+      span {
+         color: #1d1d1d;
          font-weight: 500;
       }
 
-      input{
+      input {
          position: absolute;
          display: inline-block;
          width: 100%;
@@ -110,38 +109,38 @@
       }
    }
 
-   .failure{
-      background-color: #FBE0DC;
+   .failure {
+      background-color: #fbe0dc;
    }
 
-   .btnClose{
+   .btnClose {
       position: absolute;
       right: 20px;
       top: 20px;
       width: 40px;
       height: 40px;
-      
-      background: #FFFFFF;
+
+      background: #ffffff;
       border-radius: 10px;
       display: inline-block;
       background: #fff url(../../../../assets/icons/upload-page/btn-close.svg) no-repeat center center;
 
       font-size: 0;
 
-      &:active{
-         background: #FF868E url(../../../../assets/icons/upload-page/btn-close_active.svg) no-repeat center center;
+      &:active {
+         background: #ff868e url(../../../../assets/icons/upload-page/btn-close_active.svg) no-repeat center center;
       }
    }
 
-   .btnUpload{
+   .btnUpload {
       display: inline-flex;
-      background: #FF868E;
-      border-radius: 10px; 
+      background: #ff868e;
+      border-radius: 10px;
       justify-content: center;
       align-items: center;
       padding: 12px 30px;
-      span{
-         font-family: 'Jost';
+      span {
+         font-family: "Jost";
          font-style: normal;
          font-weight: 500;
          font-size: 12px;
@@ -150,60 +149,59 @@
          text-align: center;
          letter-spacing: 2px;
 
-         color: #FFFFFF;
+         color: #ffffff;
       }
    }
 
-   .result{
+   .result {
       width: 640px;
       height: 60px;
       padding-left: 50px;
-      background: #FFFFFF;
+      background: #ffffff;
       border-radius: 10px;
       display: flex;
       // justify-content: center;
       align-items: center;
-      span{
+      span {
          font-weight: 400;
          font-size: 16px;
          line-height: 24px;
-         color: #8C8C8C;
+         color: #8c8c8c;
       }
    }
 
-   .result_success{
-      background:#FFFFFF url(../../../../assets/icons/upload-page/success.svg) no-repeat center left 20px;
+   .result_success {
+      background: #ffffff url(../../../../assets/icons/upload-page/success.svg) no-repeat center left 20px;
    }
 
-   .result_failure{
-      background:#FFFFFF url(../../../../assets/icons/upload-page/failure.svg) no-repeat center left 20px;
+   .result_failure {
+      background: #ffffff url(../../../../assets/icons/upload-page/failure.svg) no-repeat center left 20px;
    }
 }
 
-
-.UploadingPage.black{
+.UploadingPage.black {
    background: #282828;
-   h2{
-      color: #FFFFFF;
+   h2 {
+      color: #ffffff;
    }
-   .imageWrapper{
+   .imageWrapper {
       background: rgba(255, 255, 255, 0.05) url(../../../../assets/icons/upload-page/img.png) no-repeat center center;
 
       border: 2px dashed rgba(255, 134, 142, 0.2);
-      span{
-         color: #FFFFFF;
+      span {
+         color: #ffffff;
       }
    }
 
    .result_success,
-   .result_failure{
+   .result_failure {
       background-color: rgba(255, 255, 255, 0.05);
    }
 
-   .btnClose{
+   .btnClose {
       background-color: rgba(255, 255, 255, 0.05);
-      &:active{
-         background-color: #FF868E;
+      &:active {
+         background-color: #ff868e;
       }
    }
 }

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteFavourite } from '../../../../redux/voting-reducer';
 import { getCurrentPage, getFavList, getIsFetching, getLimit, getTotalCount, getUserActions } from '../../../../redux/favourites-selectors';
 import { Paginator } from '../BreedsPage/BreedsList';
-import favClasses from './FavouritiesPage.module.scss'
 import breedClasses from '../BreedsPage/BreedsPage.module.scss'
 import votingClasses from '../VotingPage/VotingPage.module.scss'
 import { actions, getFavouritesList } from '../../../../redux/favourites-reducer';

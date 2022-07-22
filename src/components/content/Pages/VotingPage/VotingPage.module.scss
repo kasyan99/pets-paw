@@ -1,34 +1,34 @@
-
-.votingPage{
-   border-radius: 20px;
-   height: 100%;
+.votingPage {
+  border-radius: 20px;
+  height: 100%;
   overflow-y: auto;
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
   //  overflow-x: scroll;
   //  overflow-y: hidden;
-  &::-webkit-scrollbar{
-     width: 0 !important;
-     height: 0;
-     display: none !important;
-     background: transparent;}
-   .imagesWrapper{
+  &::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0;
+    display: none !important;
+    background: transparent;
+  }
+  .imagesWrapper {
     height: 360px;
     border-radius: 20px;
     margin-bottom: 51px;
     position: relative;
     margin-bottom: 52px;
-    
-    &>img{
-       position: absolute;
-       top: 0%;
-       left: 0%;
-       width: 100%;
-       height: 100%;
-       object-fit: cover;
-       border-radius: 20px;
+
+    & > img {
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
     }
-    .btnContainer{
+    .btnContainer {
       position: absolute;
       width: 100%;
       height: 80px;
@@ -36,115 +36,113 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      div{
-         width: 248px;
-         outline: 4px solid #fff;
-         background: #FFFFFF;
-         border-radius: 20px;
-         display: grid;
-         grid-template-columns: 1fr 1fr 1fr;
-         column-gap: 4px;
+      div {
+        width: 248px;
+        outline: 4px solid #fff;
+        background: #ffffff;
+        border-radius: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 4px;
         height: 100%;
         overflow: hidden;
-        button{
+        button {
           box-sizing: border-box;
           display: inline-block;
           font-size: 0;
           height: 100%;
-          &:first-of-type{
-            background: #97EAB9 url(../../../../assets/icons/voting-page/like.svg) no-repeat center center;
+          &:first-of-type {
+            background: #97eab9 url(../../../../assets/icons/voting-page/like.svg) no-repeat center center;
           }
-          &:nth-of-type(2){
-            background: #FF868E url(../../../../assets/icons/voting-page/favourite.svg) no-repeat center center;
+          &:nth-of-type(2) {
+            background: #ff868e url(../../../../assets/icons/voting-page/favourite.svg) no-repeat center center;
           }
-          &:last-of-type{
-            background: #FFD280 url(../../../../assets/icons/voting-page/dislike.svg) no-repeat center center;
+          &:last-of-type {
+            background: #ffd280 url(../../../../assets/icons/voting-page/dislike.svg) no-repeat center center;
           }
         }
       }
-   }
+    }
   }
   @media (max-width: 550px) {
-    .imagesWrapper{
+    .imagesWrapper {
       height: 166px;
-      .btnContainer{
+      .btnContainer {
         height: 60px;
         bottom: -30px;
 
-        div{
+        div {
           column-gap: 3px;
           width: 186px;
-        border-radius: 10px;
+          border-radius: 10px;
 
-          button{
+          button {
             &:first-of-type,
             &:nth-of-type(2),
-            &:last-of-type{
+            &:last-of-type {
               background-size: 22.5px;
             }
           }
         }
       }
     }
-    
-    }
-  
+  }
 }
 
-.actionsWrapper{
-  .action{
+.actionsWrapper {
+  .action {
     height: 60px;
     border-radius: 10px;
-    background: #F8F8F7;
+    background: #f8f8f7;
     display: flex;
     align-items: center;
     padding: 10px;
     margin-bottom: 10px;
-    .time{
+    .time {
       // width: 61px;
       // height: 30px;
       padding: 3px 10px;
       border-radius: 5px;
       background: #fff;
       margin-right: 20px;
-      span{
-        font-family: 'Jost';
+      span {
+        font-family: "Jost";
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
         line-height: 24px;
-        color: #1D1D1D;
+        color: #1d1d1d;
       }
     }
-    .text{
-      font-family: 'Jost';
+    .text {
+      font-family: "Jost";
       font-style: normal;
       font-weight: 400;
       font-size: 16px;
       line-height: 24px;
-      color: #8C8C8C;
-      span{
-        color: #1D1D1D;
+      color: #8c8c8c;
+      span {
+        color: #1d1d1d;
         font-weight: 500;
       }
     }
   }
-  .action_Likes{
-    background: #F8F8F7 url(../../../../assets/icons/voting-page/action_like.svg) no-repeat top 20px right 20px;
+  .action_Likes {
+    background: #f8f8f7 url(../../../../assets/icons/voting-page/action_like.svg) no-repeat top 20px right 20px;
   }
-  .action_Favourites{
-    background: #F8F8F7 url(../../../../assets/icons/voting-page/action_fav.svg) no-repeat top 20px right 20px;
+  .action_Favourites {
+    background: #f8f8f7 url(../../../../assets/icons/voting-page/action_fav.svg) no-repeat top 20px right 20px;
   }
-  .action_Dislikes{
-    background: #F8F8F7 url(../../../../assets/icons/voting-page/action_dislike.svg) no-repeat top 20px right 20px;
+  .action_Dislikes {
+    background: #f8f8f7 url(../../../../assets/icons/voting-page/action_dislike.svg) no-repeat top 20px right 20px;
   }
-  @media (max-width: 550px){
-    .action{
+  @media (max-width: 550px) {
+    .action {
       height: 118px;
       padding: 15px;
       padding-top: 55px;
       position: relative;
-      .time{
+      .time {
         position: absolute;
         top: 15px;
         left: 15px;
@@ -155,36 +153,39 @@
 
 //BLACK THEME -----------------------------
 $bg-black: rgba(255, 255, 255, 0.05);
-.votingPage.black{
-  .btnContainer{
-    div{
+.votingPage.black {
+  .btnContainer {
+    div {
       outline: $bg-black;
     }
   }
 }
 
-.actionsWrapper.black{
-  .action{
+.actionsWrapper.black {
+  .action {
     background: $bg-black;
-    .time{
-      background: #1D1D1D;
-      span{
-        color: #FFF;
+    .time {
+      background: #1d1d1d;
+      span {
+        color: #fff;
       }
     }
-    .text{
-      span{
-        color: #FFF;
+    .text {
+      span {
+        color: #fff;
       }
+    }
   }
-}
-.action_Likes{
-  background: rgba(255, 255, 255, 0.05) url(../../../../assets/icons/voting-page/action_like.svg) no-repeat top 20px right 20px;
-}
-.action_Favourites{
-  background: rgba(255, 255, 255, 0.05) url(../../../../assets/icons/voting-page/action_fav.svg) no-repeat top 20px right 20px;
-}
-.action_Dislikes{
-  background: rgba(255, 255, 255, 0.05) url(../../../../assets/icons/voting-page/action_dislike.svg) no-repeat top 20px right 20px;
-}
+  .action_Likes {
+    background: rgba(255, 255, 255, 0.05) url(../../../../assets/icons/voting-page/action_like.svg) no-repeat top 20px
+      right 20px;
+  }
+  .action_Favourites {
+    background: rgba(255, 255, 255, 0.05) url(../../../../assets/icons/voting-page/action_fav.svg) no-repeat top 20px
+      right 20px;
+  }
+  .action_Dislikes {
+    background: rgba(255, 255, 255, 0.05) url(../../../../assets/icons/voting-page/action_dislike.svg) no-repeat top
+      20px right 20px;
+  }
 }

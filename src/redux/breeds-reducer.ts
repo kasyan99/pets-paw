@@ -1,10 +1,10 @@
 import { Dispatch } from "react"
 import { breedsAPI } from "../api/breeds-api"
 import { BreedsFilterFormType } from "../components/content/Pages/BreedsPage/BreedsFilterForm"
-import store, { BaseThunkType, InferActionsTypes } from "./redux-store"
+import { BaseThunkType, InferActionsTypes } from "./redux-store"
 
 const SET_BREEDS_LIST = 'pets-paw/breeds/SET-BREEDS-LIST'
-const SET_TOTAL_BREEDS_LIST = 'pets-paw/breeds/SET-TOTAL-BREEDS-LIST'
+// const SET_TOTAL_BREEDS_LIST = 'pets-paw/breeds/SET-TOTAL-BREEDS-LIST'
 const SET_CURRENT_PAGE = 'pets-paw/breeds/SET-CURRENT-PAGE'
 const SET_USERS_COUNT = 'pets-paw/breeds/SET-USERS-COUNT'
 const SET_LIMIT_ITEMS = 'pets-paw/breeds/SET-LIMIT-ITEMS'
@@ -16,18 +16,6 @@ const SET_INFO_PHOTOS = 'pets-paw/breeds/SET-INFO-PHOTOS'
 const SET_INFO_PHOTO_NUMBER = 'pets-paw/breeds/SET-INFO-PHOTO_NUMBER'
 const SET_BREEDS_NUMBERS_BY_ID = 'pets-paw/breeds/SET-BREEDS-NUMBERS-BY-ID'
 
-// export type InitialStateType = {
-//    breedsList: Array<Object>
-//    usersCount: number
-//    currentPage: number
-//    filter: {
-//       limitItems: number
-//       filterByBreed: string
-//    },
-//    order: 'ASC' | 'DESC',
-//    breedsNamesList: Object
-//    isFetching: boolean
-// }
 export type BreedsFilterType = {
    limitItems: number
    filterByBreed: string
