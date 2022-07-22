@@ -9,16 +9,42 @@
   margin-bottom: 20px;
   form{
     display: grid;
-    grid-template-columns: 290px 290px;
+    grid-template-columns: minmax(150px,290px) minmax(150px,290px);
     grid-template-rows: 1fr 1fr;
     column-gap: 20px;
     row-gap: 28px;
   }
+
+  @media (max-width:640px) {
+    height: 332px;
+    form{
+      grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+  }
+  @media (max-width:380px) {
+    padding: 10px;
+    padding-top: 28px;
+
+    height: 332px;
+    form{
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr 1fr 90px;
+      .update{
+        &:active{
+          outline: 2px solid #FBE0DC;
+        }
+      }
+      
+    }
+  }
+  
 }
 
 .fieldWrapper{
   width: 100%;
   position: relative;
+  height: 40px;
  .selectField{
     padding: 0 10px;
     width: 100%;
@@ -73,6 +99,19 @@
     display: grid;
     grid-template-columns: 1fr 40px;
     column-gap: 10px;
+  }
+
+  @media (max-width:380px) {
+    &:last-child{
+      display: block;
+      // grid-template-columns: 1fr;
+      // grid-template-rows: 40px 40px;
+    }
+    .update{
+      width: 100%;
+      margin-top: 10px;
+      display: block;
+    }
   }
 }
 

@@ -8,6 +8,95 @@
 
    display: flex;
    justify-content: center;
+
+   @media (max-width:1230px) {
+      display: none;
+      flex: 0 0 1;
+   }
+}
+
+.menuPageOnHome{
+   @media (max-width:1230px) {
+      display: inline-block;
+      margin: 0 auto;
+   }
+   @media (max-width:540px) {
+      .menuBody{
+         width: 300px;
+      }
+      .menu{
+   
+         display: block;
+         div{
+            &:last-child{
+               width: 100%;
+               margin-bottom: 10px;
+            a{
+               width: 100%;
+            }
+            }
+            
+         }
+      }
+      .item{
+         display: block;
+         div{
+            &:first-of-type{
+               display: none;
+            }
+         }
+      }
+   }
+}
+
+.coverMenu{
+   background-color: #F8F8F7;
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   position: fixed;
+   left: 0;
+   top: 0;
+   z-index: 100;
+   .logo{
+      display: none;
+   }
+   .menuBody{
+      h2,p{
+         display: none;
+      }
+      .themeBtn{
+         margin-top: 30px;
+         left: 25px;
+      }
+   }
+   @media (max-width:540px) {
+      .menuBody{
+         width: 300px;
+      }
+      .menu{
+   
+         display: block;
+         div{
+            &:last-child{
+               width: 100%;
+               margin-bottom: 10px;
+            a{
+               width: 100%;
+            }
+            }
+            
+         }
+      }
+      .item{
+         display: block;
+         div{
+            &:first-of-type{
+               display: none;
+            }
+         }
+      }
+   }
 }
 
 .menuBody{
@@ -84,6 +173,33 @@
          top: 0px;
       }
    }
+
+   .closeMenuBtn{
+      display: none;
+      
+   }
+}
+
+.coverMenu{
+   .closeMenuBtn{
+      @media (max-width: 1230px) {
+         display: inline-block;
+         position: absolute;
+         width: 60px;
+         height: 60px;
+
+         background: #FFFFFF url(../../assets/icons/cross.svg) no-repeat center center;
+         border-radius: 20px;
+         font-size: 0;
+         top: 30px;
+         right:-140px;
+   }
+   @media (max-width:800px) {
+      right:0px;
+
+   }
+   }
+
 }
 
 .menu{
@@ -185,4 +301,8 @@ $bg-black: rgba(255, 255, 255, 0.1);
    }
 
 }
+}
+
+.coverMenu.black{
+   background-color: #1D1D1D;
 }

@@ -24,12 +24,18 @@ const Content: React.FC = () => {
    const location = useLocation()
    const isIploading = useSelector(getIsUploading)
    const isBlack = useSelector(getIsBlack)
+
    return <div className={`${classes.content}`}>
       {isIploading &&
          <UploadingPage />}
       <>
          <SearchForm />
-         <div className={`${classes.page} ${isBlack && classes.black} ${location.pathname === '/voting' && classes.pageOnVoting}`}>
+         <div className={`${classes.page} 
+         ${isBlack && classes.black} 
+         ${location.pathname === '/voting' && classes.pageOnVoting} 
+         ${location.pathname.split('/')[1] === 'breeds' && classes.onBreedsPage}
+         ${location.pathname.split('/')[1] === 'gallery' && classes.onGalleryPage}
+         ${location.pathname.split('/')[2] === 'info' && classes.onInfo}`}>
             <Header />
             <div className={classes.wrapper}>
                <Suspense fallback={<Preloader />}>

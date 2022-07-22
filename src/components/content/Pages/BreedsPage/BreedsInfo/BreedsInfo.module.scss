@@ -9,6 +9,12 @@
       margin-bottom: 51px;
       position: relative;
       // overflow: hidden;
+      @media (max-width:640px) {
+         height: 260px;
+      }
+      @media (max-width:400px) {
+         height: 166px;
+      }
       &>img{
          position: absolute;
          top: 0%;
@@ -17,6 +23,7 @@
          height: 100%;
          object-fit: cover;
          border-radius: 20px;
+         
       }
       .btnContainer{
          position: absolute;
@@ -58,6 +65,7 @@
       height: 204px;
       border-radius: 20px;
       position: relative;
+      
       h3{
          position: absolute;
          top: -31px;
@@ -77,6 +85,13 @@
             font-size: 36px;
             color: #1D1D1D;
          }
+
+         @media (max-width:400px) {
+            span{
+               font-size: 20px;
+               padding: 5px 20px;
+            }
+         }
       }
 
       p{
@@ -84,6 +99,11 @@
          line-height: 29px;
          color: #8C8C8C;
          margin: 26px;
+         text-align: center;
+         @media (max-width:400px) {
+               font-size: 16px;   
+               margin-bottom: 20px;         
+         }
       }
 
       .info{
@@ -112,7 +132,18 @@
                }
             }
          }
-         
+      }
+      @media (max-width:550px) {
+         height: 300px;
+         .info{
+            margin-left: 20px;
+            flex-wrap: wrap;
+            dl{
+               &:first-child{
+                  margin-bottom: 10px;
+               }
+            }
+         }
       }
    }
 }

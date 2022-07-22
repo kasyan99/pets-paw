@@ -40,5 +40,15 @@ input, button{
   width: 1420px;
   padding:30px;
   display: flex;
+  justify-content: center;
   max-height: 900px;
+}
+
+@media (max-width:1230px) {
+  .wrapper{
+    flex: 680px 1 1;
+  }
+}
+@media (max-width:740px) {
+  
 }

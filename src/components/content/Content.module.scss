@@ -1,16 +1,70 @@
 .content{
-   flex: 50% 0 1;
+   flex: 50% 1 0;
    position: relative;
+   overflow-y: auto;
+   -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+  //  overflow-x: scroll;
+  //  overflow-y: hidden;
+  &::-webkit-scrollbar{
+     width: 0 !important;
+     height: 0;
+     display: none !important;
+     background: transparent;}
+   @media (max-width:1230px) {
+      flex: 680px 0 1;
+   }
+   @media (max-width:740px) {
+      flex: 680px 1 1;
+   }
+}
+
+.contentOnHome{
+   @media (max-width:1230px) {
+      display: none;
+   }
 }
 
 .page{
+   width: 680px;
    height: 770px;
    display: grid;
 
    grid-template-rows: 60px 1fr;
+   @media (max-width:740px) {
+      width: 100% ;
+   }
    background-color: #fff;
    border-radius: 20px;
    padding: 20px;
+
+   // @media (max-height:940px) {
+   //    height: 730px;
+   // }
+}
+
+.page.onBreedsPage{
+   @media (max-width:740px) {
+      grid-template-rows: 120px 1fr;
+   }
+   @media (max-width:541px) {
+      grid-template-rows: 160px 1fr;
+   }
+}
+
+.page.onGalleryPage{
+   @media (max-width:460px) {
+      grid-template-rows: 100px 1fr;
+      grid-template-columns: 1fr;
+   }
+}
+.page.onInfo{
+   @media (max-width:740px) {
+      grid-template-rows: 60px 1fr;
+   }
+   @media (max-width:400px) {
+      height: 620px;       
+}
 }
 
 .page.black{
@@ -19,6 +73,13 @@
 
 .pageOnVoting{
    height: 782px;
+}
+
+@media (max-height: 900px){
+   .page{
+   height: 670px;
+
+   }
 }
 
 .wrapper {

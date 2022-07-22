@@ -1,9 +1,11 @@
 import { BaseThunkType, InferActionsTypes } from "./redux-store"
 
 const TOGGLE_IS_BLACK = 'pets-paw/theme/TOGGLE-IS-BLACK'
+const TOGGLE_IS_MENU = 'pets-paw/theme/TOGGLE-IS-MENU'
 
 const initialState = {
-   isBlack: false
+   isBlack: false,
+   isMenu: false
 }
 
 export type InitialStateType = typeof initialState
@@ -18,6 +20,11 @@ const themeReducer = (state = initialState, action: ActionsType): InitialStateTy
             ...state,
             isBlack: !state.isBlack
          }
+      case TOGGLE_IS_MENU:
+         return {
+            ...state,
+            isMenu: !state.isMenu
+         }
       default:
          return state
    }
@@ -25,6 +32,7 @@ const themeReducer = (state = initialState, action: ActionsType): InitialStateTy
 
 export const actions = {
    toggleIsBlack: () => ({ type: TOGGLE_IS_BLACK } as const),
+   toggleIsMenu: () => ({ type: TOGGLE_IS_MENU } as const),
 }
 
 export default themeReducer

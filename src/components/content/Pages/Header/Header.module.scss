@@ -3,12 +3,24 @@ $element-height: 40px;
 .header{
    display: flex;
    justify-content: space-between;
+   @media (max-width:740px){
+    flex-wrap: wrap;
+   }
+}
+
+.header.onInfo{
+  @media (max-width:740px){
+    flex-wrap: nowrap;
+  }
 }
 
 .wrapper{
    display: flex;
    justify-content: start;
-   margin-bottom: 20px;
+  //  margin-bottom: 20px;
+  @media (max-width:60px){
+    height: 40px;
+   }
 }
 
 .idNumberWrapper{
@@ -90,7 +102,7 @@ $element-height: 40px;
    align-items: center;
    justify-content: center;
 
-  //  margin-right: 10px;
+   margin-right: 10px;
    box-sizing: border-box;
  }
 
@@ -106,16 +118,20 @@ $element-height: 40px;
 
  .upload{
    width: 143px;
+   @media (max-width:460px){
+
+      width: 100%;
+    
+   }
    height: $element-height;
 
    background: #FBE0DC;
    border-radius: 10px;
    display: inline-flex;
-   justify-content: flex-end;
+   justify-content: center;
    align-items: center;
    position: relative;
    padding: 0;
-   padding-right: 30px;
    
    cursor: pointer;
    button{
@@ -133,16 +149,23 @@ $element-height: 40px;
       border: none;
       padding: 0;
    }
-
-   &::before{
-      content: '';
-      display: inline-block;
-      position: absolute;
+   span{
+    display: inline-block;
       width: 16px;
       height: 16px;
-      left: 30px;
       background: url(../../../../assets/icons/gallery-page/upload.svg) no-repeat center center;
+      margin-right: 10px;
    }
+
+  //  &::before{
+  //     content: '';
+  //     display: inline-block;
+  //     position: absolute;
+  //     width: 16px;
+  //     height: 16px;
+  //     left: 30px;
+  //     background: url(../../../../assets/icons/gallery-page/upload.svg) no-repeat center center;
+  //  }
 
    &:active{
     background: #FF868E;
@@ -165,3 +188,4 @@ $element-height: 40px;
 //  .searchResults{
 //   flex: 100% 1 1;
 //  }
+

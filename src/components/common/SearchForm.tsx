@@ -3,7 +3,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getBreadsByName } from '../../redux/search-reducer';
-import { getIsBlack } from '../../redux/theme-selectors';
+import { actions } from '../../redux/theme-reducer';
+import { getIsBlack, getIsMenu } from '../../redux/theme-selectors';
 import classes from './SearchForm.module.scss'
 
 
@@ -28,6 +29,11 @@ const SearchForm: React.FC = () => {
    const isBlack = useSelector(getIsBlack)
 
    const buttons = ['likes', 'favourities', 'dislikes']
+
+   const openMenu = () => {
+      dispatch(actions.toggleIsMenu())
+   }
+
    return <div className={`${classes.searchForm} ${isBlack && classes.black}`}>
       <Formik
          enableReinitialize
@@ -35,6 +41,7 @@ const SearchForm: React.FC = () => {
          onSubmit={onSubmit}
       >{(props) => (
          <form onSubmit={props.handleSubmit}>
+            <div className={classes.menuBtn} onClick={openMenu}>Menu</div>
             <div className={classes.inputWrap}>
                <Field name="breedName" placeholder='Search for breeds by name' maxLength='30' autoComplete="off" />
                <button type='submit' className={classes.searchBtn}>search</button>

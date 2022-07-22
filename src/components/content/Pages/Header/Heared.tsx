@@ -42,8 +42,9 @@ const Header: React.FC = () => {
    }
 
    const isBlack = useSelector(getIsBlack)
+   console.log(location.pathname.split('/')[3]);
 
-   return <div className={classes.header}>
+   return <div className={`${classes.header} ${location.pathname.split('/')[2] === 'info' && classes.onInfo}`}>
       <div className={classes.wrapper}>
          <button type='button' className={`${classes.element} ${classes.btn} ${classes.btn_back} ${isBlack && classes.black}`} onClick={returnBack}>back</button>
          <div className={`${classes.element} ${classes.pageName} ${pathnames[1] === 'info' ? `${classes.pageNameOnInfo} ${isBlack && classes.black}` : ''}`}>
@@ -52,7 +53,7 @@ const Header: React.FC = () => {
       </div>
       {useRoutes([
          { path: "/breeds/*", element: <>{pathnames[1] === 'info' ? <div className={classes.idNumberWrapper}><div className={classes.idNumber}><span>{id}</span></div></div> : <BreedsFilterForm />}</> },
-         { path: "/gallery/*", element: <div className={`${classes.upload} ${isBlack && classes.black}`}><button onClick={openModal}>UPLOAD</button></div> },
+         { path: "/gallery/*", element: <div className={`${classes.upload} ${isBlack && classes.black}`}><span></span><button onClick={openModal}>UPLOAD</button></div> },
       ])}
    </div>
 }

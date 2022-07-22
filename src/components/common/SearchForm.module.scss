@@ -44,8 +44,9 @@
       &:focus{
          outline: 2px solid #FF868E;
       }
+      
    }
-
+   
    button{
       font-size: 0px;
       width: 60px;
@@ -82,7 +83,62 @@
    button.favourities_active{
       background: #FF868E url(../../assets/icons/search-form/favourites_active.svg) no-repeat center center;
    }
-   
+
+   .menuBtn{
+      display: none;
+   }
+   @media (max-width:1230px) {
+      form{
+         display: grid;
+         gap: 10px;
+         grid-template-columns: 60px 1fr repeat(3, 60px);
+      }
+      .menuBtn{
+         display: inline-block;
+         font-size: 0px;
+         width: 60px;
+         background: #fff url(../../assets/icons/search-form/burger.svg) no-repeat center center;
+         border-radius: 20px;
+         &:active{
+            outline: 2px solid #FF868E;
+            }
+      }
+   }
+   @media (max-width:680px) {
+      height: 130px;
+      form{
+         display: grid;
+         gap: 10px;
+         grid-template-columns: 1fr repeat(3, 60px);
+         grid-template-rows: 60px 60px;
+      }
+      
+
+      button{
+         font-size: 0px;
+         width: 60px;
+         cursor: pointer;
+         &:first-of-type{
+            order: 2;
+         }
+         &:nth-of-type(2){
+            order: 3;
+
+         }
+         &:last-of-type{
+            order: 4;
+
+         }
+      }
+      .menuBtn{
+         order: 1;
+
+      }
+      .inputWrap{
+         order: 5;
+         grid-column: 4 span;
+      }
+   }
 }
 
 .searchForm.black{

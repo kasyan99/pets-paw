@@ -13,6 +13,16 @@
 
       top:-70px;
       right: -30px;
+      @media (max-width: 1400px) {
+         width: 110%;
+      }
+   }
+   
+}
+
+.homePage{
+   @media (max-width:1230px) {
+      display: none;
    }
 }
 

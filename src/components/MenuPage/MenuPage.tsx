@@ -7,7 +7,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../redux/location-reducer';
 import { getCurrentLocation, getIsBack } from '../../redux/location-selectors';
-import { getIsBlack } from '../../redux/theme-selectors';
+import { getIsBlack, getIsMenu } from '../../redux/theme-selectors';
 import { actions as actionsTheme } from '../../redux/theme-reducer';
 
 const MenuPage: React.FC = () => {
@@ -30,16 +30,24 @@ const MenuPage: React.FC = () => {
    }, [location.pathname])
 
    const isBlack = useSelector(getIsBlack)
+   const isMenu = useSelector(getIsMenu)
+
    const changeTheme = () => {
       dispatch(actionsTheme.toggleIsBlack())
    }
-   return <div className={`${classes.menuPage} ${isBlack && classes.black}`}>
+
+   const closeMenu = () => {
+      dispatch(actionsTheme.toggleIsMenu())
+   }
+
+   return <div className={`${classes.menuPage} ${isBlack && classes.black} ${location.pathname === '/' && classes.menuPageOnHome} ${isMenu && classes.coverMenu}`}>
       <div className={classes.menuBody}>
          <h2>Hi intern!</h2>
          <Link to='/' className={classes.logo}>
             <img src={isBlack ? logoBlack : logo} alt="Logo PetsPaw" />
          </Link>
          <div className={classes.themeBtn}><button onClick={changeTheme}>Change theme</button></div>
+         <button className={classes.closeMenuBtn} onClick={closeMenu}>Close menu</button>
          <p>Welcome to MI 2022 Front-end test</p>
          <p>Lets start using The Cat API</p>
          <Menu />
