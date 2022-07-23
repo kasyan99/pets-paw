@@ -83,7 +83,12 @@
             font-size: 36px;
             color: #1d1d1d;
          }
-
+         @media (max-width: 640px) {
+            span {
+               font-size: 26px;
+               padding: 5px 20px;
+            }
+         }
          @media (max-width: 400px) {
             span {
                font-size: 20px;
@@ -98,6 +103,10 @@
          color: #8c8c8c;
          margin: 26px;
          text-align: center;
+         @media (max-width: 640px) {
+            font-size: 16px;
+            margin-bottom: 20px;
+         }
          @media (max-width: 400px) {
             font-size: 16px;
             margin-bottom: 20px;

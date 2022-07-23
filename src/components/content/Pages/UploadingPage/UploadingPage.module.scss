@@ -17,7 +17,7 @@
    border-radius: 20px;
    height: 100%;
    width: 100%;
-
+   
    background-color: #f8f8f7;
    position: absolute;
    top: 0px;
@@ -256,14 +256,24 @@
    }
 }
 
+.cover.black {
+   @media (max-width: 540px)  {
+      background-color: #282828;
+   }
+   @media (max-height: 830px)  {
+      background-color: #282828;
+   }
+}
+
 .UploadingPage.black {
+   
    background: #282828;
    h2 {
       color: #ffffff;
    }
    .imageWrapper {
       background: rgba(255, 255, 255, 0.05) url(../../../../assets/icons/upload-page/img.png) no-repeat center center;
-
+      background-size: auto 64%;
       border: 2px dashed rgba(255, 134, 142, 0.2);
       span {
          color: #ffffff;

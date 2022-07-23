@@ -18,7 +18,7 @@ const App: React.FC = () => {
   const isBlack = useSelector(getIsBlack)
   return (
     <div className={`App ${isBlack && 'black'}`}>
-      {isUploading && <div className={uploadingClasses.cover}></div>}
+      {isUploading && <div className={`${uploadingClasses.cover} ${isBlack && uploadingClasses.black}`}></div>}
       {/* <div className="container"> */}
       <div className="wrapper">
         <MenuPage />
