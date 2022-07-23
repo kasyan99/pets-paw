@@ -4,11 +4,14 @@
    z-index: 80;
    background: rgba(29, 29, 29, 0.6);
    position: absolute;
-   @media (max-width: 540px) {
-   background-color: #f8f8f7;
-
+   @media (max-width: 540px)  {
+      background-color: #f8f8f7;
+   }
+   @media (max-height: 830px)  {
+      background-color: #f8f8f7;
    }
 }
+
 
 .UploadingPage {
    border-radius: 20px;
@@ -48,7 +51,7 @@
          margin: 20px 0px;
       }
    }
-   
+
    .imageWrapper {
       margin-top: 40px;
       border: 2px dashed #fbe0dc;
@@ -59,7 +62,7 @@
          height: 167.5px;
       }
       background: #ffffff url(../../../../assets/icons/upload-page/img_light.png) no-repeat center center;
-      background-size:  auto 64%;
+      background-size: auto 64%;
 
       display: flex;
       justify-content: center;
@@ -94,10 +97,7 @@
          font-size: 0;
          opacity: 0;
       }
-      
    }
-
-  
 
    .failure {
       background-color: #fbe0dc;
@@ -174,7 +174,6 @@
       }
    }
    @media (max-width: 540px) {
-
       .imageWrapper {
          margin-top: 20px;
       }
@@ -183,7 +182,7 @@
       h2 {
          font-size: 26px;
       }
-      .btnUpload{
+      .btnUpload {
          width: 100%;
       }
       .btnClose {
@@ -192,14 +191,54 @@
          top: 20px;
          width: 60px;
          height: 60px;
-   
+
          background: #ffffff;
          border-radius: 20px;
          display: inline-block;
          background: #fff url(../../../../assets/icons/upload-page/btn-close.svg) no-repeat center center;
          background-size: 25.4px;
          font-size: 0;
-   
+
+         &:active {
+            background: #ff868e url(../../../../assets/icons/upload-page/btn-close_active.svg) no-repeat center center;
+         }
+      }
+   }
+   @media (max-height: 830px) {
+      overflow-y: auto;
+      -ms-overflow-style: none;
+      overflow: -moz-scrollbars-none;
+      &::-webkit-scrollbar {
+         width: 0 !important;
+         height: 0;
+         display: none !important;
+         background: transparent;
+      }
+      .imageWrapper {
+         margin-top: 20px;
+      }
+      position: fixed;
+      border-radius: none;
+      h2 {
+         font-size: 26px;
+      }
+      .btnUpload {
+         width: 100%;
+      }
+      .btnClose {
+         position: absolute;
+         right: 20px;
+         top: 20px;
+         width: 60px;
+         height: 60px;
+
+         background: #ffffff;
+         border-radius: 20px;
+         display: inline-block;
+         background: #fff url(../../../../assets/icons/upload-page/btn-close.svg) no-repeat center center;
+         background-size: 25.4px;
+         font-size: 0;
+
          &:active {
             background: #ff868e url(../../../../assets/icons/upload-page/btn-close_active.svg) no-repeat center center;
          }
