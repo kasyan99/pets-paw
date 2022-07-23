@@ -133,11 +133,13 @@ export const setVote = (id: string, value: 0 | 1): ThunkType => async (dispatch)
 export const addToFavourite = (breed_id: string): ThunkType => async (dispatch) => {
    await votingAPI.addToFavourite(breed_id)
    dispatch(actions.addFavourites(breed_id))
-   dispatch(getFavourites())
+   dispatch(getFavourites(null))
 
 }
 
 export const deleteFavourite = (fav_id: string, breed_id: string): ThunkType => async (dispatch) => {
+   console.log('remove');
+
    await votingAPI.deleteFavourites(fav_id)
    dispatch(actions.removeFavourites(breed_id))
 }
@@ -146,11 +148,13 @@ export const deleteFavourite = (fav_id: string, breed_id: string): ThunkType => 
 //    const data = await votingAPI.getVotes()
 // }
 
-export const getFavourites = (): ThunkType => async (dispatch) => {
-   const data = (await votingAPI.getFavourites()).data
+export const getFavourites = (limit: number | null): ThunkType => async (dispatch) => {
+   const data = (await votingAPI.getFavourites(limit)).data
 
 
    const imageIdList = data.map((item: any) => item.image_id)
+   console.log('setFavourites', imageIdList);
+
    dispatch(actions.setFavourites(imageIdList))
 
    const favByImageId = data.map((item: any) => ({ [item.image_id]: item.id }))

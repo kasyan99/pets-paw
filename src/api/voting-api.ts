@@ -53,8 +53,9 @@ export const votingAPI = {
       return response
    },
 
-   async getFavourites(limit = 5, page = 0) {
-      const response = await instance.get(`favourites?sub_id=kas_99&limit=${limit}&page=${page}`, {
+   async getFavourites(limit = 5 as number | null, page = 0) {
+      const qLimit = limit ? `&limit=${limit}` : ''
+      const response = await instance.get(`favourites?sub_id=kas_99${qLimit}&page=${page}`, {
 
          headers: {
             'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d',

@@ -79,10 +79,11 @@ const BreedsList: React.FC<Props> = ({ breedsList, getItemsCount, photosFromGall
 
    const favByImageId = useSelector(getFavByImageId)
    useEffect(() => {
-      dispatch(getFavourites())
+      dispatch(getFavourites(null))
    }, [])
 
 
+   console.log('favourites', favourites);
 
    const galleryPhotos = () => {
 
@@ -95,8 +96,10 @@ const BreedsList: React.FC<Props> = ({ breedsList, getItemsCount, photosFromGall
                <div>
                   {isGallery
                      ? favourites.includes(breed.id)
-                        ? <button onClick={() => removeFavourite(fav_id, breed.id)} className={classes.remove}>remove to favourite</button>
-                        : <button onClick={() => addFavourite(breed.id)} className={classes.add}>add to favourite</button>
+                        ? <button onClick={() => {
+                           removeFavourite(fav_id, breed.id); console.log('fav_id', fav_id, 'breed.id', breed.id);
+                        }} className={classes.remove}>remove to favourite</button>
+                        : <button onClick={() => { addFavourite(breed.id); console.log('fav_id', fav_id, 'breed.id', breed.id) }} className={classes.add}>add to favourite</button>
                      : <span>{breed.id}</span>}
                </div>
             </div>
