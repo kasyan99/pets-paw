@@ -5,23 +5,33 @@ export const breedsAPI = {
    async getBreads(limit: number | null, page: number | null, order = 'ASC' as string | null) {
       const qPage = page || page === 0 ? `&page=${page}` : ''
       const qOrder = order === 'DESC' ? `&order=${order}` : ''
-      const response = await instance.get(`breeds?limit=${limit}${qPage}${qOrder}`, {
-         headers: {
-            'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d'
-         }
-      })
+      try {
+         const response = await instance.get(`breeds?limit=${limit}${qPage}${qOrder}`, {
+            headers: {
+               'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d'
+            }
+         })
 
-      return response.data
+         return response.data
+      } catch (error) {
+         return []
+      }
+
    },
 
    async getBreadByName(name: string) {
-      const response = await instance.get(`breeds/search?q=${name}`, {
-         headers: {
-            'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d'
-         }
-      })
+      try {
+         const response = await instance.get(`breeds/search?q=${name}`, {
+            headers: {
+               'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d'
+            }
+         })
 
-      return response.data
+         return response.data
+      } catch (error) {
+         return []
+      }
+
    },
 
    async getByBreed(filterByBreed: string, limit = 5) {
@@ -30,6 +40,7 @@ export const breedsAPI = {
             'x-api-key': 'f320d5bf-02ff-4099-9a76-4d3e9cce3e0d'
          }
       })
+      console.log(response.data);
 
       return response.data
    },

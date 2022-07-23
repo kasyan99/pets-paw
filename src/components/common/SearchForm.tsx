@@ -16,7 +16,6 @@ const SearchForm: React.FC = () => {
 
    const onSubmit = (values: { breedName: string }) => {
       navigate(`../search`, { replace: true })
-      console.log('values.breedName', values.breedName);
 
       dispatch(getBreadsByName(values.breedName))
    }

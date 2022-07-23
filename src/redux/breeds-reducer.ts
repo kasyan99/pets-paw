@@ -133,7 +133,6 @@ export const getBreedsListThunk = (values: BreedsFilterFormType, page: number | 
    const { filterByBreed, limitItems } = values
    let response
    if (filterByBreed !== '') {
-      // response = await breedsAPI.getByBreed(filterByBreed)
       const allBreeds = await breedsAPI.getBreads(null, null)
 
       response = allBreeds.filter((item: any) => item.id === filterByBreed)
@@ -142,11 +141,9 @@ export const getBreedsListThunk = (values: BreedsFilterFormType, page: number | 
       response = await breedsAPI.getBreads(limitItems, page, order)
 
       dispatch(actions.setOrder(order))
-      // const breeds = await breedsAPI.getBreads(null, null)
       if (limitItems) {
          dispatch(actions.setLimitItems(limitItems))
       }
-      // await dispatch(actions.setUsersCount(breeds.length))
       if (page || page === 0) {
          dispatch(actions.setCurrentPage(page))
       }
@@ -165,9 +162,7 @@ export const getBreedsListNamesThunk = (): any => async (dispatch: Dispatch<Acti
    breeds.map(((breed: any) => {
       breedsNamesList[breed.id] = breed.name
    }))
-   console.log('breeds', breeds);
 
-   // dispatch(actions.setTotalBreedsList(breeds))
    dispatch(actions.setBreedsNamesList(breedsNamesList))
 }
 
@@ -195,12 +190,12 @@ export const getBreedsNumbersById = (): any => async (dispatch: any) => {
 }
 
 export const getBreedById = (id: string): any => async (dispatch: any) => {
-   dispatch(actions.toggleIsFetching(true))
+   await dispatch(actions.toggleIsFetching(true))
 
    const breedPhotos = await breedsAPI.getByBreed(id)
-   dispatch(actions.setInfoPhotos(breedPhotos))
+   await dispatch(actions.setInfoPhotos(breedPhotos))
 
-   dispatch(actions.toggleIsFetching(false))
+   await dispatch(actions.toggleIsFetching(false))
 
 }
 

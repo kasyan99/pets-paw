@@ -42,7 +42,6 @@ const Header: React.FC = () => {
    }
 
    const isBlack = useSelector(getIsBlack)
-   console.log(location.pathname.split('/')[3]);
 
    return <div className={`${classes.header} ${location.pathname.split('/')[2] === 'info' && classes.onInfo}`}>
       <div className={classes.wrapper}>

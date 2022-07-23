@@ -19,7 +19,7 @@ const initialState = {
    currentPage: 0,
    limit: 5,
    isFetching: false,
-   likesList: {} as any,
+   likesList: [] as any,
    totalImagesCount: 0,
    userActions: [
       // {
