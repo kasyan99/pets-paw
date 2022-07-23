@@ -27,6 +27,7 @@ const App: React.FC = () => {
             { path: "/", element: <HomePage /> },
             { path: "/*", element: <Content /> }
           ])}
+
         </Suspense>
       </div>
       {/* </div> */}

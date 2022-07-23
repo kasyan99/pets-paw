@@ -3,7 +3,7 @@ import Menu from './Menu';
 import classes from './MenuPage.module.scss'
 import logo from '../../assets/Logo.png'
 import logoBlack from '../../assets/Logo_black.png'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../redux/location-reducer';
 import { getCurrentLocation, getIsBack } from '../../redux/location-selectors';
@@ -14,11 +14,22 @@ const MenuPage: React.FC = () => {
 
    const dispatch = useDispatch()
    const location = useLocation()
-
+   const navigate = useNavigate()
    const currentlocation = useSelector(getCurrentLocation)
    const isBack = useSelector(getIsBack)
 
    useEffect(() => {
+
+      const pathList = ['voting', 'breeds', 'gallery', 'search', 'favourities', 'likes', 'dislikes']
+      const isCorrectPath = pathList.map(path => {
+         if (location.pathname.split('/')[1] === path) {
+            return true
+         }
+      })
+      //wrong path protection
+      if (!isCorrectPath.includes(true)) {
+         navigate(`../`, { replace: true })
+      }
       if (!isBack) {
          const newLocation = currentlocation + 1
 

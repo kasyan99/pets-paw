@@ -42,7 +42,7 @@ button {
 
 @media (max-width: 1230px) {
   .wrapper {
-    flex: 680px 1 1;
+    flex: 680px 0 1;
   }
 }
 
