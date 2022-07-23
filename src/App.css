@@ -38,7 +38,17 @@ button {
   display: flex;
   justify-content: center;
   max-height: 900px;
+  /* overflow-y: auto;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none; */
+  
 }
+/* .wrapper::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0;
+  display: none !important;
+  background: transparent;
+} */
 
 @media (max-width: 1230px) {
   .wrapper {
