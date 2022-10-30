@@ -1,25 +1,25 @@
 import { AppStateType } from "./redux-store"
 
 export const getImagesList = (state: AppStateType) => {
-   return state.images.imagesList
+  return state.images.imagesList
 }
 
 export const getCurrentPage = (state: AppStateType) => {
-   return state.images.currentPage
+  return state.images.currentPage
 }
 
 export const getFilter = (state: AppStateType) => {
-   return state.images.filter
+  return state.images.filter
 }
 
 export const getImagesCount = (state: AppStateType) => {
-   return state.images.totalImagesCount
+  return state.images.totalImagesCount
 }
 
 export const getIsFetching = (state: AppStateType) => {
-   return state.images.isFetching
+  return state.images.isFetching
 }
 
-export const getDisFav = (state: AppStateType) => {
-   return state.images.displayedFavourites
-}
+// export const getDisFav = (state: AppStateType) => {
+//    return state.images.displayedFavourites
+// }

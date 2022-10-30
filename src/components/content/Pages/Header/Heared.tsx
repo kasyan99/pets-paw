@@ -1,5 +1,5 @@
 import React from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { useLocation } from "react-router"
 import { useNavigate, useRoutes } from "react-router-dom"
 import { getNumbersById } from "../../../../redux/breeds-selectors"
@@ -9,6 +9,7 @@ import { actions as locationActions } from "../../../../redux/location-reducer"
 import BreedsFilterForm from "../BreedsPage/BreedsFilterForm"
 import classes from './Header.module.scss'
 import { getIsBlack } from "../../../../redux/theme-selectors"
+import { useAppDispatch } from "../../../../hooks/useAppDispatch"
 
 
 const Header: React.FC = () => {
@@ -19,7 +20,7 @@ const Header: React.FC = () => {
 
    const id = breedsNumbersById ? breedsNumbersById[`${pathnames[2]}`] : ''
 
-   const dispatch = useDispatch()
+   const dispatch = useAppDispatch()
 
    const openModal = () => {
       dispatch(actions.toggleIsUploading(true))
@@ -52,7 +53,7 @@ const Header: React.FC = () => {
       </div>
       {useRoutes([
          { path: "/breeds/*", element: <>{pathnames[1] === 'info' ? <div className={classes.idNumberWrapper}><div className={classes.idNumber}><span>{id}</span></div></div> : <BreedsFilterForm />}</> },
-         { path: "/gallery/*", element: <div className={`${classes.upload} ${isBlack && classes.black}`}><span></span><button onClick={openModal}>UPLOAD</button></div> },
+         { path: "/gallery/*", element: <div onClick={openModal} className={`${classes.upload} ${isBlack && classes.black}`}><span></span><button>UPLOAD</button></div> },
       ])}
    </div>
 }

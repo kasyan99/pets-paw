@@ -13,9 +13,9 @@ const notFoundImage = 'https://s5.favim.com/orig/151213/avatar-kot-profil-gav-Fa
 const SearchPage: React.FC = () => {
    const navigate = useNavigate()
 
-   const getBreedId = (e: any) => {
+   const getBreedId = (e: React.MouseEvent<HTMLElement>) => {
 
-      navigate(`../breeds/info/${e.target.id}`, { replace: true })
+      navigate(`../breeds/info/${(e.target as HTMLElement).id}`, { replace: true })
    }
 
    const breedsList = useSelector(getBreedsByname)
@@ -25,7 +25,7 @@ const SearchPage: React.FC = () => {
          return breedsList.map(breed => {
             if (breed.image && breed.image.url) {
                return <div className={classes.grid__item}
-                  key={breed.id} onClick={(e: any) => getBreedId(e)}>
+                  key={breed.id} onClick={(e) => getBreedId(e)}>
 
                   <img src={breed.image.url} alt={breed.alt_names === '' ? breed.name : breed.alt_names} />
                   <div id={breed.id}><span>{breed.name}</span></div>

@@ -1,7 +1,8 @@
 import { Field, Formik } from 'formik';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { getBreadsByName } from '../../redux/search-reducer';
 import { actions } from '../../redux/theme-reducer';
 import { getIsBlack } from '../../redux/theme-selectors';
@@ -12,15 +13,15 @@ const SearchForm: React.FC = () => {
    const location = useLocation()
    const pageName = location.pathname.slice(1)
 
-   const dispatch = useDispatch<any>()
+   const dispatch = useAppDispatch()
 
    const onSubmit = (values: { breedName: string }) => {
       navigate(`../search`, { replace: true })
 
       dispatch(getBreadsByName(values.breedName))
    }
-   const onClick = (e: any) => {
-      const path = e.target.value
+   const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      const path = (e.target as HTMLInputElement).value
       navigate(`../${path}`, { replace: true })
    }
 

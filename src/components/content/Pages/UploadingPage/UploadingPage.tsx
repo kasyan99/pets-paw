@@ -1,5 +1,6 @@
 import React from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
+import { useAppDispatch } from "../../../../hooks/useAppDispatch"
 import { getIsBlack } from "../../../../redux/theme-selectors"
 import { actions, setCurrentFile, uploadImage } from "../../../../redux/uploading-reducer"
 import { getCurrentFile, getFileName, getFilePath, getIsCat, getIsFetching } from "../../../../redux/uploading-selectors"
@@ -7,13 +8,13 @@ import Preloader from "../../../common/Preloader"
 import classes from './UploadingPage.module.scss'
 
 const UploadingPage: React.FC = () => {
-   const dispatch = useDispatch<any>()
+   const dispatch = useAppDispatch()
 
    const closeModal = () => {
       dispatch(actions.toggleIsUploading(false))
    }
 
-   const chooseFile = (e: any) => {
+   const chooseFile = (e: React.ChangeEvent<HTMLInputElement>) => {
       dispatch(setCurrentFile(e.target))
    }
 

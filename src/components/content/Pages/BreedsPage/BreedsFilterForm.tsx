@@ -1,6 +1,7 @@
 import { Field, Formik } from 'formik';
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { actions, getBreedsListNamesThunk, getBreedsListThunk } from '../../../../redux/breeds-reducer';
 import { getBreedsNamesList, getFilter, getOrder } from '../../../../redux/breeds-selectors';
 import { getIsBlack } from '../../../../redux/theme-selectors';
@@ -20,7 +21,7 @@ const BreedsFilterForm: React.FC = () => {
    const submitBtn = document.getElementById('breedsFilterFormSubmitBtn')
    const orderSelect = document.getElementById('breedsFilterFormOrderSelect')
 
-   const dispatch = useDispatch<any>()
+   const dispatch = useAppDispatch()
    const order = useSelector(getOrder)
    const filter = useSelector(getFilter)
 
@@ -43,7 +44,7 @@ const BreedsFilterForm: React.FC = () => {
       clickOnSubmit()
    }
 
-   const breedsNamesList: any = useSelector(getBreedsNamesList)
+   const breedsNamesList: { [key: string]: string } = useSelector(getBreedsNamesList)
    const isBlack = useSelector(getIsBlack)
 
    return <div className={`${classes.breedsFilterForm} ${isBlack && classes.black}`}>
@@ -54,7 +55,7 @@ const BreedsFilterForm: React.FC = () => {
       >{(props) => (
          <form onSubmit={props.handleSubmit}>
             <Field as="select" name="filterByBreed" className={`${classes.element} ${classes.breedsFilter}`}
-               onChange={(e: any) => { props.handleChange(e); clickOnSubmit() }}>
+               onChange={(e: React.ChangeEvent<HTMLImageElement>) => { props.handleChange(e); clickOnSubmit() }}>
                <option value="">All Breeds</option>
                {
                   Object.keys(breedsNamesList).map((key) => {
@@ -64,7 +65,7 @@ const BreedsFilterForm: React.FC = () => {
             </Field>
             <Field component="select" name="limitItems" className={`${classes.element} ${classes.limitFilter}`}
                //if filter was changed -> change values and submit form to get new list of photos
-               onChange={(e: any) => { props.handleChange(e); clickOnSubmit() }}>
+               onChange={(e: React.ChangeEvent<HTMLImageElement>) => { props.handleChange(e); clickOnSubmit() }}>
                <option value={5}>Limit: 5</option>
                <option value={10}>Limit: 10</option>
                <option value={15}>Limit: 15</option>

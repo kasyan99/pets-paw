@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { deleteFavourite } from '../../../../redux/voting-reducer';
 import { getCurrentPage, getFavList, getIsFetching, getLimit, getTotalCount, getUserActions } from '../../../../redux/favourites-selectors';
 import { Paginator } from '../BreedsPage/BreedsList';
@@ -12,9 +12,10 @@ import { addUserActionCreator } from '../../../../utils/usersActionLogsCreator';
 import Preloader from '../../../common/Preloader';
 import NoItemFound from '../../../common/NoItemFound';
 import { getIsBlack } from '../../../../redux/theme-selectors';
+import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 
 const FavouritiesPage: React.FC = () => {
-   const dispatch = useDispatch<any>()
+   const dispatch = useAppDispatch()
 
    const limit = useSelector(getLimit)
    let currentPage = useSelector(getCurrentPage)
@@ -47,8 +48,8 @@ const FavouritiesPage: React.FC = () => {
             // const fav_id = breed.id
             return <div className={`${breedClasses.grid__item} ${breedClasses.grid__item_gallery}`}
                key={breed.id}>
-               <img src={breed.image.url} alt={breed.id} />
-               <div><button onClick={() => { removeFavourite(breed.id, breed.image.id); addUserAction(breed.image.id, null, 'remove') }} className={breedClasses.remove}>remove to favourite</button>
+               <img src={breed.image.url} alt={String(breed.id)} />
+               <div><button onClick={() => { removeFavourite(String(breed.id), breed.image.id); addUserAction(breed.image.id, null, 'remove') }} className={breedClasses.remove}>remove to favourite</button>
                </div>
             </div>
          })

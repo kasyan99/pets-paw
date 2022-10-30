@@ -1,6 +1,7 @@
 import { Field, Formik } from 'formik';
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { getBreedsListNamesThunk } from '../../../../redux/breeds-reducer';
 import { getBreedsNamesList } from '../../../../redux/breeds-selectors';
 import { GalleryFilterFormType, getImagesListThunk } from '../../../../redux/images-reducer';
@@ -9,7 +10,7 @@ import { getIsBlack } from '../../../../redux/theme-selectors';
 import classes from './GalleryFilterForm.module.scss'
 
 const GalleryFilterForm: React.FC = () => {
-   const dispatch = useDispatch<any>()
+   const dispatch = useAppDispatch()
 
    useEffect(() => {
       dispatch(getBreedsListNamesThunk())
@@ -29,7 +30,7 @@ const GalleryFilterForm: React.FC = () => {
       limits.push(i)
    }
 
-   const breedsNamesList: any = useSelector(getBreedsNamesList)
+   const breedsNamesList: { [key: string]: string } = useSelector(getBreedsNamesList)
    const isBlack = useSelector(getIsBlack)
 
    return <div className={`${classes.galleryFilterForm} ${isBlack && classes.black}`}>

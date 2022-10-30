@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { getIsBlack } from '../../../../redux/theme-selectors';
 import { actions, addToFavourite, BreedImageType, getRandomBreed, setVote, UsersActionType } from '../../../../redux/voting-reducer';
 import { getBreedImage, getIsFetching, getUserActions } from '../../../../redux/voting-selectors';
@@ -10,7 +11,7 @@ import classes from './VotingPage.module.scss'
 
 const VotingPage: React.FC = () => {
    const isFetching = useSelector(getIsFetching)
-   const dispatch = useDispatch<any>()
+   const dispatch = useAppDispatch()
 
    useEffect(() => {
       dispatch(getRandomBreed())

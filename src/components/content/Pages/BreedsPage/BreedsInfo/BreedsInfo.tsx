@@ -1,8 +1,10 @@
 import React, { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { useAppDispatch } from "../../../../../hooks/useAppDispatch";
+import { IBreed } from "../../../../../models/models";
 import { actions, getBreedById, getBreedsNumbersById } from "../../../../../redux/breeds-reducer";
-import { getBreedInfoPhotos, getInfoPhotoNumber, getIsFetching, getNumbersById } from "../../../../../redux/breeds-selectors";
+import { getBreedInfoPhotos, getInfoPhotoNumber, getIsFetching } from "../../../../../redux/breeds-selectors";
 import { getIsBlack } from "../../../../../redux/theme-selectors";
 import Preloader from "../../../../common/Preloader";
 import classes from './BreedsInfo.module.scss'
@@ -18,19 +20,20 @@ const BreedsInfo: React.FC = () => {
    //number of displaed picture
    const photoNumber = useSelector(getInfoPhotoNumber)
 
-   const dispatch = useDispatch()
+   const dispatch = useAppDispatch()
 
    useEffect(() => {
       dispatch(getBreedById(idBreed))
-   }, [idBreed])
+   }, [dispatch, idBreed])
 
    useEffect(() => {
       dispatch(getBreedsNumbersById())
-   }, [])
+   }, [dispatch])
 
    const breedPhotos = useSelector(getBreedInfoPhotos)
+   console.log('breedPhotos', breedPhotos);
 
-   let breed: any
+   let breed: IBreed
 
    let url = ''
    let name = ''
@@ -39,8 +42,10 @@ const BreedsInfo: React.FC = () => {
    let origin = ''
    let life_span = ''
    let weight = ''
-   if (breedPhotos[photoNumber]) {
-      breed = breedPhotos[photoNumber] ? breedPhotos[photoNumber].breeds[0] : {}
+   if (breedPhotos[photoNumber] && breedPhotos[photoNumber].breeds) {
+      //@ts-ignore
+      breed = breedPhotos[photoNumber].breeds[0] || {} as IBreed
+
 
       url = breedPhotos[photoNumber] ? breedPhotos[photoNumber].url : notFoundImage
       name = breed ? breed.name : ''
@@ -53,10 +58,10 @@ const BreedsInfo: React.FC = () => {
 
 
    //change displaed picture
-   const onBtnClick = (e: any) => {
+   const onBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       dispatch(actions.toggleIsFetching(true))
-      dispatch(actions.setInfoPhotoNumber(e.target.innerText))
-      selecterBtn = e.target.innerText
+      dispatch(actions.setInfoPhotoNumber(Number((e.target as HTMLElement).innerText)))
+      selecterBtn = Number((e.target as HTMLElement).innerText)
       setTimeout(() => {
          dispatch(actions.toggleIsFetching(false))
       }, 200)
@@ -67,8 +72,11 @@ const BreedsInfo: React.FC = () => {
    const buttons = () => {
       if (breedPhotos) {
          return breedPhotos.map((breed, index) => {
-            return <button type="button" className={`${selecterBtn == index ? classes.selected : ''}`}
-               onClick={onBtnClick} key={index}>{index}</button>
+            return <button
+               type="button"
+               className={`${selecterBtn === index ? classes.selected : ''}`}
+               onClick={onBtnClick} key={index}
+            >{index}</button>
          })
       }
       return ''

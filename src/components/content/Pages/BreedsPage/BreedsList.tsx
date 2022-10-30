@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../../../hooks/useAppDispatch';
+import { IBreed } from '../../../../models/models';
 import { BreedsFilterType } from '../../../../redux/breeds-reducer';
 import { GalleryFilterFormType } from '../../../../redux/images-reducer';
 import { AppStateType } from "../../../../redux/redux-store"
@@ -13,7 +15,7 @@ import classes from './BreedsPage.module.scss'
 const notFoundImage = 'https://s5.favim.com/orig/151213/avatar-kot-profil-gav-Favim.ru-3761175.jpg'
 
 type Props = {
-   breedsList: Array<any>
+   breedsList: IBreed[]
    getItemsCount: (state: AppStateType) => number
    photosFromGallery: boolean
    prevNext: (btn: 'prev' | 'next') => void
@@ -22,19 +24,19 @@ type Props = {
 }
 
 const BreedsList: React.FC<Props> = ({ breedsList, getItemsCount, photosFromGallery, prevNext, getCurrentPage, getFilter }) => {
-
    const navigate = useNavigate()
-   const getBreedId = (e: any) => {
-      navigate(`../breeds/info/${e.target.id}`, { replace: true })
+   const getBreedId = (e: React.MouseEvent<HTMLDivElement>) => {
+      navigate(`../breeds/info/${(e.target as HTMLInputElement).id}`, { replace: true })
    }
    //filter breeds list from API and create list of img
+
    const breedPhotos = () => {
 
       if (breedsList.length > 0) {
          return breedsList.map(breed => {
             if (breed.image && breed.image.url) {
                return <div className={classes.grid__item}
-                  key={breed.id} onClick={(e: any) => getBreedId(e)}>
+                  key={breed.id} onClick={(e) => getBreedId(e)}>
 
                   <img src={breed.image.url} alt={breed.alt_names === '' ? breed.name : breed.alt_names} />
                   <div id={breed.id}><span>{breed.name}</span></div>
@@ -63,7 +65,7 @@ const BreedsList: React.FC<Props> = ({ breedsList, getItemsCount, photosFromGall
    const location = useLocation()
    const isGallery = location.pathname === '/gallery'
 
-   const dispatch = useDispatch<any>()
+   const dispatch = useAppDispatch()
 
 
    const addFavourite = async (breed_id: string) => {
@@ -78,12 +80,11 @@ const BreedsList: React.FC<Props> = ({ breedsList, getItemsCount, photosFromGall
    const favourites = useSelector(getFavouritesIds)
 
    const favByImageId = useSelector(getFavByImageId)
+
    useEffect(() => {
       dispatch(getFavourites(null))
-   }, [])
+   }, [dispatch])
 
-
-   console.log('favourites', favourites);
 
    const galleryPhotos = () => {
 
@@ -97,9 +98,9 @@ const BreedsList: React.FC<Props> = ({ breedsList, getItemsCount, photosFromGall
                   {isGallery
                      ? favourites.includes(breed.id)
                         ? <button onClick={() => {
-                           removeFavourite(fav_id, breed.id); console.log('fav_id', fav_id, 'breed.id', breed.id);
+                           removeFavourite(fav_id, breed.id)
                         }} className={classes.remove}>remove to favourite</button>
-                        : <button onClick={() => { addFavourite(breed.id); console.log('fav_id', fav_id, 'breed.id', breed.id) }} className={classes.add}>add to favourite</button>
+                        : <button onClick={() => { addFavourite(breed.id) }} className={classes.add}>add to favourite</button>
                      : <span>{breed.id}</span>}
                </div>
             </div>
@@ -124,11 +125,11 @@ type PaginatorType = {
    getItemsCount: (state: AppStateType) => number
    prevNext?: (btn: 'prev' | 'next') => void
    getCurrentPage: (state: AppStateType) => number
-   getFilter: (state: AppStateType) => any
+   getFilter: (state: AppStateType) => { limitItems: number }
 }
 
 export const Paginator: React.FC<PaginatorType> = ({ getItemsCount, prevNext, getCurrentPage, getFilter }) => {
-   const dispatch = useDispatch<any>()
+   const dispatch = useAppDispatch()
    const location = useLocation()
    const obj = new URLSearchParams(location.search)
 
@@ -137,6 +138,7 @@ export const Paginator: React.FC<PaginatorType> = ({ getItemsCount, prevNext, ge
 
    let currentPage = useSelector(getCurrentPage)
    const filter = useSelector(getFilter)
+
    const itemsCount = useSelector(getItemsCount)
 
    const pagesCount = Math.floor(itemsCount / filter.limitItems)

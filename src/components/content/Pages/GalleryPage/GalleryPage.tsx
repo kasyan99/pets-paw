@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { GalleryFilterFormType, getImagesListThunk, ImgTypeType, OrderType } from '../../../../redux/images-reducer';
 import { getCurrentPage, getFilter, getImagesCount, getImagesList, getIsFetching } from '../../../../redux/images-selectors';
 import Preloader from '../../../common/Preloader';
@@ -13,7 +14,7 @@ const GalleryPage: React.FC = () => {
    let currentPage = useSelector(getCurrentPage)
    const filter = useSelector(getFilter)
 
-   const dispatch = useDispatch<any>()
+   const dispatch = useAppDispatch()
 
    const navigate = useNavigate()
    const location = useLocation()

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { getBreedsListThunk, getTotalBreedsCount } from '../../../../redux/breeds-reducer';
 import { getBreedsCount, getBreedsList, getCurrentPage, getFilter, getIsFetching, getOrder } from '../../../../redux/breeds-selectors';
 import Preloader from '../../../common/Preloader';
@@ -15,7 +16,7 @@ const BreedsPage: React.FC = () => {
    const isFetching = useSelector(getIsFetching)
    let page = useSelector(getCurrentPage)
 
-   const dispatch = useDispatch<any>()
+   const dispatch = useAppDispatch()
 
    const navigate = useNavigate()
    const location = useLocation()
