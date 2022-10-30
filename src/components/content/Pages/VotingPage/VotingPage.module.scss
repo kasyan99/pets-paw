@@ -4,8 +4,6 @@
   overflow-y: auto;
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
-  //  overflow-x: scroll;
-  //  overflow-y: hidden;
   &::-webkit-scrollbar {
     width: 0 !important;
     height: 0;
@@ -99,8 +97,6 @@
     padding: 10px;
     margin-bottom: 10px;
     .time {
-      // width: 61px;
-      // height: 30px;
       padding: 3px 10px;
       border-radius: 5px;
       background: #fff;

@@ -19,7 +19,3 @@ export const getImagesCount = (state: AppStateType) => {
 export const getIsFetching = (state: AppStateType) => {
   return state.images.isFetching
 }
-
-// export const getDisFav = (state: AppStateType) => {
-//    return state.images.displayedFavourites
-// }

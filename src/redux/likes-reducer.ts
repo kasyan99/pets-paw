@@ -21,14 +21,7 @@ const initialState = {
   isFetching: false,
   likesList: [] as IImage[],
   totalImagesCount: 0,
-  userActions: [
-    // {
-    //    id: 'sdfsdf',
-    //    type: 'Favourites',
-    //    action: 'added to',
-    //    time: '20:22'
-    // }
-  ] as Array<UsersActionType>,
+  userActions: [] as UsersActionType[],
 }
 
 export type InitialStateType = typeof initialState

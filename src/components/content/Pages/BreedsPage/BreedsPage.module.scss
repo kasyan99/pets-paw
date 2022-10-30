@@ -50,9 +50,7 @@ $bg-black: rgba(255, 255, 255, 0.1);
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(auto-fit, 200px);
-  // grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-template-rows: 140px repeat(auto-fit, 140px);
-  // grid-template-rows: 140px repeat(auto-fill,140px);
   .grid__item {
     position: relative;
     padding: 0 0 140px 0;
@@ -156,7 +154,6 @@ $bg-black: rgba(255, 255, 255, 0.1);
     display: grid;
     gap: 20px;
     grid-template-columns: 1fr;
-    // grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-template-rows: repeat(auto-fit, 300px);
     .grid__item {
       position: relative;
@@ -302,12 +299,9 @@ $bg-black: rgba(255, 255, 255, 0.1);
 //-------------------------------------------------------------------------------------------------------------
 
 .breedsFilterForm {
-  // padding-bottom: 20px;
 
   form {
-    // display: flex;
     display: grid;
-    // justify-content: space-between;
     grid-auto-flow: column;
     gap: 10px;
   }
@@ -316,7 +310,6 @@ $bg-black: rgba(255, 255, 255, 0.1);
     width: 100%;
     margin-top: 10px;
     form {
-      // width: 100%;
       margin-top: 0;
       grid-template-rows: 40px 40px;
       grid-template-columns: 1fr 40px 40px;
@@ -336,7 +329,6 @@ $bg-black: rgba(255, 255, 255, 0.1);
   font-family: "Jost";
   font-style: normal;
   font-weight: 400;
-  // margin-right: 10px;
 }
 
 .btn {

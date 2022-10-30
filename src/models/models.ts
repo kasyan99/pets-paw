@@ -62,7 +62,7 @@ export interface IBreed {
   bidability?: number
 }
 
-export interface FavouritesList {
+export interface FavouritesItem {
   id: number
   user_id: string
   image_id: string

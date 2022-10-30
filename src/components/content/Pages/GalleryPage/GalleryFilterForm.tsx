@@ -19,13 +19,11 @@ const GalleryFilterForm: React.FC = () => {
    const { order, type, filterByBreed, limitItems } = useSelector(getFilter)
 
    const onSubmit = (filter: GalleryFilterFormType) => {
-      // dispatch(actions.setFilter(filter))
-
       dispatch(getImagesListThunk(filter, 0))
    }
 
    //generate limitItems options values 
-   const limits: Array<Number> = []
+   const limits: Number[] = []
    for (let i = 5; i <= 20; i += 5) {
       limits.push(i)
    }

@@ -17,7 +17,6 @@ $element-height: 40px;
 .wrapper {
   display: flex;
   justify-content: start;
-  //  margin-bottom: 20px;
   @media (max-width: 60px) {
     height: 40px;
   }

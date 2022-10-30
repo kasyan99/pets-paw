@@ -1,5 +1,5 @@
 import { votingAPI } from "../api/voting-api"
-import { FavouritesList } from "../models/models"
+import { FavouritesItem } from "../models/models"
 import { BaseThunkType, InferActionsTypes } from "./redux-store"
 import { UsersActionType } from "./voting-reducer"
 
@@ -16,16 +16,9 @@ const initialState = {
   currentPage: 0,
   limit: 5,
   isFetching: false,
-  favouritesList: [] as Array<FavouritesList>,
+  favouritesList: [] as FavouritesItem[],
   totalImagesCount: 0,
-  userActions: [
-    // {
-    //    id: 'sdfsdf',
-    //    type: 'Favourites',
-    //    action: 'added to',
-    //    time: '20:22'
-    // }
-  ] as Array<UsersActionType>,
+  userActions: [] as UsersActionType[],
 }
 
 export type InitialStateType = typeof initialState
@@ -82,7 +75,7 @@ export const actions = {
   setLimit: (limit: number) => ({ type: SET_LIMIT, limit } as const),
   toggleIsFetching: (isFetching: boolean) =>
     ({ type: TOGGLE_FETCHING, isFetching } as const),
-  setFavouritesList: (favouritesList: FavouritesList[]) =>
+  setFavouritesList: (favouritesList: FavouritesItem[]) =>
     ({ type: SET_FAVOURITES_LIST, favouritesList } as const),
   setTotalCount: (totalImagesCount: number) =>
     ({ type: SET_TOTAL_COUNT, totalImagesCount } as const),

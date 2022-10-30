@@ -5,7 +5,6 @@ import { BreedsNumberById, IBreed, IImage } from "../models/models"
 import { AppDispatch, BaseThunkType, InferActionsTypes } from "./redux-store"
 
 const SET_BREEDS_LIST = "pets-paw/breeds/SET-BREEDS-LIST"
-// const SET_TOTAL_BREEDS_LIST = 'pets-paw/breeds/SET-TOTAL-BREEDS-LIST'
 const SET_CURRENT_PAGE = "pets-paw/breeds/SET-CURRENT-PAGE"
 const SET_USERS_COUNT = "pets-paw/breeds/SET-USERS-COUNT"
 const SET_LIMIT_ITEMS = "pets-paw/breeds/SET-LIMIT-ITEMS"
@@ -24,7 +23,6 @@ export type BreedsFilterType = {
 
 const initialState = {
   breedsList: [] as IBreed[],
-  // totalBreedsList: [] as Array<any>,
   breedsCount: 0,
   filter: {
     limitItems: 5,
@@ -113,7 +111,6 @@ const breedsReducer = (
 export const actions = {
   setBreedsList: (breedsList: IBreed[]) =>
     ({ type: SET_BREEDS_LIST, breedsList } as const),
-  // setTotalBreedsList: (totalBreedsList: Array<any>) => ({ type: SET_TOTAL_BREEDS_LIST, totalBreedsList } as const),
   setCurrentPage: (currentPage: number) =>
     ({ type: SET_CURRENT_PAGE, currentPage } as const),
   setBreedsCount: (breedsCount: number) =>
@@ -169,12 +166,10 @@ export const getBreedsListThunk =
 
 export const getBreedsListNamesThunk =
   () => async (dispatch: Dispatch<ActionsType>) => {
-    const breeds = await breedsAPI.getBreads(null, null)
+    const breeds: IBreed[] = await breedsAPI.getBreads(null, null)
 
     let breedsNamesList: { [key: string]: string } = {}
-    breeds.map((breed: IBreed) => {
-      breedsNamesList[breed.id] = breed.name
-    })
+    breeds.forEach((breed) => (breedsNamesList[breed.id] = breed.name))
     dispatch(actions.setBreedsNamesList(breedsNamesList))
   }
 
@@ -186,14 +181,12 @@ export const getTotalBreedsCount = () => async (dispatch: AppDispatch) => {
 }
 
 export const getBreedsNumbersById = () => async (dispatch: AppDispatch) => {
-  const data = (await breedsAPI.getTotalBreeds()).data
+  const data: IBreed[] = (await breedsAPI.getTotalBreeds()).data
 
   if (data) {
     let arr = {} as BreedsNumberById
 
-    data.map((breed: IBreed, index: number) => {
-      arr[`${breed.id}`] = index + 1
-    })
+    data.forEach((breed, index) => (arr[`${breed.id}`] = index + 1))
 
     dispatch(actions.setBreedsNumbersById(arr))
   }

@@ -19,7 +19,6 @@ const App: React.FC = () => {
   return (
     <div className={`App ${isBlack && 'black'}`}>
       {isUploading && <div className={`${uploadingClasses.cover} ${isBlack && uploadingClasses.black}`}></div>}
-      {/* <div className="container"> */}
       <div className="wrapper">
         <MenuPage />
         <Suspense fallback={<Preloader />}>
@@ -30,7 +29,6 @@ const App: React.FC = () => {
 
         </Suspense>
       </div>
-      {/* </div> */}
     </div>
   );
 }

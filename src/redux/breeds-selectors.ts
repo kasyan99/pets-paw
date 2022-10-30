@@ -1,45 +1,41 @@
 import { AppStateType } from "./redux-store"
 
 export const getBreedsList = (state: AppStateType) => {
-   return state.breeds.breedsList
+  return state.breeds.breedsList
 }
 
-// export const getTotalBreedsList = (state: AppStateType) => {
-//    return state.breeds.totalBreedsList
-// }
-
 export const getCurrentPage = (state: AppStateType) => {
-   return state.breeds.currentPage
+  return state.breeds.currentPage
 }
 
 export const getFilter = (state: AppStateType) => {
-   return state.breeds.filter
+  return state.breeds.filter
 }
 
 export const getBreedsCount = (state: AppStateType) => {
-   return state.breeds.breedsCount
+  return state.breeds.breedsCount
 }
 
 export const getOrder = (state: AppStateType) => {
-   return state.breeds.order
+  return state.breeds.order
 }
 
 export const getBreedsNamesList = (state: AppStateType) => {
-   return state.breeds.breedsNamesList
+  return state.breeds.breedsNamesList
 }
 
 export const getIsFetching = (state: AppStateType) => {
-   return state.breeds.isFetching
+  return state.breeds.isFetching
 }
 
 export const getBreedInfoPhotos = (state: AppStateType) => {
-   return state.breeds.breedInfoPhotos
+  return state.breeds.breedInfoPhotos
 }
 
 export const getInfoPhotoNumber = (state: AppStateType) => {
-   return state.breeds.infoPhotoNumber
+  return state.breeds.infoPhotoNumber
 }
 
 export const getNumbersById = (state: AppStateType) => {
-   return state.breeds.numbersById
+  return state.breeds.numbersById
 }

@@ -67,8 +67,8 @@ const VotingPage: React.FC = () => {
    </div>
 }
 
-export const UserActionLogs: React.FC<{ userActions: Array<UsersActionType> }> = ({ userActions }) => {
-   const createUserActions = (userActions: Array<UsersActionType> | null) => {
+export const UserActionLogs: React.FC<{ userActions: UsersActionType[] }> = ({ userActions }) => {
+   const createUserActions = (userActions: UsersActionType[] | null) => {
       if (userActions) {
          return userActions.map((action, index) => {
             return <div className={`${classes.action} ${action.action === 'added to' && classes[`action_${action.type}`]}`} key={index}>

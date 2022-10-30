@@ -31,7 +31,6 @@ const initialState = {
   totalImagesCount: 0,
   imagesList: [] as IBreed[],
   isFetching: false,
-  // displayedFavourites: [] as Array<any>,
 }
 
 export type InitialStateType = typeof initialState
@@ -69,20 +68,6 @@ const imagesReducer = (
         ...state,
         isFetching: action.isFetching,
       }
-    // case ADD_DISPLAYED_FAV:
-    //   return {
-    //     ...state,
-    //     displayedFavourites: [...state.displayedFavourites, action.id],
-    //   }
-    // case REMOVE_DISPLAYED_FAV:
-    //   return {
-    //     ...state,
-    //     displayedFavourites: [
-    //       state.displayedFavourites.filter(
-    //         (item: string) => item !== action.id
-    //       ),
-    //     ],
-    //   }
     default:
       return state
   }

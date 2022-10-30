@@ -28,16 +28,8 @@ export type UsersActionType = {
 const initialState = {
   breedImage: {} as BreedImageType,
   isFetching: false,
-  userActions: [
-    // {
-    //    id: 'sdfsdf',
-    //    type: 'Favourites',
-    //    action: 'added',
-    //    time: '20:22'
-    // }
-  ] as Array<UsersActionType>,
-  favourites: [] as Array<string>,
-  // favByImageId: {} as any
+  userActions: [] as UsersActionType[],
+  favourites: [] as string[],
   favByImageId: {} as FavByImageId,
 }
 
@@ -156,10 +148,6 @@ export const deleteFavourite =
     await votingAPI.deleteFavourites(fav_id)
     dispatch(actions.removeFavourites(breed_id))
   }
-
-// export const getVotes = (): ThunkType => async (dispatch) => {
-//    const data = await votingAPI.getVotes()
-// }
 
 export const getFavourites =
   (limit: number | null): ThunkType =>
