@@ -23,12 +23,12 @@ const initialState = {
 
 export type InitialStateType = typeof initialState
 
-export type ActionsType = InferActionsTypes<typeof actions>
-type ThunkType = BaseThunkType<ActionsType>
+export type ActionsFavouritesType = InferActionsTypes<typeof actions>
+type ThunkType = BaseThunkType<ActionsFavouritesType>
 
 const favouritesReducer = (
   state = initialState,
-  action: ActionsType
+  action: ActionsFavouritesType
 ): InitialStateType => {
   switch (action.type) {
     case SET_CURRENT_PAGE:

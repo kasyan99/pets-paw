@@ -35,12 +35,12 @@ const initialState = {
 
 export type InitialStateType = typeof initialState
 
-type ActionsType = InferActionsTypes<typeof actions>
-type ThunkType = BaseThunkType<ActionsType>
+export type ActionsVotingType = InferActionsTypes<typeof actions>
+type ThunkType = BaseThunkType<ActionsVotingType>
 
 const votingReducer = (
   state = initialState,
-  action: ActionsType
+  action: ActionsVotingType
 ): InitialStateType => {
   switch (action.type) {
     case SET_BREED_IMAGE:

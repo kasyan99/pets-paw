@@ -39,12 +39,12 @@ const initialState = {
 
 export type InitialStateType = typeof initialState
 
-type ActionsType = InferActionsTypes<typeof actions>
-type ThunkType = BaseThunkType<ActionsType>
+export type ActionsBreedsType = InferActionsTypes<typeof actions>
+type ThunkType = BaseThunkType<ActionsBreedsType>
 
 const breedsReducer = (
   state = initialState,
-  action: ActionsType
+  action: ActionsBreedsType
 ): InitialStateType => {
   switch (action.type) {
     case SET_BREEDS_LIST:
@@ -165,7 +165,7 @@ export const getBreedsListThunk =
   }
 
 export const getBreedsListNamesThunk =
-  () => async (dispatch: Dispatch<ActionsType>) => {
+  () => async (dispatch: Dispatch<ActionsBreedsType>) => {
     const breeds: IBreed[] = await breedsAPI.getBreads(null, null)
 
     let breedsNamesList: { [key: string]: string } = {}

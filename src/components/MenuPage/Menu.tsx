@@ -35,7 +35,7 @@ const itemsList = [
 export type ItemType = typeof itemsList[1]
 
 const Menu: React.FC = () => {
-   return <div className={classes.menu}>
+   return <div className={classes.menu} data-testid='menu'>
       {itemsList.map(item => <MenuItem item={item} key={item.id} />)}
    </div>
 }

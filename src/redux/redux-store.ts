@@ -5,16 +5,16 @@ import {
   applyMiddleware,
   Action,
 } from "redux"
-import breedsReducer from "./breeds-reducer"
+import breedsReducer, { ActionsBreedsType } from "./breeds-reducer"
 import thunkMiddleware, { ThunkAction } from "redux-thunk"
-import imagesReducer from "./images-reducer"
-import votingReducer from "./voting-reducer"
-import favouritesReducer from "./favourites-reducer"
-import likesReducer from "./likes-reducer"
-import searchReducer from "./search-reducer"
-import uploadingReducer from "./uploading-reducer"
-import locationReducer from "./location-reducer"
-import themeReducer from "./theme-reducer"
+import imagesReducer, { ActionsImagesType } from "./images-reducer"
+import votingReducer, { ActionsVotingType } from "./voting-reducer"
+import favouritesReducer, { ActionsFavouritesType } from "./favourites-reducer"
+import likesReducer, { ActionsLikesType } from "./likes-reducer"
+import searchReducer, { ActionsSearchType } from "./search-reducer"
+import uploadingReducer, { ActionsUploadingType } from "./uploading-reducer"
+import locationReducer, { ActionsLocationType } from "./location-reducer"
+import themeReducer, { ActionsThemeType } from "./theme-reducer"
 
 const redusers = combineReducers({
   breeds: breedsReducer,
@@ -33,8 +33,20 @@ export type AppStateType = ReturnType<RootReducerType>
 
 type PropertiesTypes<T> = T extends { [key: string]: infer U } ? U : never
 
+export type Actions =
+  | ActionsLocationType
+  | ActionsSearchType
+  | ActionsThemeType
+  | ActionsUploadingType
+  | ActionsLocationType
+  | ActionsBreedsType
+  | ActionsFavouritesType
+  | ActionsImagesType
+  | ActionsVotingType
+  | ActionsLikesType
+
 export type InferActionsTypes<
-  T extends { [key: string]: (...args: any[]) => any }
+  T extends { [key: string]: (...args: any[]) => Actions }
 > = ReturnType<PropertiesTypes<T>>
 
 export type BaseThunkType<

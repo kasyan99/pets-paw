@@ -13,11 +13,11 @@ const initialState = {
 
 export type InitialStateType = typeof initialState
 
-type ActionsType = InferActionsTypes<typeof actions>
+export type ActionsLocationType = InferActionsTypes<typeof actions>
 
 const locationReducer = (
   state = initialState,
-  action: ActionsType
+  action: ActionsLocationType
 ): InitialStateType => {
   switch (action.type) {
     case SET_CURRENT_LOCATION:

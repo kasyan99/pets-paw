@@ -45,7 +45,6 @@ const FavouritiesPage: React.FC = () => {
 
       if (favouritesList.length > 0) {
          return favouritesList.map(breed => {
-            // const fav_id = breed.id
             return <div className={`${breedClasses.grid__item} ${breedClasses.grid__item_gallery}`}
                key={breed.id}>
                <img src={breed.image.url} alt={String(breed.id)} />

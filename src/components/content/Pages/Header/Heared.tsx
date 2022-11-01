@@ -53,7 +53,7 @@ const Header: React.FC = () => {
       </div>
       {useRoutes([
          { path: "/breeds/*", element: <>{pathnames[1] === 'info' ? <div className={classes.idNumberWrapper}><div className={classes.idNumber}><span>{id}</span></div></div> : <BreedsFilterForm />}</> },
-         { path: "/gallery/*", element: <div onClick={openModal} className={`${classes.upload} ${isBlack && classes.black}`}><span></span><button>UPLOAD</button></div> },
+         { path: "/gallery/*", element: <div onClick={openModal} className={`${classes.upload} ${isBlack && classes.black}`} data-testid='open-modal'><span></span><button>UPLOAD</button></div> },
       ])}
    </div>
 }

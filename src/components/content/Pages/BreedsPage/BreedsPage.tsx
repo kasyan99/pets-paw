@@ -78,6 +78,7 @@ const BreedsPage: React.FC = () => {
       }
       {!isFetching &&
          <BreedsList
+            data-testid='breeds-list'
             breedsList={breedsList}
             getItemsCount={getBreedsCount}
             prevNext={prevNext}

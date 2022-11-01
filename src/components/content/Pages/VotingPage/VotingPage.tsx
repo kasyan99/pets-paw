@@ -47,7 +47,7 @@ const VotingPage: React.FC = () => {
    const userActions = useSelector(getUserActions)
    const isBlack = useSelector(getIsBlack)
 
-   return <div className={`${classes.votingPage} ${isBlack && classes.black}`}>
+   return <div className={`${classes.votingPage} ${isBlack && classes.black}`} data-testid='voting-page'>
       <div className={classes.imagesWrapper}>
          {!isFetching &&
             <img src={url} alt="" />}
@@ -55,7 +55,7 @@ const VotingPage: React.FC = () => {
             <Preloader />}
          <div className={classes.btnContainer}>
             <div>
-               <button onClick={() => onVote(1)}>like</button>
+               <button onClick={() => onVote(1)} data-testid='add-to-like-btn'>like</button>
                <button onClick={toFavourite}>favourite</button>
                <button onClick={() => onVote(0)}>dislike</button>
             </div>
@@ -71,7 +71,12 @@ export const UserActionLogs: React.FC<{ userActions: UsersActionType[] }> = ({ u
    const createUserActions = (userActions: UsersActionType[] | null) => {
       if (userActions) {
          return userActions.map((action, index) => {
-            return <div className={`${classes.action} ${action.action === 'added to' && classes[`action_${action.type}`]}`} key={index}>
+            return <div
+               className={`${classes.action} 
+            ${action.action === 'added to' && classes[`action_${action.type}`]}`}
+               key={index}
+               data-testid='user-action-log'
+            >
                <span className={classes.time}>
                   <span>{action.time}</span>
                </span>

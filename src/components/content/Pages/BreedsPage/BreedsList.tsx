@@ -152,11 +152,13 @@ export const Paginator: React.FC<PaginatorType> = ({ getItemsCount, prevNext, ge
                <button type='button'
                   className={`${classes.element} ${classes.btn} ${classes.btn_prev}`}
                   onClick={() => currentPage > 0 && prevNext && dispatch(prevNext('prev'))}
+                  data-testid='prev-btn'
                >PREV</button>}
             {currentPage < pagesCount &&
                <button type='button'
                   className={`${classes.element} ${classes.btn} ${classes.btn_next}`}
                   onClick={() => currentPage < pagesCount && prevNext && dispatch(prevNext('next'))}
+                  data-testid='next-btn'
                >NEXT</button>}
          </div>}
    </div>

@@ -8,7 +8,7 @@ const HomePage: React.FC = () => {
    const isBlack = useSelector(getIsBlack)
 
    return <div className={`${classes.homePage} ${isBlack && classes.black}`}>
-      <img src={catAndGirl} alt="cat and girl" />
+      <img src={catAndGirl} alt="cat and girl" data-testid='home-img' />
    </div>
 }
 

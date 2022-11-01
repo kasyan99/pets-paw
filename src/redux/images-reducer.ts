@@ -35,12 +35,12 @@ const initialState = {
 
 export type InitialStateType = typeof initialState
 
-export type ActionsType = InferActionsTypes<typeof actions>
-export type ThunkType = BaseThunkType<ActionsType>
+export type ActionsImagesType = InferActionsTypes<typeof actions>
+export type ThunkType = BaseThunkType<ActionsImagesType>
 
 const imagesReducer = (
   state = initialState,
-  action: ActionsType
+  action: ActionsImagesType
 ): InitialStateType => {
   switch (action.type) {
     case SET_CURRENT_PAGE:

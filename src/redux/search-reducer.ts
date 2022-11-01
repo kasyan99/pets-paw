@@ -14,12 +14,12 @@ const initialState = {
 
 export type InitialStateType = typeof initialState
 
-export type ActionsType = InferActionsTypes<typeof actions>
-export type ThunkType = BaseThunkType<ActionsType>
+export type ActionsSearchType = InferActionsTypes<typeof actions>
+export type ThunkType = BaseThunkType<ActionsSearchType>
 
 const searchReducer = (
   state = initialState,
-  action: ActionsType
+  action: ActionsSearchType
 ): InitialStateType => {
   switch (action.type) {
     case SET_BREEDS_LIST:

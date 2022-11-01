@@ -53,14 +53,20 @@ const MenuPage: React.FC = () => {
       dispatch(actionsTheme.toggleIsMenu(false))
    }
 
-   return <div className={`${classes.menuPage} ${isBlack && classes.black} ${location.pathname === '/' && classes.menuPageOnHome} ${isMenu && classes.coverMenu}`}>
+   return <div
+      className={`${classes.menuPage} 
+   ${isBlack && classes.black} 
+   ${location.pathname === '/' && classes.menuPageOnHome} 
+   ${isMenu && classes.coverMenu}`}
+      data-testid={`menu-page${isBlack ? '-black' : ''}`}
+   >
       <div className={classes.menuBody}>
          <h2>Hi cat lover!</h2>
-         <Link to='/' className={classes.logo}>
+         <Link to='/' className={classes.logo} data-testid='home-page'>
             <img src={isBlack ? logoBlack : logo} alt="Logo PetsPaw" />
          </Link>
-         <div className={classes.themeBtn}><button onClick={changeTheme}>Change theme</button></div>
-         <button className={classes.closeMenuBtn} onClick={closeMenu}>Close menu</button>
+         <div className={classes.themeBtn}><button onClick={changeTheme} data-testid='change-theme'>Change theme</button></div>
+         <button className={classes.closeMenuBtn} onClick={closeMenu} data-testid='btn-open-modal'>Close menu</button>
          <p>Welcome to cat's gallery</p>
          <p>Find you favourite</p>
          <Menu />

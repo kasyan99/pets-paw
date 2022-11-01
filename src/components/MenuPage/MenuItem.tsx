@@ -20,7 +20,7 @@ const MenuItem: React.FC<PropsType> = ({ item }) => {
          <img src={item.image} alt={item.linkName} />
       </div>
       <div className={isPath ? styles.active : ''}>
-         <Link to={item.linkPath}><span>{item.linkName}</span></Link>
+         <Link to={item.linkPath} data-testid={item.linkName + '-btn'}><span>{item.linkName}</span></Link>
       </div>
 
    </div>

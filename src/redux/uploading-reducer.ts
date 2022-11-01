@@ -19,12 +19,12 @@ const initialState = {
 
 export type InitialStateType = typeof initialState
 
-export type ActionsType = InferActionsTypes<typeof actions>
-export type ThunkType = BaseThunkType<ActionsType>
+export type ActionsUploadingType = InferActionsTypes<typeof actions>
+export type ThunkType = BaseThunkType<ActionsUploadingType>
 
 const uploadingReducer = (
   state = initialState,
-  action: ActionsType
+  action: ActionsUploadingType
 ): InitialStateType => {
   switch (action.type) {
     case TOGGLE_IS_FETCHING:

@@ -41,7 +41,7 @@ const GalleryFilterForm: React.FC = () => {
             <div className={classes.fieldWrapper}>
                <label>ORDER</label>
                <Field as="select" name="order" className={`${classes.selectField} ${classes.element}`}
-                  onChange={props.handleChange}>
+                  onChange={props.handleChange} data-testid='order-input'>
                   <option value="RANDOM">Random</option>
                   <option value="DESC">Desc</option>
                   <option value="ASC">Asc</option>
